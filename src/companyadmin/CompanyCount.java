@@ -289,6 +289,31 @@ public class CompanyCount {
 		extent.flush();
 	}
 	
+	//@Test(priority = 17)
+	void BlockScheduleStatutory() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users - Block Schedule Statutory  ");
+		
+		
+		CompanyMethods.BlockScheduleStatutory(driver,test,workbook);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+//	@Test(priority = 18)
+	void BlockScheduleInternal() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users -Block Schedule Internal  ");
+		
+		
+		CompanyMethods.BlockScheduleInternal(driver,test,workbook);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	
 	
 	// @AfterTest
 		void Closing() throws InterruptedException

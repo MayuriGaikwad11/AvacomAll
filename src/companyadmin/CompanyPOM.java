@@ -476,15 +476,73 @@ public class CompanyPOM {
 		return admin;
 	}
 	
+	public static WebElement  BlockScheduleStatutory(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.xpath("//*[@id='CMPMenuBar:submenu:15']/li[8]/a"));
+		return admin;
+	}
 	
 	
+	public static WebElement  ComplianceCategory(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.xpath("//*[@id='BodyContent_upComplianceTypeList']/center/table/tbody/tr[2]/td[2]/span[1]/a/span[1]"));
+		return admin;
+	}
+	
+	public static WebElement  ClientSpecific(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.linkText("Client Specific"));
+		return admin;
+	}
+	
+	public static WebElement   Category28May2021(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.linkText("Category 28 May 2021"));
+		return admin;
+	}
 	
 	
+	public static WebElement  Description(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.id("BodyContent_tbxdescription"));
+		return admin;
+	}
 	
+	public static WebElement  BlockDate(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.xpath("//*[@id='BodyContent_tbxStartDate']"));
+		return admin;
+	}
 	
+	public static WebElement  Date14(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.linkText("14"));
+		return admin;
+	}
 	
+	public static WebElement  BlockCheckBox(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.xpath("//*[@id='BodyContent_grdComplianceRoleMatrix_chkActivate_0']"));
+		return admin;
+	}
 	
+	public static WebElement  keep(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.xpath("//*[@id='BodyContent_Button1']"));
+		return admin;
+	}
 	
+	public static WebElement  BlockDelete(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.xpath("//*[@id='BodyContent_Button2']"));
+		return admin;
+	}
+	
+	public static WebElement  BlockScheduleInternal(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.xpath("//*[@id='CMPMenuBar:submenu:15']/li[9]/a"));
+		return admin;
+	}
 	
 	
 	

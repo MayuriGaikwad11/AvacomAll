@@ -25,7 +25,7 @@ public class Login
 	
 	public static void BrowserSetup(String URL)
 	{
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\trainee\\Desktop\\Compliances\\ComplianceAll\\Chrome\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\trainee\\Desktop\\Compliances\\ComplianceAll\\Driver\\chromedriver.exe");
 		//System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver"); //Set the Chrome driver variable
 	
 	//	WebDriverManager.chromedriver().setup();

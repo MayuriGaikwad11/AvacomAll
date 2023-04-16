@@ -1,25 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="6" passed="6" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-04-12T04:33:17 PDT" name="Default suite" finished-at="2023-04-12T04:36:04 PDT" duration-ms="166823">
+  <suite started-at="2023-04-14T19:31:34 IST" name="Default suite" finished-at="2023-04-14T19:42:20 IST" duration-ms="646135">
     <groups>
     </groups>
-    <test started-at="2023-04-12T04:33:17 PDT" name="Default test" finished-at="2023-04-12T04:36:04 PDT" duration-ms="166823">
-      <class name="companyadmin.CompanyCount">
-        <test-method is-config="true" signature="setBrowser()[pri:0, instance:companyadmin.CompanyCount@3b6ddd1d]" started-at="2023-04-12T04:33:17 PDT" name="setBrowser" finished-at="2023-04-12T04:33:25 PDT" duration-ms="7842" status="PASS">
+    <test started-at="2023-04-14T19:31:34 IST" name="Default test" finished-at="2023-04-14T19:42:20 IST" duration-ms="646135">
+      <class name="auditor.AuditorcountInternal">
+        <test-method is-config="true" signature="setBrowser()[pri:0, instance:auditor.AuditorcountInternal@3b6ddd1d]" started-at="2023-04-14T19:31:34 IST" name="setBrowser" finished-at="2023-04-14T19:31:45 IST" duration-ms="10865" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setBrowser -->
-        <test-method signature="Login()[pri:1, instance:companyadmin.CompanyCount@3b6ddd1d]" started-at="2023-04-12T04:33:25 PDT" name="Login" finished-at="2023-04-12T04:33:46 PDT" duration-ms="21645" status="PASS">
+        <test-method signature="Login()[pri:1, instance:auditor.AuditorcountInternal@3b6ddd1d]" started-at="2023-04-14T19:31:45 IST" name="Login" finished-at="2023-04-14T19:32:23 IST" duration-ms="37776" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Login -->
-        <test-method signature="User()[pri:16, instance:companyadmin.CompanyCount@3b6ddd1d]" started-at="2023-04-12T04:33:46 PDT" name="User" finished-at="2023-04-12T04:36:04 PDT" duration-ms="137249" status="PASS">
+        <test-method signature="ClosedTimely_PieChartperiod()[pri:14, instance:auditor.AuditorcountInternal@3b6ddd1d]" started-at="2023-04-14T19:32:23 IST" name="ClosedTimely_PieChartperiod" finished-at="2023-04-14T19:35:15 IST" duration-ms="172477" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- User -->
-      </class> <!-- companyadmin.CompanyCount -->
+        </test-method> <!-- ClosedTimely_PieChartperiod -->
+        <test-method signature="NotCompleted_PieChartPe()[pri:15, instance:auditor.AuditorcountInternal@3b6ddd1d]" started-at="2023-04-14T19:35:15 IST" name="NotCompleted_PieChartPe" finished-at="2023-04-14T19:37:44 IST" duration-ms="148367" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- NotCompleted_PieChartPe -->
+        <test-method signature="Overdue_PieChartInternalPe()[pri:16, instance:auditor.AuditorcountInternal@3b6ddd1d]" started-at="2023-04-14T19:37:44 IST" name="Overdue_PieChartInternalPe" finished-at="2023-04-14T19:40:14 IST" duration-ms="150338" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Overdue_PieChartInternalPe -->
+        <test-method signature="PFR_PieChartInternalPe()[pri:17, instance:auditor.AuditorcountInternal@3b6ddd1d]" started-at="2023-04-14T19:40:14 IST" name="PFR_PieChartInternalPe" finished-at="2023-04-14T19:41:42 IST" duration-ms="88449" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PFR_PieChartInternalPe -->
+        <test-method signature="DailyUpdates()[pri:18, instance:auditor.AuditorcountInternal@3b6ddd1d]" started-at="2023-04-14T19:41:42 IST" name="DailyUpdates" finished-at="2023-04-14T19:42:20 IST" duration-ms="37717" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DailyUpdates -->
+      </class> <!-- auditor.AuditorcountInternal -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

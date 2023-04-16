@@ -4891,7 +4891,7 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[1]/td[17]/a");
 			
 			wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 			Thread.sleep(4000);
-			// retrieving "foo-button" HTML element
+			
 			WebElement ViewButton = driver.findElement(locator);	
 			Thread.sleep(4000);
 		JavascriptExecutor jse=(JavascriptExecutor)driver;

@@ -25,7 +25,52 @@ public class AuditorcountPOM {
 	public static FileInputStream fis = null;	//File input stream variable
 	public static XSSFWorkbook workbook = null;	//Excel sheet workbook variable
 	public static XSSFSheet sheet = null;		//Sheet variable
+	private static WebElement date = null;		
 	
+	
+	public static WebElement DateText(WebDriver driver)		//Method for closing Message Popup
+	{
+		date = driver.findElement(By.xpath("//*[@id='txtAdvStartDate']"));
+		return date;
+	}
+	
+	
+	public static WebElement DateYear(WebDriver driver)		//Method for closing Message Popup
+	{
+		date = driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/div/div/select[2]"));
+		return date;
+	}
+	
+	public static WebElement Year(WebDriver driver)		//Method for closing Message Popup
+	{
+		date = driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/div/div/select[2]/option[10]"));
+		return date;
+	}
+	
+	public static WebElement DateMonth(WebDriver driver)		//Method for closing Message Popup
+	{
+		date = driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/div/div/select[1]"));
+		return date;
+	}
+	
+	public static WebElement Month(WebDriver driver)	
+	//Method for closing Message Popup
+	{
+		date = driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/div/div/select[1]/option[4]"));
+		return date;
+	}
+	
+	public static WebElement Date(WebDriver driver)		//Method for closing Message Popup
+	{
+		date = driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/table/tbody/tr[3]/td[4]/a"));
+		return date;
+	}
+	
+	public static WebElement Apply(WebDriver driver)		//Method for closing Message Popup
+	{
+		date = driver.findElement(By.xpath("//*[@id='btnTopSearch']"));
+		return date;
+	}
 	
 	public static void GraphCount(WebDriver driver, ExtentTest test, String risk, int complianceCount, String Compliance)throws InterruptedException
 	{
@@ -1552,20 +1597,21 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[1]/td[18]/a[1]");
 
 			wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 			Thread.sleep(4000);
-			// retrieving "foo-button" HTML element
+			
 			List<WebElement> ViewButton = driver.findElements(locator);	
 			Thread.sleep(3000);
 			ViewButton.get(0).click();
 			Thread.sleep(4000);
 			CFOcountPOM.closeDocument1(driver).click();
 			Thread.sleep(3000);
+			test.log(LogStatus.PASS, "View successfully");
 			ViewButton.get(1).click();
 			Thread.sleep(4000);
+			test.log(LogStatus.PASS, "Download Doc successfully");
 			ViewButton.get(2).click();
-		//JavascriptExecutor jse=(JavascriptExecutor)driver;
-		//jse.executeScript("arguments[0].click();", ViewButton);
+			
 			Thread.sleep(4000);
-			test.log(LogStatus.PASS, "overView success");
+			test.log(LogStatus.PASS, "overView Successfully");
 			CFOcountPOM.closeDocument(driver).click();
 			Thread.sleep(3000);
 			
@@ -1600,12 +1646,12 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[1]/td[18]/a[1]");
 		
 		if(count == complianceCount)
 		{
-			test.log(LogStatus.PASS, "'"+risk+"' risk compliance count matches to numbers of items from grid.");
+		//	test.log(LogStatus.PASS, "'"+risk+"' risk compliance count matches to numbers of items from grid.");
 			test.log(LogStatus.PASS, "'"+risk+"' risk compliance count = " + complianceCount + " | Total number of items from grid = "+count);
 		}
 		else
 		{
-			test.log(LogStatus.FAIL, "'"+risk+"' risk compliance count does not matches to numbers of Items.");
+		//	test.log(LogStatus.FAIL, "'"+risk+"' risk compliance count does not matches to numbers of Items.");
 			test.log(LogStatus.FAIL, "'"+risk+"' risk compliance count = " + complianceCount + " | Total number of items from grid = "+count);
 		}
 	}
@@ -1661,7 +1707,7 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[1]/td[18]/a[1]");
 		JavascriptExecutor jse=(JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click();", ViewButton);
 			Thread.sleep(4000);
-			test.log(LogStatus.PASS, "overView success");
+			test.log(LogStatus.PASS, "overView Successfully");
 			CFOcountPOM.closeDocument(driver).click();
 			Thread.sleep(3000);
 			
@@ -1696,12 +1742,12 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[1]/td[18]/a[1]");
 		
 		if(count == complianceCount)
 		{
-			test.log(LogStatus.PASS, "'"+risk+"' risk compliance count matches to numbers of items from grid.");
+		//	test.log(LogStatus.PASS, "'"+risk+"' risk compliance count matches to numbers of items from grid.");
 			test.log(LogStatus.PASS, "'"+risk+"' risk compliance count = " + complianceCount + " | Total number of items from grid = "+count);
 		}
 		else
 		{
-			test.log(LogStatus.FAIL, "'"+risk+"' risk compliance count does not matches to numbers of Items.");
+		//	test.log(LogStatus.FAIL, "'"+risk+"' risk compliance count does not matches to numbers of Items.");
 			test.log(LogStatus.FAIL, "'"+risk+"' risk compliance count = " + complianceCount + " | Total number of items from grid = "+count);
 		}
 	}
@@ -1771,8 +1817,7 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[1]/td[18]/a[1]");
 			Thread.sleep(4000);
 			ViewButton.get(2).click();
 			test.log(LogStatus.PASS, "Download Doc successfully");
-		//JavascriptExecutor jse=(JavascriptExecutor)driver;
-		//jse.executeScript("arguments[0].click();", ViewButton);
+		
 			Thread.sleep(4000);
 			test.log(LogStatus.PASS, "overView Successfully");
 			CFOcountPOM.closeDocument(driver).click();

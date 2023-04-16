@@ -11,6 +11,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -989,6 +990,176 @@ public class CompanyMethods {
 			 SwitchtoParent(driver,test);
 		      Thread.sleep(3000);
 	}
+	
+	public static void  BlockScheduleStatutory( WebDriver driver,ExtentTest test, XSSFWorkbook workbook) throws InterruptedException, IOException
+	{		
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (40));
+		Thread.sleep(3000);
+	    
+		SwitchtoChild(driver,test);
+		Thread.sleep(3000);
+		
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+
+	      action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+	  	CompanyPOM.BlockScheduleStatutory(driver).click();
+	  	 Thread.sleep(5000);
+	  	CompanyPOM.ComplianceCategory(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.ClientSpecific(driver).click();
+		Thread.sleep(10000);
+		CompanyPOM.Description(driver).sendKeys("ABCD");
+		Thread.sleep(4000);
+		CompanyPOM.BlockDate(driver).click();
+		Thread.sleep(1000);
+		CompanyPOM.Date14(driver).click();
+		Thread.sleep(3000);
+		
+		CompanyPOM.BlockCheckBox(driver).click();
+		Thread.sleep(4000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,500)");	
+		Thread.sleep(4000);
+		CompanyPOM.keep(driver).click();
+		Thread.sleep(1000);
+		String Msg = driver.switchTo().alert().getText();
+		Thread.sleep(1000);
+		driver.switchTo().alert().accept();
+		Thread.sleep(5000);
+		test.log(LogStatus.PASS, "Keep - Message displayed -:- " + Msg);
+		Thread.sleep(2000);
+		String Msg1 = driver.switchTo().alert().getText();
+		Thread.sleep(1000);
+		driver.switchTo().alert().accept();
+
+		test.log(LogStatus.PASS, "Keep - Message displayed -:- " + Msg1);
+		Thread.sleep(2000);
+		
+		Thread.sleep(2000);
+		CompanyPOM.Description(driver).sendKeys("ABCDE");
+		Thread.sleep(3000);
+		CompanyPOM.BlockDate(driver).click();
+		Thread.sleep(1000);
+		CompanyPOM.Date14(driver).click();
+		Thread.sleep(1000);
+		CompanyPOM.BlockCheckBox(driver).click();
+		Thread.sleep(1000);
+		
+		js.executeScript("window.scrollBy(0,500)");	
+		Thread.sleep(4000);
+		CompanyPOM.BlockDelete(driver).click();
+		Thread.sleep(1000);
+		
+		driver.switchTo().alert().accept();
+
+		Thread.sleep(5000);
+		String Msg3 = driver.switchTo().alert().getText();
+		Thread.sleep(1000);
+		driver.switchTo().alert().accept();
+
+		test.log(LogStatus.PASS, "Delete - Message displayed -:- " + Msg3);
+		Thread.sleep(2000);
+		Thread.sleep(4000);
+		 SwitchtoParent(driver,test);
+	      Thread.sleep(3000);
+	  	 
+	}
+	
+	public static void  BlockScheduleInternal( WebDriver driver,ExtentTest test, XSSFWorkbook workbook) throws InterruptedException, IOException
+	{		
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (40));
+		Thread.sleep(3000);
+	    
+		SwitchtoChild(driver,test);
+		Thread.sleep(3000);
+		
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+
+	      action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+	  	CompanyPOM.BlockScheduleInternal(driver).click();
+	  	 Thread.sleep(5000);
+	  	CompanyPOM.ComplianceCategory(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.Category28May2021(driver).click();
+		Thread.sleep(10000);
+		CompanyPOM.Description(driver).sendKeys("ABCD");
+		Thread.sleep(4000);
+		CompanyPOM.BlockDate(driver).click();
+		Thread.sleep(1000);
+		CompanyPOM.Date14(driver).click();
+		Thread.sleep(3000);
+		
+		CompanyPOM.BlockCheckBox(driver).click();
+		Thread.sleep(4000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,500)");	
+		Thread.sleep(4000);
+		CompanyPOM.keep(driver).click();
+		Thread.sleep(1000);
+		String Msg = driver.switchTo().alert().getText();
+		Thread.sleep(1000);
+		driver.switchTo().alert().accept();
+		Thread.sleep(5000);
+		test.log(LogStatus.PASS, "Keep - Message displayed -:- " + Msg);
+		Thread.sleep(2000);
+		String Msg1 = driver.switchTo().alert().getText();
+		Thread.sleep(1000);
+		driver.switchTo().alert().accept();
+
+		test.log(LogStatus.PASS, "Keep - Message displayed -:- " + Msg1);
+		Thread.sleep(2000);
+		
+		Thread.sleep(2000);
+		CompanyPOM.Description(driver).sendKeys("ABCDE");
+		Thread.sleep(3000);
+		CompanyPOM.BlockDate(driver).click();
+		Thread.sleep(1000);
+		CompanyPOM.Date14(driver).click();
+		Thread.sleep(1000);
+		CompanyPOM.BlockCheckBox(driver).click();
+		Thread.sleep(1000);
+		
+		js.executeScript("window.scrollBy(0,500)");	
+		Thread.sleep(4000);
+		CompanyPOM.BlockDelete(driver).click();
+		Thread.sleep(1000);
+		
+		driver.switchTo().alert().accept();
+
+		Thread.sleep(5000);
+		String Msg3 = driver.switchTo().alert().getText();
+		Thread.sleep(1000);
+		driver.switchTo().alert().accept();
+
+		test.log(LogStatus.PASS, "Delete - Message displayed -:- " + Msg3);
+		Thread.sleep(2000);
+		Thread.sleep(4000);
+		 SwitchtoParent(driver,test);
+	      Thread.sleep(3000);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

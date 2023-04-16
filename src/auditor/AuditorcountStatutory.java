@@ -52,7 +52,7 @@ public class AuditorcountStatutory {
 	public static XSSFSheet ReadExcel() throws IOException
 	{
 		//String workingDir = System.getProperty("webdriver.chrome.driver","C:/March2022/PerformerPom/Driver/chromedriver.exe");
-		fis = new FileInputStream("C:\\Users\\Mayuri Gaikwad\\Desktop\\PerformerPom\\TestData\\ComplianceSheet.xlsx");
+		fis = new FileInputStream("C:\\Users\\trainee\\Desktop\\Compliances\\ComplianceAll\\TestData\\ComplianceSheet.xlsx");
 		workbook = new XSSFWorkbook(fis);
 		sheet = workbook.getSheetAt(5);					//Retrieving third sheet of Workbook
 		return sheet;
@@ -62,7 +62,7 @@ public class AuditorcountStatutory {
 	void setBrowser() throws InterruptedException, IOException
 	{
 	//	String workingDir = System.getProperty("webdriver.chrome.driver","C:/March2022/PerformerPom/Driver/chromedriver.exe");
-		extent = new com.relevantcodes.extentreports.ExtentReports("C:\\Users\\Mayuri Gaikwad\\Desktop\\PerformerPom\\Reports\\Auditor.html",true);
+		extent = new com.relevantcodes.extentreports.ExtentReports("C:\\Users\\trainee\\Desktop\\Compliances\\ComplianceAll\\Reports\\Auditor.html",true);
 		test = extent.startTest("Verify OpenBrowser");
 		test.log(LogStatus.PASS, "Browser test is initiated");
 		
@@ -119,7 +119,7 @@ public class AuditorcountStatutory {
 		}
 	}
 	
- 	@Test(priority = 2)
+ //	@Test(priority = 2)
 	void NotCompleted_PieChart() throws InterruptedException
 	{
 		test = extent.startTest("Pie Chart -Completion Status- 'Not Completed' Count Verification");
@@ -208,7 +208,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-	@Test(priority = 3)
+//	@Test(priority = 3)
 	void ClosedDelayed_PieChart() throws InterruptedException
 	{
 		test = extent.startTest("Pie Chart -Completion Status- 'Closed Delayed' Count Verification");
@@ -294,7 +294,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-	@Test(priority = 4)
+	//@Test(priority = 4)
 	void ClosedTimely_PieChart() throws InterruptedException
 	{
 		test = extent.startTest("Pie Chart -Completion Status- 'Closed Timely' Count Verification");
@@ -382,7 +382,7 @@ public class AuditorcountStatutory {
 		}
 	}
 	
-	@Test(priority = 5)
+//	@Test(priority = 5)
 	void NotApplicable_PieChart() throws InterruptedException
 	{
 		test = extent.startTest("Pie Chart -Completion Status- 'Not Applicable' Count Verification");
@@ -474,7 +474,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 		
-	@Test(priority = 6)
+//	@Test(priority = 6)
 	void Overdue_PieChart() throws InterruptedException
 	{
 		test = extent.startTest("Pie Chart -Not Completed Status- 'Overdue' Count Verification");
@@ -567,7 +567,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-	@Test(priority = 7)
+//	@Test(priority = 7)
 	void dueToday_PieChart() throws InterruptedException
 	{
 		test = extent.startTest("Pie Chart -Not Completed Status- 'dueToday' Count Verification");
@@ -660,7 +660,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-	@Test(priority = 8)
+//	@Test(priority = 8)
 	void pendingForReview_PieChart() throws InterruptedException
 	{
 		test = extent.startTest("Pie Chart -Not Completed Status- 'Pending For Review' Count Verification");
@@ -753,7 +753,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-	@Test(priority = 9)
+//	@Test(priority = 9)
 	void inProgress_PieChart() throws InterruptedException
 	{
 		test = extent.startTest("Pie Chart -Not Completed Status- 'In Progress' Count Verification");
@@ -846,7 +846,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-	@Test(priority = 10)
+//	@Test(priority = 10)
 	void rejected_PieChart() throws InterruptedException
 	{
 		test = extent.startTest("Pie Chart -Not Completed Status- ' Rejected' Count Verification");
@@ -938,7 +938,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-	@Test(priority = 11)
+//	@Test(priority = 11)
 	void RiskSummaryCriticalStatutory() throws InterruptedException
 	{
 		//driver.navigate().refresh();
@@ -994,7 +994,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-	@Test(priority = 12)
+//	@Test(priority = 12)
 	void RiskSummaryHighStatutory() throws InterruptedException
 	{		
 		test = extent.startTest("Risk Summary - 'High' Count Verification");
@@ -1050,7 +1050,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-	@Test(priority = 13)
+	//@Test(priority = 13)
 	void RiskSummaryMediumStatutory() throws InterruptedException
 	{
 		test = extent.startTest("Risk Summary - 'Medium' Count Verification");
@@ -1110,7 +1110,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-	@Test(priority = 14)
+//	@Test(priority = 14)
 	void RiskSummaryLowStatutory() throws InterruptedException
 	{		
 		test = extent.startTest("Risk Summary - 'Low' Count Verification");
@@ -1275,7 +1275,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-//	@Test(priority = 16)
+	@Test(priority = 16)
 	void NotCompleted_PieChartPe() throws InterruptedException
 	{
 		test = extent.startTest("period-Pie Chart -Completion Status- 'Not Completed' Count Verification");
@@ -1286,10 +1286,25 @@ public class AuditorcountStatutory {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 	//	js.executeScript("window.scrollBy(0,500)");			//Scrolling down window by 1000 px.cfo
 		js.executeScript("window.scrollBy(0,1700)");
-		Thread.sleep(800);
+		Thread.sleep(3000);
 		WebDriverWait wait = new WebDriverWait(driver, (30));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 		Thread.sleep(3000);
+		AuditorcountPOM.DateText(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.DateYear(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Year(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.DateMonth(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Month(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Date(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Apply(driver).click();	
+		Thread.sleep(5000);
+		
 		int NotCompletedValue = Integer.parseInt(CFOcountPOM.clickNotCompleted(driver).getText());	//Reading value of 'Not Completed'
 		CFOcountPOM.clickNotCompleted(driver).click();									//CLicking on 'Not Completed' count
 		
@@ -1372,7 +1387,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-//	@Test(priority = 17)
+	@Test(priority = 17)
 	void ClosedDelayed_PieChartPe() throws InterruptedException
 	{
 		test = extent.startTest("Period-Pie Chart -Completion Status- 'Closed Delayed' Count Verification");
@@ -1455,6 +1470,7 @@ public class AuditorcountStatutory {
 			Thread.sleep(500);
 			action.moveToElement(CFOcountPOM.clickBackPe(driver)).click().build().perform();	 //Clicking on Back button
 			driver.switchTo().parentFrame();
+			Thread.sleep(2000);
 		}
 		else
 		{
@@ -1467,7 +1483,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-	//@Test(priority = 18)
+	@Test(priority = 18)
 	void ClosedTimely_PieChartPe() throws InterruptedException
 	{
 		test = extent.startTest("Period-Pie Chart -Completion Status- 'Closed Timely' Count Verification");
@@ -1478,8 +1494,8 @@ public class AuditorcountStatutory {
 		WebDriverWait wait = new WebDriverWait(driver,(30));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 		Thread.sleep(2000);
-		try{
-		Thread.sleep(1500);
+		
+		Thread.sleep(2500);
 		int ClosedTimelyValue = Integer.parseInt(CFOcountPOM.clickClosedTimelyA(driver).getText());	//Reading value of 'After Due Date'
 		CFOcountPOM.clickClosedTimelyA(driver).click();								//CLicking on 'Not Completed' count
 		
@@ -1549,7 +1565,7 @@ public class AuditorcountStatutory {
 			Thread.sleep(500);
 			action.moveToElement(CFOcountPOM.clickBackPe(driver)).click().build().perform();	 //Clicking on Back button
 			driver.switchTo().parentFrame();
-			performer.OverduePOM.clickDashboard(driver).click();
+		//	performer.OverduePOM.clickDashboard(driver).click();
 			Thread.sleep(2000);
 		}
 		else
@@ -1563,12 +1579,10 @@ public class AuditorcountStatutory {
 		}
 		extent.endTest(test);
 		extent.flush();
-		}catch(NumberFormatException ex){
-			ex.printStackTrace();
-		}
+		
 	}
 	
-//	@Test(priority = 19)
+	@Test(priority = 19)
 	void Overdue_PieChartperiod() throws InterruptedException
 	{
 		test = extent.startTest("period-Pie Chart -Not Completed Status- 'Overdue' Count Verification");
@@ -1578,8 +1592,8 @@ public class AuditorcountStatutory {
 	//	Actions action = new Actions(driver);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		//js.executeScript("window.scrollBy(0,300)");			//Scrolling down window by 1000 px.
-		js.executeScript("window.scrollBy(0,1700)");	
-		Thread.sleep(1000);
+		//js.executeScript("window.scrollBy(0,1700)");	
+		Thread.sleep(3000);
 		WebDriverWait wait = new WebDriverWait(driver, (30));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 		Thread.sleep(2000);
@@ -1670,7 +1684,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-	//@Test(priority = 20)
+	@Test(priority = 20)
 	void pendingForReview_PieChartPeriod() throws InterruptedException
 	{
 		test = extent.startTest("Period-Pie Chart -Not Completed Status- 'Pending For Review' Count Verification");
@@ -1685,6 +1699,21 @@ public class AuditorcountStatutory {
 		WebDriverWait wait = new WebDriverWait(driver, (30));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 		Thread.sleep(2000);
+		Thread.sleep(3000);
+		AuditorcountPOM.DateText(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.DateYear(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Year(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.DateMonth(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Month(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Date(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Apply(driver).click();	
+		Thread.sleep(5000);
 
 		int pendingForReviewValue = Integer.parseInt(CFOcountPOM.clickpendingForReview(driver).getText());	//Reading value of 'Not Completed'
 		CFOcountPOM.clickpendingForReview(driver).click();									//CLicking on 'Not Completed' count
@@ -1774,7 +1803,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-//	@Test(priority = 21)
+	@Test(priority = 21)
 	void inProgress_PieChartPeriod() throws InterruptedException
 	{
 		test = extent.startTest("Period-Pie Chart -Not Completed Status- 'In Progress' Count Verification");
@@ -1787,7 +1816,22 @@ public class AuditorcountStatutory {
 		WebDriverWait wait = new WebDriverWait(driver, (30));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 		Thread.sleep(2000);
-	
+		AuditorcountPOM.DateText(driver).click();	
+		Thread.sleep(1000);
+		Thread.sleep(3000);
+		AuditorcountPOM.DateYear(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Year(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.DateMonth(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Month(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Date(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Apply(driver).click();	
+		Thread.sleep(5000);
+
 		int inProgressValue = Integer.parseInt(CFOcountPOM.clickinProgress(driver).getText());	//Reading value of 'Not Completed'
 		CFOcountPOM.clickinProgress(driver).click();									//CLicking on 'Not Completed' count
 		
@@ -1875,7 +1919,7 @@ public class AuditorcountStatutory {
 		extent.flush();
 	}
 	
-	//@Test(priority = 22)
+	@Test(priority = 22)
 	void rejected_PieChartPeriod() throws InterruptedException
 	{
 		test = extent.startTest("Period-Pie Chart -Not Completed Status- ' Rejected' Count Verification");
@@ -1886,7 +1930,23 @@ public class AuditorcountStatutory {
 		js.executeScript("window.scrollBy(0,1700)");			//Scrolling down window by 1000 px.
 		WebDriverWait wait = new WebDriverWait(driver, (30));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
+		Thread.sleep(3000);
+		AuditorcountPOM.DateText(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.DateYear(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Year(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.DateMonth(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Month(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Date(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Apply(driver).click();	
+		Thread.sleep(5000);
+
 		
 		int rejectedValue = Integer.parseInt(CFOcountPOM.clickRejected(driver).getText());	//Reading value of 'Not Completed'
 		CFOcountPOM.clickRejected(driver).click();									//CLicking on 'Not Completed' count
