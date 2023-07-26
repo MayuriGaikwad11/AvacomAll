@@ -44,10 +44,10 @@ public class ImplementCount {
 	
 	
 	public static String link = "Implementation";  
-	
+
 	public static XSSFSheet ReadExcel() throws IOException
 	{
-		fis = new FileInputStream("C:\\Users\\Mayuri Gaikwad\\Desktop\\PerformerPom\\TestData\\ComplianceSheet.xlsx");
+		fis = new FileInputStream("C:\\Users\\Mayuri\\Desktop\\Compliance\\AvacomAll\\TestData\\ComplianceSheet.xlsx");
 		workbook = new XSSFWorkbook(fis);
 		sheet = workbook.getSheetAt(13);					//Retrieving third sheet of Workbook
 		return sheet;
@@ -56,7 +56,7 @@ public class ImplementCount {
 	@BeforeTest
 	void setBrowser() throws InterruptedException, IOException
 	{
-		extent = new com.relevantcodes.extentreports.ExtentReports("C:\\Users\\Mayuri Gaikwad\\Desktop\\PerformerPom\\Reports\\Implementation.html",true);
+		extent = new com.relevantcodes.extentreports.ExtentReports("C:\\Users\\Mayuri\\Desktop\\Compliance\\AvacomAll\\Reports\\Implementation.html",true);
 		test = extent.startTest("Verify OpenBrowser");
 		
 		XSSFSheet sheet = ReadExcel();
@@ -75,7 +75,7 @@ public class ImplementCount {
 	void Login() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Loging In - Implementation ");
-		test.log(LogStatus.PASS, "Logging into system");
+		test.log(LogStatus.PASS, "Test Passed");
 		
 		XSSFSheet sheet = ReadExcel();
 		Row row1 = sheet.getRow(1);						//Selected 1st index row (Second row)
@@ -88,7 +88,7 @@ public class ImplementCount {
 		
 		driver = login.Login.UserLogin(uname,password,link);		//Method of Login class to login user.
 		
-		test.log(LogStatus.PASS, "Test Passed.");
+		
 		extent.endTest(test);
 		extent.flush();
 	}
@@ -106,8 +106,8 @@ public class ImplementCount {
 			
 		}
 	}
-	
-	//@Test(priority = 2)
+	/*
+	@Test(priority = 2)
 	void CustomersCreate() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Customers Create");
@@ -118,7 +118,7 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-	//@Test(priority = 3)
+	@Test(priority = 3)
 	void CustomersAssignment() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Customers Assignment");
@@ -129,7 +129,7 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-//	@Test(priority = 4)
+	@Test(priority = 4)
 	void SubEntity() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Sub Entity");
@@ -140,7 +140,7 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-//	@Test(priority = 5)
+	@Test(priority = 5)
 	void Department() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Department");
@@ -151,7 +151,7 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-	//@Test(priority = 6)
+	@Test(priority = 6)
 	void Users() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Users");
@@ -162,7 +162,7 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-//	@Test(priority = 7)
+//	@Test(priority = 7) //not run
 	void UsersandBranchUpload() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Users");
@@ -174,7 +174,7 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-//	@Test(priority = 8)
+	@Test(priority = 8)
 	void ProductMapping() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Product Mapping");
@@ -185,11 +185,10 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-	//@Test(priority = 9)
+	@Test(priority = 9)
 	void ModifyAssignmentsR() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Modify Assignments - Reassign");
-		test.log(LogStatus.INFO, "Test Initiated");
 		
 		ImplementMethods.modifyAssignmentsReassign(driver,test);
 		
@@ -197,35 +196,32 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-//	@Test(priority = 10)
+	@Test(priority = 10)
 	void ModifyAssignmentsExclude() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Modify Assignments - Exclude");
-		test.log(LogStatus.INFO, "Test Initiated");
-		
+	
 		ImplementMethods.modifyAssignmentsExclude(driver,test);
 		
 		extent.endTest(test);
 		extent.flush();
 	}
-	
-//	@Test(priority = 11)
+	*/
+/*	@Test(priority = 11) 
 	void ModifyAssignmentsTask() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Modify Assignments - Task");
-		test.log(LogStatus.INFO, "Test Initiated");
 		
 		ImplementMethods.modifyAssignmentsTask(driver,test);
 		
 		extent.endTest(test);
 		extent.flush();
 	}
-	
-//	@Test(priority = 12)
+
+//	@Test(priority = 12)//not present
 	void UsageReportCustomer() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Report - Usage Report Customer");
-		test.log(LogStatus.INFO, "Test Initiated");
 		
 		ImplementMethods.UsageReportCustomer(driver,test,"Usage Report Customer");
 		
@@ -233,11 +229,11 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-//	@Test(priority = 13)
+	@Test(priority = 13)
 	void UsageReport() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Report - Usage Report ");
-		test.log(LogStatus.INFO, "Test Initiated");
+		
 		
 		ImplementMethods.UsageReport(driver,test,"Usage Report ");
 		
@@ -245,11 +241,11 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-//	@Test(priority = 14)
+	@Test(priority = 14)
 	void StatutoryAssignmentReport() throws InterruptedException, IOException
 	{
-		test = extent.startTest("Report - Usage Report ");
-		test.log(LogStatus.INFO, "Test Initiated");
+		test = extent.startTest("Report - Other Reports - Statutory Assignment Report ");
+		
 		
 		ImplementMethods.StatutoryAssignmentReport(driver,test,"Statutory Assignment Report ");
 		
@@ -257,23 +253,22 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-	//@Test(priority = 15)
+	@Test(priority = 15)
 	void CheckListAssignmentReport() throws InterruptedException, IOException
 	{
-		test = extent.startTest("Report - CheckList Assignment Report  ");
-		test.log(LogStatus.INFO, "Test Initiated");
-		
-		ImplementMethods.StatutoryAssignmentReport(driver,test,"CheckList Assignment Report");
+		test = extent.startTest("Report -  Other Reports  - CheckList Assignment Report  ");
+	
+		ImplementMethods.CheckListAssignmentReport(driver,test,"CheckList Assignment Report");
 		
 		extent.endTest(test);
 		extent.flush();
 	}
 	
-//	@Test(priority = 16)
+	@Test(priority = 16)
 	void EventBasedAssignmentReport() throws InterruptedException, IOException
 	{
-		test = extent.startTest("Report - EventBased Assignment Report   ");
-		test.log(LogStatus.INFO, "Test Initiated");
+		test = extent.startTest("Report -Other Reports - EventBased Assignment Report   ");
+	
 		
 		ImplementMethods.EventBasedAssignmentReport(driver,test,"EventBased Assignment Report");
 		
@@ -281,11 +276,11 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-	//@Test(priority = 17)
+	@Test(priority = 17)
 	void InternalAssignmentReport() throws InterruptedException, IOException
 	{
-		test = extent.startTest("Report - Internal Assignment Report   ");
-		test.log(LogStatus.INFO, "Test Initiated");
+		test = extent.startTest("Report -Other Reports - Internal Assignment Report   ");
+		
 		
 		ImplementMethods.InternalAssignmentReport(driver,test,"Internal Assignment Report");
 		
@@ -293,12 +288,11 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-/*	
+	
 	@Test(priority = 18)
 	void InternalCheckListAssignment() throws InterruptedException, IOException
 	{
-		test = extent.startTest("Report - Internal CheckList Assignment Report   ");
-		test.log(LogStatus.INFO, "Test Initiated");
+		test = extent.startTest("Report -Other Reports - Internal CheckList Assignment Report   ");
 		
 		ImplementMethods.InternalCheckListAssignment(driver,test,"Internal CheckList Assignment Report");
 		
@@ -309,8 +303,8 @@ public class ImplementCount {
 	@Test(priority = 19)
 	void StatutoryLabelReport() throws InterruptedException, IOException
 	{
-		test = extent.startTest("Report - Statutory Label Report ");
-		test.log(LogStatus.INFO, "Test Initiated");
+		test = extent.startTest("Report - Other Reports - Statutory Label Report ");
+		
 		
 		ImplementMethods.StatutoryLabelReport(driver,test,"Statutory Label Report");
 		
@@ -321,8 +315,8 @@ public class ImplementCount {
 	@Test(priority = 20)
 	void InternalLabelReport() throws InterruptedException, IOException
 	{
-		test = extent.startTest("Report - Internal Label Report ");
-		test.log(LogStatus.INFO, "Test Initiated");
+		test = extent.startTest("Report -Other Reports - Internal Label Report ");
+		
 		
 		ImplementMethods.InternalLabelReport(driver,test,"Internal Label Report");
 		
@@ -334,31 +328,30 @@ public class ImplementCount {
 	void AllReport() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Report - All Report ");
-		test.log(LogStatus.INFO, "Test Initiated");
 		
 		ImplementMethods.AllReport(driver,test,"All Report");
 		
 		extent.endTest(test);
 		extent.flush();
 	}
-	*/
+	
 	@Test(priority = 22)
 	void LogReport() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Report - log Report ");
 	
-		ImplementMethods.LogReport(driver,test,"All Report");
+		ImplementMethods.LogReport(driver,test,"log Report");
 		
 		extent.endTest(test);
 		extent.flush();
 	}
+	*/
 	
-	/*
-	@Test(priority = 22)
+	//@Test(priority = 22) //not present 
 	void CompliaceCountReport() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Report - Compliace Count Report ");
-		test.log(LogStatus.INFO, "Test Initiated");
+		
 		
 		ImplementMethods.CompliaceCountReport(driver,test,"Compliace Count Report");
 		
@@ -367,11 +360,11 @@ public class ImplementCount {
 	}
 	
 	
-	@Test(priority = 23)
+	//@Test(priority = 23)
 	void ComplianceActivation() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Internal Compliances - Compliance Activation -Assign Compliance ");
-		test.log(LogStatus.INFO, "Test Initiated");
+		
 		
 		ImplementMethods.AssignCompliance(driver,test);
 		
@@ -379,11 +372,11 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-	@Test(priority = 24)
+	//@Test(priority = 24)
 	void IntermediateCompliance() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Internal Compliances - Compliance Activation -Intermediate Compliance ");
-		test.log(LogStatus.INFO, "Test Initiated");
+		
 		
 		ImplementMethods.IntermediateCompliance(driver,test);
 		
@@ -391,11 +384,11 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-	@Test(priority = 25)
+//	@Test(priority = 25)
 	void ActivateCompliance() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Internal Compliances- Compliance Activation -Activate Compliance  ");
-		test.log(LogStatus.INFO, "Test Initiated");
+		
 		
 		ImplementMethods.ActivateCompliance(driver,test);
 		
@@ -403,11 +396,11 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-	@Test(priority = 26)
+//	@Test(priority = 26)
 	void AssignCheckList() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Internal Compliances - Compliance Activation -Assign CheckList");
-		test.log(LogStatus.INFO, "Test Initiated");
+		
 		
 		ImplementMethods.AssignCheckList(driver,test);
 		
@@ -415,35 +408,34 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-	@Test(priority = 27)
+	//@Test(priority = 27)
 	void IntermediateCheckList() throws InterruptedException, IOException
 	{
 		test = extent.startTest(" Internal Compliances - Compliance Activation - Intermediate CheckList ");
-		test.log(LogStatus.INFO, "Test Initiated");
-		
+	
 		ImplementMethods.IntermediateCheckList(driver,test);
 		
 		extent.endTest(test);
 		extent.flush();
 	}
 	
-	@Test(priority = 28)
+//	@Test(priority = 28)
 	void ActivateCheckList() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Internal Compliances - Compliance Activation -Activate CheckList  ");
-		test.log(LogStatus.INFO, "Test Initiated");
+		
 		
 		ImplementMethods.ActivateCheckList(driver,test);
 		
 		extent.endTest(test);
 		extent.flush();
 	}
-	*/
-//	@Test(priority = 29)
+
+	//@Test(priority = 29)
 	void ComplianceCategory() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Internal Compliances - Masters - Compliance Category  ");
-		test.log(LogStatus.INFO, "Test Initiated");
+		
 		
 		ImplementMethods.ComplianceCategory(driver,test,workbook);
 		
@@ -451,7 +443,7 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-//	@Test(priority = 30)
+	//@Test(priority = 30)
 	void Compliances() throws InterruptedException, IOException
 	{
 		test = extent.startTest(" Internal Compliances - Masters - Compliances");
@@ -473,7 +465,7 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
-//	@Test(priority = 32)
+	//@Test(priority = 32)
 	void UploadAssignment() throws InterruptedException, IOException
 	{
 		test = extent.startTest(" Internal Compliances - Upload Utility - Upload Assignment");
@@ -946,7 +938,356 @@ public class ImplementCount {
 		extent.flush();
 	}
 	
+//	@Test(priority = 73)
+	void EventassignmentsExport() throws InterruptedException, IOException
+	{
+		test = extent.startTest(" Manage Events - Event assignments - Export");
+		
+		
+		ImplementMethods.EventassignmentsExport(driver,test,workbook);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
 	
+//	@Test(priority = 74)
+	void Eventassignmentexportimport() throws InterruptedException, IOException
+	{
+		test = extent.startTest(" Manage Events - Event assignments  Export Import - Event");
+		
+		
+		ImplementMethods.Eventassignmentexportimport(driver,test,workbook);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+//	@Test(priority = 75)
+	void EventassignmentexportimportD() throws InterruptedException, IOException
+	{
+		test = extent.startTest(" Manage Events - Event assignments  Export Import - Event");
+		
+		
+		ImplementMethods.EventassignmentexportimportD(driver,test,workbook);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+//	@Test(priority = 76) //21/06/2023
+	void UploadedFilewithOutFile() throws InterruptedException, IOException
+	{
+		test = extent.startTest(" Manage Events - Event assignments  Export Import - Event - Import ");
+		
+		
+		ImplementMethods.UploadedFilewithOutFile(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+//	@Test(priority = 77)
+	void ImportInvalidSheet() throws InterruptedException, IOException
+	{
+		test = extent.startTest(" Manage Events - Event assignments  Export Import - Event - Import - Invalid data ");
+		
+		
+		ImplementMethods.ImportInvalidSheet(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	//@Test(priority = 78)
+	void UploadedFileisplay() throws InterruptedException, IOException
+	{
+		test = extent.startTest(" Manage Events - Event assignments  Export Import - Event - Import  ");
+		
+		
+		ImplementMethods.UploadedFileisplay(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	//@Test(priority = 79)
+	void UploadedFileisplayEC() throws InterruptedException, IOException
+	{
+		test = extent.startTest(" Manage Events - Event assignments  Export Import - Event Compliance - Import  ");
+		
+		
+		ImplementMethods.UploadedFileisplayEC(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	//@Test(priority = 80)
+	void DownloadFileEC() throws InterruptedException, IOException
+	{
+		test = extent.startTest(" Manage Events - Event assignments  Export Import - Event Compliance - Export   ");
+		
+		
+		ImplementMethods.DownloadFileEC(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+//	@Test(priority = 81)
+	void UploadedEC() throws InterruptedException, IOException
+	{
+		test = extent.startTest(" Manage Events - Event assignments  Export Import - Event Compliance - Import   ");
+		
+		
+		ImplementMethods.UploadedEC(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+//	@Test(priority = 82)
+	void InValidSheet() throws InterruptedException, IOException
+	{
+		test = extent.startTest(" Manage Events - Event assignments  Export Import - Event Compliance - Import -Upload -Invalid File  ");
+		
+		
+		ImplementMethods.InValidSheet(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+//	@Test(priority = 83)
+	void Autoreconciliation() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Report - Auto reconciliation ");
+	
+		ImplementMethods.Autoreconciliation(driver,test,"Auto reconciliation");
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+//	@Test(priority = 84)
+	void AutoreconciliationWC() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Report - Auto reconciliation -Without Customer selection click on \"Export \" Button ");
+	
+		ImplementMethods.AutoreconciliationWC(driver,test,"Auto reconciliation");
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+//	@Test(priority = 85)
+	void ReassignmentExcludeReport() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Report -Other Reports -Reassignment Exclude Report - Selecting Customer   ");
+		
+		
+		ImplementMethods.ReassignmentExcludeReport(driver,test,"Reassignment Exclude Report");
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+//	@Test(priority = 86)
+	void ReassignmentExcludeReportL() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Report -Other Reports -Reassignment Exclude Report - Select Customer And Location  ");
+		
+		
+		ImplementMethods.ReassignmentExcludeReportL(driver,test,"Reassignment Exclude Report");
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+//	@Test(priority = 87)
+	void ReassignmentExcludeReportWC() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Report -Other Reports -Reassignment Exclude Report - Without Customer Selection  ");
+		
+		
+		ImplementMethods.ReassignmentExcludeReportWC(driver,test,"Reassignment Exclude Report");
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+//	@Test(priority = 88) //22/06/2023
+		void Compliancetype() throws InterruptedException, IOException
+		{
+			test = extent.startTest("Internal Compliances - Masters - Compliance Type  ");
+			
+			
+			ImplementMethods.Compliancetype(driver,test,workbook);
+			
+			extent.endTest(test);
+			extent.flush();
+		}
+	
+	//	@Test(priority = 89) 
+		void Complianceassignments() throws InterruptedException, IOException
+		{
+			test = extent.startTest("Manage Events - Compliance assignments  ");
+			
+			
+			ImplementMethods.Complianceassignments(driver,test,workbook);
+			
+			extent.endTest(test);
+			extent.flush();
+		}
+	
+	//	@Test(priority = 90) 
+		void Unsubscribe() throws InterruptedException, IOException
+		{
+			test = extent.startTest("Manage Users - Unsubscribe - with Valid Data ");
+			
+			
+			ImplementMethods.Unsubscribe(driver,test);
+			
+			extent.endTest(test);
+			extent.flush();
+		}
+	
+	//	@Test(priority = 91) 
+		void UnsubscribeInvalid() throws InterruptedException, IOException
+		{
+			test = extent.startTest("Manage Users - Unsubscribe -  with InValid Data ");
+			
+			
+			ImplementMethods.UnsubscribeInvalid(driver,test);
+			
+			extent.endTest(test);
+			extent.flush();
+		}
+		
+	//	@Test(priority = 92) 
+		void Unsubscribe2() throws InterruptedException, IOException
+		{
+			test = extent.startTest("Manage Users - Unsubscribe -  Enter Comma Seperated Email Id ");
+			
+			
+			ImplementMethods.Unsubscribe2(driver,test);
+			
+			extent.endTest(test);
+			extent.flush();
+		}
+	
+		
+	//	@Test(priority = 93)
+		void GroupingofCompliance() throws InterruptedException, IOException
+		{
+			test = extent.startTest(" Manage Compliances-Upload Utility - Grouping of Compliance -Import - Sample Excel Format Downloaded Or not Verification");
+			
+			ImplementMethods.GroupingofCompliance(driver,test);
+			
+			extent.endTest(test);
+			extent.flush();
+		}
+		
+	//	@Test(priority = 94)
+		void GroupingofComplianceUploadw() throws InterruptedException, IOException
+		{
+			test = extent.startTest(" Manage Compliances-Upload Utility - Grouping of Compliance - Import - Upload - Without Selecting Customer,ComplianceType and Group type ");
+			
+			ImplementMethods.GroupingofComplianceUploadw(driver,test);
+			
+			extent.endTest(test);
+			extent.flush();
+		}
+		
+	//	@Test(priority = 95)
+		void GroupingofComplianceUpload() throws InterruptedException, IOException
+		{
+			test = extent.startTest(" Manage Compliances-Upload Utility - Grouping of Compliance -Import - Upload - Customer level wise Upload Invalid data");
+			
+			ImplementMethods.GroupingofComplianceUpload(driver,test);
+			
+			extent.endTest(test);
+			extent.flush();
+		}
+		
+	//	@Test(priority = 96)
+		void GroupingofComplianceUploadLL() throws InterruptedException, IOException
+		{
+			test = extent.startTest(" Manage Compliances-Upload Utility - Grouping of Compliance - Import -Upload - Location  level wise Upload Invalid data");
+			
+			ImplementMethods.GroupingofComplianceUploadLL(driver,test);
+			
+			extent.endTest(test);
+			extent.flush();
+		}
+		
+	//	@Test(priority = 97)
+		void GroupingofComplianceExport() throws InterruptedException, IOException
+		{
+			test = extent.startTest(" Manage Compliances-Upload Utility - Grouping of Compliance -Export tab  - Export");
+			
+			ImplementMethods.GroupingofComplianceExport(driver,test);
+			
+			extent.endTest(test);
+			extent.flush();
+		}
+		
+	//	@Test(priority = 98)
+		void GroupingofComplianceUploadValidC() throws InterruptedException, IOException
+		{
+			test = extent.startTest(" Manage Compliances-Upload Utility - Grouping of Compliance -Import - Upload - Customer level wise Upload Valid data");
+			
+			ImplementMethods.GroupingofComplianceUploadValidC(driver,test);
+			
+			extent.endTest(test);
+			extent.flush();
+		}
+		
+	//	@Test(priority = 99)
+		void GroupingofComplianceUploadValidL() throws InterruptedException, IOException
+		{
+			test = extent.startTest(" Manage Compliances-Upload Utility - Grouping of Compliance - Import -Upload - Location  level wise Upload Valid data");
+			
+			ImplementMethods.GroupingofComplianceUploadValidL(driver,test);
+			
+			extent.endTest(test);
+			extent.flush();
+		}
+		
+	//	@Test(priority = 100)
+		void Customerspecificduedateforstatutorycompliance() throws InterruptedException, IOException
+		{
+			test = extent.startTest(" Manage Compliances-Client Specific Configuration - Customerspecificduedateforstatutorycompliance -Sample Excel Format Downloaded Or not Verification");
+			
+			
+			ImplementMethods.Customerspecificduedateforstatutorycompliance(driver,test);
+			
+			extent.endTest(test);
+			extent.flush();
+		}
+		
+	//	@Test(priority = 101)
+		void GroupingofComplianceUploadValidCL() throws InterruptedException, IOException
+		{
+			test = extent.startTest(" Manage Compliances-Upload Utility - Grouping of Compliance - Import - Upload - Customer level wise Upload Valid data");
+			
+			ImplementMethods.GroupingofComplianceUploadValidCL(driver,test);
+			
+			extent.endTest(test);
+			extent.flush();
+		}
+		
+	//	@Test(priority = 102)
+		void GroupingofComplianceUploadValidLL() throws InterruptedException, IOException
+		{
+			test = extent.startTest(" Manage Compliances-Upload Utility - Grouping of Compliance - Import -Upload - Location  level wise Upload Valid data");
+			
+			
+			ImplementMethods.GroupingofComplianceUploadValidLL(driver,test);
+			
+			extent.endTest(test);
+			extent.flush();
+		}
 	
 	//@AfterTest
 		void Closing() throws InterruptedException

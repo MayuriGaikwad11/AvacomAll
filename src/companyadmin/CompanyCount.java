@@ -48,7 +48,7 @@ public class CompanyCount {
 	
 	public static XSSFSheet ReadExcel() throws IOException
 	{
-		fis = new FileInputStream("C:\\Users\\trainee\\Desktop\\Compliances\\ComplianceAll\\TestData\\ComplianceSheet.xlsx");
+		fis = new FileInputStream("C:\\Users\\Mayuri\\Desktop\\Compliance\\AvacomAll\\TestData\\ComplianceSheet.xlsx");
 		workbook = new XSSFWorkbook(fis);
 		sheet = workbook.getSheetAt(12);					//Retrieving third sheet of Workbook
 		return sheet;
@@ -57,7 +57,7 @@ public class CompanyCount {
 	@BeforeTest
 	void setBrowser() throws InterruptedException, IOException
 	{
-		extent = new com.relevantcodes.extentreports.ExtentReports("C:\\Users\\trainee\\Desktop\\Compliances\\ComplianceAll\\Reports\\CFOResultsStatotory.html",true);
+		extent = new com.relevantcodes.extentreports.ExtentReports("C:\\Users\\Mayuri\\Desktop\\Compliance\\AvacomAll\\Reports\\CompanyAdminResults.html",true);
 		test = extent.startTest("Verify OpenBrowser");
 		test.log(LogStatus.PASS, "Browser test is initiated");
 		
@@ -90,7 +90,7 @@ public class CompanyCount {
 		
 		driver = login.Login.UserLogin(uname,password,link);		//Method of Login class to login user.
 		
-		test.log(LogStatus.PASS, "Test Passed.");
+		
 		extent.endTest(test);
 		extent.flush();
 	}
@@ -121,7 +121,7 @@ public class CompanyCount {
 		extent.flush();
 	}
 	
-//	@Test(priority = 3)
+	//@Test(priority = 3)
 	void EventAssignments() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Manage Events - Event Assignments");
@@ -132,8 +132,8 @@ public class CompanyCount {
 		extent.endTest(test);
 		extent.flush();
 	}
-	
-//	@Test(priority = 4)
+	/*	
+	//@Test(priority = 4)
 	void Eventassignmentexportimport() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Manage Events - Event assignment export import -Event ");
@@ -204,7 +204,7 @@ public class CompanyCount {
 		extent.endTest(test);
 		extent.flush();
 	}
-/*	
+	
 	@Test(priority = 10)
 	void UploadedFileisplayEC() throws InterruptedException, IOException
 	{
@@ -265,7 +265,7 @@ public class CompanyCount {
 		extent.flush();
 	}
 	*/
-	//@Test(priority = 15)
+/*	@Test(priority = 15)
 	void Department() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Manage Users - Department ");
@@ -277,7 +277,7 @@ public class CompanyCount {
 		extent.flush();
 	}
 	
-//	@Test(priority = 16)
+	@Test(priority = 16)
 	void User() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Manage Users - User - Add New  ");
@@ -289,7 +289,7 @@ public class CompanyCount {
 		extent.flush();
 	}
 	
-	//@Test(priority = 17)
+	@Test(priority = 17)
 	void BlockScheduleStatutory() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Manage Users - Block Schedule Statutory  ");
@@ -301,7 +301,7 @@ public class CompanyCount {
 		extent.flush();
 	}
 	
-//	@Test(priority = 18)
+	@Test(priority = 18)
 	void BlockScheduleInternal() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Manage Users -Block Schedule Internal  ");
@@ -312,7 +312,176 @@ public class CompanyCount {
 		extent.endTest(test);
 		extent.flush();
 	}
+	*/
 	
+	@Test(priority = 19)
+	void UserDepartmentdis() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users -Users-Modify Assignments - Check Department Dropdown display or not");
+		
+		
+		CompanyMethods.UserDept(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	/*
+	@Test(priority = 20)
+	void ModifyAssignmentsDepartmentdis() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users -Modify Assignments - Check Department Dropdown display or not");
+		
+		
+		CompanyMethods.ModifyAssignmentsDept(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	@Test(priority = 21)
+	void modifyAssignmentsTask() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users -Modify Assignments - Reassign Statutory task ");
+		
+		
+		CompanyMethods.modifyAssignmentsTask(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	@Test(priority = 22)
+	void modifyAssignmentsTaskIN() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users -Modify Assignments - Reassign Internal  task ");
+		
+		
+		CompanyMethods.modifyAssignmentsTaskIN(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	@Test(priority = 23)
+	void modifyAssignmentsCom() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users -Modify Assignments - Statutory Compliance Reassign  ");
+		
+		
+		CompanyMethods.modifyAssignmentsCom(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	@Test(priority = 24)
+	void modifyAssignmentsComEB() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users -Modify Assignments - Statutory Compliance Reassign - Event Based ");
+		
+		
+		CompanyMethods.modifyAssignmentsComEB(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	@Test(priority = 25)
+	void modifyAssignmentsComChecklist() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users -Modify Assignments - Statutory Compliance Reassign - CheckList ");
+		
+		
+		CompanyMethods.modifyAssignmentsComChecklist(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	@Test(priority = 26)
+	void modifyAssignmentsComIN() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users -Modify Assignments - Internal  Compliance Reassign ");
+		
+		
+		CompanyMethods.modifyAssignmentsComIN(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	@Test(priority = 27)
+	void modifyAssignmentsComINChecklist() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users -Modify Assignments - Internal  Compliance Reassign - Checklist  ");
+		
+		
+		CompanyMethods.modifyAssignmentsComINChecklist(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	@Test(priority = 28)
+	void modifyAssignmentsComExclude() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users -Modify Assignments - Exclude Statutory Compliance  ");
+		
+		
+		CompanyMethods.modifyAssignmentsComExclude(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	@Test(priority = 29)
+	void modifyAssignmentsComExcludeEB() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users -Modify Assignments -Exclude Statutory Compliance -  Event Based ");
+		
+		
+		CompanyMethods.modifyAssignmentsComExcludeEB(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	@Test(priority = 30)
+	void modifyAssignmentsComExcludeCL() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users -Modify Assignments -Exclude Statutory Compliance - Checklist ");
+		
+		
+		CompanyMethods.modifyAssignmentsComExcludeCL(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	@Test(priority = 31)
+	void modifyAssignmentsComExcludeIN() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users -Modify Assignments -Exclude Internal Compliance ");
+		
+		
+		CompanyMethods.modifyAssignmentsComExcludeIN(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	@Test(priority = 32)
+	void modifyAssignmentsComExcludeINCL() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Users -Modify Assignments -Exclude Internal Compliance- Checklist ");
+		
+		
+		CompanyMethods.modifyAssignmentsComExcludeINCL(driver,test);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	*/
 	
 	
 	// @AfterTest

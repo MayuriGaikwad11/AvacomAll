@@ -398,7 +398,7 @@ public class RRMethods {
 	      		  	 Thread.sleep(1000);
 	      		   RRLocators.ActRule(driver).click();
 	      		  	 Thread.sleep(4000);
-	      		  	RRLocators.File(driver).sendKeys("C:\\Users\\Mayuri Gaikwad\\Downloads\\Report  (2).xlsx"); // Writing Task title
+	      		 // 	RRLocators.File(driver).sendKeys("C:\\Users\\Mayuri\\Downloads\\Department.html"); // Writing Task title
 	      			Thread.sleep(4000);
 	      		  RRLocators.SaveAct(driver).click();
 	      		  	 Thread.sleep(1000);
@@ -505,8 +505,88 @@ public class RRMethods {
 	}
 	
 	
+	public static void ActGroupAddNew( WebDriver driver,ExtentTest test, XSSFWorkbook workbook) throws InterruptedException, IOException
+	{		
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (40));
+		Thread.sleep(3000);
+		
+		
+	      
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[1]")));	//Wait until records table get visible.
+//------------------------------- Add New-------------------------------
+	      action.moveToElement(RRLocators.clickManageCompliance(driver)).click().build().perform();
+	      Thread.sleep(1000);
+	      RRLocators.ActGroup(driver).click();
+	      		  	 Thread.sleep(3000);
+	      		   RRLocators.ActGroupAdd(driver).click();
+	      		  	 Thread.sleep(3000);
+	      		  	 
+	      		  	sheet = workbook.getSheetAt(22); // Retrieving fourth sheet of Workbook(Named - Update Tasks)
+	      			int row = 0;
+	      			Thread.sleep(500);
+	      			Row row0 = sheet.getRow(row); // Selected 0th index row (First row)
+	      			Cell c1 = null;
+	      			row0 = sheet.getRow(21);
+	      			c1 = row0.getCell(1); // Selected cell (0 row,2 column) (2 column = third column)
+	      			RRLocators.ActGroupName(driver).sendKeys(c1.getStringCellValue()); // Writing Task title
+	      			Thread.sleep(4000);
+	      		
+	      			Thread.sleep(4000);
+	      		  RRLocators.ActGroupSave(driver).click();
+	      		  	 Thread.sleep(1000);
+	      		   RRLocators.ActGroupFilter(driver).sendKeys(c1.getStringCellValue(),Keys.ENTER);
+	      		  	 Thread.sleep(3000);
+	      	String msg=	   RRLocators.ActGroupSave(driver).getText();
+	      		if(msg.equalsIgnoreCase("ABCD")) {
+	      		  	test.log(LogStatus.PASS, "Act Group Added Successfully." );
+	      		}else {
+	      			test.log(LogStatus.FAIL, "Act Group not Added " );
+	      		}
+	      		  
+	}
 	
 	
+	public static void MinistryMasterAddNew( WebDriver driver,ExtentTest test, XSSFWorkbook workbook) throws InterruptedException, IOException
+	{		
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (40));
+		Thread.sleep(3000);
+		
+		
+	      
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[1]")));	//Wait until records table get visible.
+//------------------------------- Add New-------------------------------
+	      action.moveToElement(RRLocators.clickManageCompliance(driver)).click().build().perform();
+	      Thread.sleep(1000);
+	      RRLocators.ActGroup(driver).click();
+	      		  	 Thread.sleep(3000);
+	      		   RRLocators.ActGroupAdd(driver).click();
+	      		  	 Thread.sleep(3000);
+	      		  	 
+	      		  	sheet = workbook.getSheetAt(22); // Retrieving fourth sheet of Workbook(Named - Update Tasks)
+	      			int row = 0;
+	      			Thread.sleep(500);
+	      			Row row0 = sheet.getRow(row); // Selected 0th index row (First row)
+	      			Cell c1 = null;
+	      			row0 = sheet.getRow(21);
+	      			c1 = row0.getCell(1); // Selected cell (0 row,2 column) (2 column = third column)
+	      			RRLocators.ActGroupName(driver).sendKeys(c1.getStringCellValue()); // Writing Task title
+	      			Thread.sleep(4000);
+	      		
+	      			Thread.sleep(4000);
+	      		  RRLocators.ActGroupSave(driver).click();
+	      		  	 Thread.sleep(1000);
+	      		   RRLocators.ActGroupFilter(driver).sendKeys(c1.getStringCellValue(),Keys.ENTER);
+	      		  	 Thread.sleep(3000);
+	      	String msg=	   RRLocators.ActGroupSave(driver).getText();
+	      		if(msg.equalsIgnoreCase("ABCD")) {
+	      		  	test.log(LogStatus.PASS, "Act Group Added Successfully." );
+	      		}else {
+	      			test.log(LogStatus.FAIL, "Act Group not Added " );
+	      		}
+	      		  
+	}
 	
 	
 	

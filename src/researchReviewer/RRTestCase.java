@@ -46,7 +46,7 @@ public class RRTestCase {
 	
 	public static XSSFSheet ReadExcel() throws IOException
 	{
-		fis = new FileInputStream("C:\\Users\\Mayuri Gaikwad\\Desktop\\PerformerPom\\TestData\\ComplianceSheet.xlsx");
+		fis = new FileInputStream("C:\\Users\\Mayuri\\Desktop\\Compliance\\AvacomAll\\TestData\\ComplianceSheet.xlsx");
 		workbook = new XSSFWorkbook(fis);
 		sheet = workbook.getSheetAt(22);					//Retrieving third sheet of Workbook
 		return sheet;
@@ -55,7 +55,7 @@ public class RRTestCase {
 	@BeforeTest
 	void setBrowser() throws InterruptedException, IOException
 	{
-		extent = new com.relevantcodes.extentreports.ExtentReports("C:\\Users\\Mayuri Gaikwad\\Desktop\\PerformerPom\\Reports\\CompanyAdminResults.html",true);
+		extent = new com.relevantcodes.extentreports.ExtentReports("C:\\Users\\Mayuri\\Desktop\\Compliance\\AvacomAll\\Reports\\CompanyAdminResults.html",true);
 		test = extent.startTest("Verify OpenBrowser");
 		test.log(LogStatus.PASS, "Browser test is initiated");
 		
@@ -110,7 +110,7 @@ public class RRTestCase {
 		}
 	}
 	
- /*    @Test(priority = 2)
+ //  @Test(priority = 2)
 	void MinistryMaster() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Manage Compliance- Ministry Master");
@@ -122,7 +122,7 @@ public class RRTestCase {
 		extent.flush();
 	}
 	
-	@Test(priority = 3)
+//	@Test(priority = 3)
 	void RegulatorMaster() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Manage Compliance- Regulator Master");
@@ -134,7 +134,7 @@ public class RRTestCase {
 		extent.flush();
 	}
 	
-	@Test(priority = 4)
+//	@Test(priority = 4)
 	void ActDepartmentMaster() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Manage Compliance- Act Department Master ");
@@ -145,8 +145,8 @@ public class RRTestCase {
 		extent.endTest(test);
 		extent.flush();
 	}
-	*/
-	@Test(priority = 5)
+	
+//	@Test(priority = 5)
 	void ActAddNew() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Manage Compliance- Act - Add New ");
@@ -157,7 +157,7 @@ public class RRTestCase {
 		extent.endTest(test);
 		extent.flush();
 	}
-	
+	/*	
 	@Test(priority = 6)
 	void Actupdate() throws InterruptedException, IOException
 	{
@@ -182,8 +182,18 @@ public class RRTestCase {
 		extent.flush();
 	}
 	
-	
-	
+	*/
+//	@Test(priority = 8)
+	void ActGroupAddNew() throws InterruptedException, IOException
+	{
+		test = extent.startTest("Manage Compliance- Act Group - Add New ");
+		
+		
+		RRMethods.ActGroupAddNew(driver,test,workbook);
+		
+		extent.endTest(test);
+		extent.flush();
+	}
 	
 	
 	

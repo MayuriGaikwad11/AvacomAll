@@ -19,6 +19,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -45,7 +48,7 @@ public class ReviewerCount
 	public static XSSFSheet ReadExcel() throws IOException
 	{
 		
-		fis = new FileInputStream("C:\\Users\\Mayuri Gaikwad\\Desktop\\PerformerPom\\TestData\\ComplianceSheet.xlsx");
+		fis = new FileInputStream("C:\\Users\\Mayuri\\Desktop\\Compliance\\AvacomAll\\TestData\\ComplianceSheet.xlsx");
 		workbook = new XSSFWorkbook(fis);
 		sheet = workbook.getSheetAt(1);					//Retrieving second sheet of Workbook
 		return sheet;
@@ -55,9 +58,21 @@ public class ReviewerCount
 	void setBrowser() throws InterruptedException, IOException
 	{
 		//String workingDir = System.getProperty("user.dir");
-		extent = new com.relevantcodes.extentreports.ExtentReports("C:\\Users\\Mayuri Gaikwad\\Desktop\\PerformerPom\\Reports\\ReviewerResults.html",true);
+		extent = new com.relevantcodes.extentreports.ExtentReports("C:\\Users\\Mayuri\\Desktop\\Compliance\\AvacomAll\\Reports\\ReviewerResults.html",true);
 		test = extent.startTest("Verify OpenBrowser");
 		test.log(LogStatus.PASS, "Browser test is initiated");
+		
+					
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	@BeforeMethod
+	void Login() throws InterruptedException, IOException
+	{
+	//	test = extent.startTest("Logging In - Reviewer");
+	//	test.log(LogStatus.PASS, "Logging into system");
 		
 		XSSFSheet sheet = ReadExcel();
 		Row row0 = sheet.getRow(0);						//Selected 0th index row (First row)
@@ -65,21 +80,11 @@ public class ReviewerCount
 		String URL = c1.getStringCellValue();			//Got the URL stored at position 0,1
 		
 		login.Login.BrowserSetup(URL);					//Method of Login class to set browser.
-		
-		
-		extent.endTest(test);
-		extent.flush();
-	}
+		Thread.sleep(3000);
 	
-      @Test(priority = 1) //pass
-	void Login() throws InterruptedException, IOException
-	{
-		test = extent.startTest("Logging In - Reviewer");
-		test.log(LogStatus.PASS, "Logging into system");
-		
-		XSSFSheet sheet = ReadExcel();
+	//	XSSFSheet sheet = ReadExcel();
 		Row row1 = sheet.getRow(1);						//Selected 1st index row (Second row)
-		Cell c1 = row1.getCell(1);						//Selected cell (1 row,1 column)
+		 c1 = row1.getCell(1);						//Selected cell (1 row,1 column)
 		String uname = c1.getStringCellValue();			//Got the URL stored at position 1,1
 		
 		Row row2 = sheet.getRow(2);						//Selected 2nd index row (Third row)
@@ -89,11 +94,11 @@ public class ReviewerCount
 		driver = login.Login.UserLogin(uname,password,"PendingReview");		//Method of Login class to login user.
 		
 		
-		extent.endTest(test);
-		extent.flush();
+	//	extent.endTest(test);
+	//	extent.flush();
 	}
 
-//	@Test(priority = 2) //pass
+	@Test(priority = 2) //pass
        void ReviewCountStatutoryApprove() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Statutory Review Count when Approved");
@@ -108,24 +113,24 @@ public class ReviewerCount
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@role='grid'][@class='k-selectable']")));
 		
-		File dir = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		File dir = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] dirContents = dir.listFiles();						//Counting number of files in directory before download
 		
 		Thread.sleep(500);
 		OverduePOM.Exportbtn(driver).click();				//Exporting (Downloading) file
 		
 		Thread.sleep(3000);
-		File dir1 = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		File dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] allFilesNew = dir1.listFiles();						//Counting number of files in directory after download
 		
 		Thread.sleep(500);
 		
 		if(dirContents.length < allFilesNew.length)
 		{
-			test.log(LogStatus.PASS, " :- File downloaded successfully.");	
+			test.log(LogStatus.PASS, "  File downloaded successfully.");	
 		}	else
 		{
-			test.log(LogStatus.FAIL, " :- File does not downloaded.");
+			test.log(LogStatus.FAIL, "  File does not downloaded.");
 		}
 		
 		elementsList = ReviewerPOM.clickStatus(driver);			//CLicking on Status to sort it in ascending order
@@ -281,7 +286,7 @@ public class ReviewerCount
 		extent.flush();
 	}
 	
-    //   @Test(priority = 3) //pass
+     @Test(priority = 3) //pass
 	void ReviewCountStatutoryReject() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Statutory 'Pending For Review' and 'Rejected' Count when Rejected");
@@ -426,7 +431,7 @@ public class ReviewerCount
 		extent.flush();
 	}
 	
-//	@Test(priority = 4) //pass
+ // @Test(priority = 4) //pass   not present Script
     void ReviewCountStatutoryASA() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Statutory Review -Advanced Search-Count when Approved");
@@ -435,8 +440,8 @@ public class ReviewerCount
 		extent.endTest(test);
 		extent.flush();
 	}
-	
-//	@Test(priority = 5) //pass
+	 
+//	@Test(priority = 5) //pass  not present Script
     void ReviewCountStatutoryASR() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Statutory Review -Advanced Search-Count when Rejected");
@@ -447,7 +452,7 @@ public class ReviewerCount
 	}
 	
 	
-//	@Test(priority = 6) //pass
+	@Test(priority = 6) //pass
 	void ReviewCountInternalApprove() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Internal 'Pending For Review' - Approved Verification");
@@ -459,7 +464,7 @@ public class ReviewerCount
 		extent.flush();
 	}
 	
-//	@Test(priority = 7)  //pass
+	@Test(priority = 7)  //pass
 	void ReviewCountInternalReject() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Internal 'Pending For Review' - Rejected Verification");
@@ -471,7 +476,7 @@ public class ReviewerCount
 		extent.flush();
 	}
 	
-	//@Test(priority = 8) //pass
+//	@Test(priority = 8) //pass not present Script
     void ReviewCountInternalASA() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Statutory Review -Advanced Search-Count when Approved");
@@ -481,7 +486,7 @@ public class ReviewerCount
 		extent.flush();
 	}
 	
-	//@Test(priority = 9) //pass
+//	@Test(priority = 9) //pass  not present Script
     void ReviewCountInternalASR() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Statutory Review -Advanced Search-Count when Rejected");
@@ -491,7 +496,7 @@ public class ReviewerCount
 		extent.flush();
 	}
 	
-//	@Test(priority = 10) //pass
+	@Test(priority = 10) //pass
     void CompletedCountStatutory() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Statutory Completed Count Match");
@@ -501,8 +506,8 @@ public class ReviewerCount
 		extent.endTest(test);
 		extent.flush();
 	}
-    
-  //  @Test(priority = 11) //pass
+	  
+   @Test(priority = 11) //pass
     void CompletedCountInternal() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Internal Completed Count Match");
@@ -513,8 +518,8 @@ public class ReviewerCount
 		extent.endTest(test);
 		extent.flush();
 	}
-    
-  // @Test(priority = 12) //pass
+   
+ @Test(priority = 12) //pass
     void OverdueCountStatutory() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Statutory Overdue Count Match");
@@ -526,7 +531,7 @@ public class ReviewerCount
 		extent.flush();
 	}
 	
- //   @Test(priority = 13) //pass
+    @Test(priority = 13) //pass
     void OverdueCountInternal() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Statutory Overdue Count Match");
@@ -537,8 +542,8 @@ public class ReviewerCount
 		extent.endTest(test);
 		extent.flush();
 	}
-    
-  //  @Test(priority = 14) //pass
+     
+    @Test(priority = 14) //pass
     void RejectedStatutory() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Rejected Statutory - Export");
@@ -550,7 +555,7 @@ public class ReviewerCount
 		extent.flush();
 	}
 	
-//   @Test(priority = 15) //pass
+   @Test(priority = 15) //pass
     void RejectedInternal() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Rejected Internal - Export");
@@ -561,8 +566,8 @@ public class ReviewerCount
 		extent.endTest(test);
 		extent.flush();
 	}
-    
-  // @Test(priority = 16) //pass no record
+     
+   @Test(priority = 16) //pass 
     void EventsCount() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Statutory Event Count Match");
@@ -572,7 +577,7 @@ public class ReviewerCount
 		extent.endTest(test);
 		extent.flush();
 	}
-    
+ 
    @Test(priority = 17) //pass
     void ActivatedEventsCount() throws InterruptedException, IOException
 	{
@@ -585,7 +590,7 @@ public class ReviewerCount
 		extent.flush();
 	}
     
-  //  @Test(priority = 18) //pass no record
+    @Test(priority = 18) //pass 
     void ClosedEventsCount() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Statutory Closed  Events Count Match");
@@ -597,7 +602,7 @@ public class ReviewerCount
 		extent.flush();
 	}
     
-	
+    
 	@Test(priority = 19) // pass
 	void MyReminderStatutory() throws InterruptedException, IOException
 	{
@@ -621,6 +626,7 @@ public class ReviewerCount
 		extent.flush();
 	}
 	
+	
 	@Test(priority = 21) //pass
 	void InterimReview() throws InterruptedException, IOException
 	{
@@ -633,7 +639,7 @@ public class ReviewerCount
 		extent.flush();
 	}
 	
-	@Test(priority = 22)
+//	@Test(priority = 22)
 	void MyEscalation() throws InterruptedException, IOException
 	{
 		test = extent.startTest("My Escalation verification");
@@ -644,7 +650,7 @@ public class ReviewerCount
 		extent.endTest(test);
 		extent.flush();
 	}
-	
+
 	@Test(priority = 23) //pass
 	void ReassignUser() throws InterruptedException, IOException
 	{
@@ -1504,7 +1510,7 @@ extent.flush();
         				extent.flush();
         	}
         	
-       // 	@Test(priority = 31) 
+        	@Test(priority = 31) 
         		void ComplianceDocumentsInter() throws InterruptedException, IOException
         		{
         			test = extent.startTest("Compliance Documents Internal verification");
@@ -1560,16 +1566,16 @@ extent.flush();
         			Thread.sleep(4000);	
         			CFOcountPOM.closeNewsView(driver).click();
         			Thread.sleep(1000);
-        			test.log(LogStatus.PASS, "view Succefully");
+        			test.log(LogStatus.PASS, "view Successfully");
         			OverduePOM.searchBox(driver).sendKeys("NSE issued the MFSS Settlement Calendar");
         			Thread.sleep(500);
         			OverduePOM.ClicksearchBtn(driver).click();
         			Thread.sleep(7000);
-        			test.log(LogStatus.PASS, "Search Succefully");
+        			test.log(LogStatus.PASS, "Search Successfully");
         			Thread.sleep(1000);
         			OverduePOM.ClickClearBtn(driver).click();
         			Thread.sleep(8000);
-        			test.log(LogStatus.PASS, "Clear button Working Succefully");
+        			test.log(LogStatus.PASS, "Clear button Working Successfully");
         		
         			performer.OverduePOM.clickDashboard(driver).click();
         			
@@ -1600,7 +1606,7 @@ extent.flush();
         			Thread.sleep(1000);
         			test.log(LogStatus.PASS, "OverView Successfully");
         			performer.OverduePOM.clickDashboard(driver).click();
-        			
+        			Thread.sleep(3000);
         			extent.endTest(test);
         			extent.flush();
         		}
@@ -1670,7 +1676,7 @@ extent.flush();
      				Thread.sleep(1000);
      				OverduePOM.TypeMsg(driver).sendKeys("Automation testing");
      				Thread.sleep(1000);
-     				OverduePOM.choosefile(driver).sendKeys("C:\\Users\\Mayuri Gaikwad\\Downloads\\Report .xlsx");
+     				OverduePOM.choosefile(driver).sendKeys("C:\\Users\\Mayuri\\Downloads\\Report .xlsx");
      				Thread.sleep(1000);
      				//OverduePOM.send(driver).click();
      				By locator = By.xpath("//*[@id='btnsendmailNew']");
@@ -1702,14 +1708,18 @@ extent.flush();
      					extent.flush();
      				}
      		 
-        	
-        	
-        		
+     			@AfterMethod
+		      	void browserClosing() throws InterruptedException
+		      	{
+		      		//Thread.sleep(1000);
+		      		driver.close();
+		      	}	       
+		      		       		      		
         	
 	//@AfterTest
 	void Closing() throws InterruptedException
 	{
-		//Thread.sleep(2000);
-		//driver.close();
+		
 	}
+	
 }
