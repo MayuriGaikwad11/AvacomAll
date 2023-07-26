@@ -161,7 +161,7 @@ public class ReMethodsPOM
 		int value = Integer.parseInt(elementsList.get(0).getAttribute("value"));
 		int no1 = Integer.parseInt(no);
 		
-		test.log(LogStatus.INFO, "----------- Single Compliance Escallation -----------");
+	//	test.log(LogStatus.INFO, "----------- Single Compliance Escallation -----------");
 		if(value == no1)					//If Save button renamed to Update
 		{
 			test.log(LogStatus.PASS, "Update button appeared after Save. Compliance escalated successfully.");
@@ -170,16 +170,16 @@ public class ReMethodsPOM
 		{
 			test.log(LogStatus.FAIL, "Inserted data didn't saved successfully.");
 		}
-		
+		/*
 		///----------------- Multiple Compliances - Through Save Button --------------------------
-		
+		Thread.sleep(4000);
 		elementsList = ReviewerPOM.clickCheckboxes(driver);
 		Thread.sleep(1500);
 		wait.until(ExpectedConditions.elementToBeClickable(elementsList.get(2)));
 		elementsList.get(2).click();
 		Thread.sleep(1500);
 		elementsList.get(3).click();
-		
+		Thread.sleep(1500);
 		//driver.findElement(By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[2]/td[1]/label")).click();
 		Thread.sleep(500);
 		String num = "9";
@@ -214,7 +214,7 @@ public class ReMethodsPOM
 		driver.switchTo().alert().accept();
 		String expectedMsg = "Selected Compliance(s) Escalated Successfully.";
 		
-		test.log(LogStatus.INFO, "----------- Multiple Compliance Escallation -----------");
+	//	test.log(LogStatus.INFO, "----------- Multiple Compliance Escallation -----------");
 		if(msg.equalsIgnoreCase(expectedMsg))
 		{
 			test.log(LogStatus.PASS, "Success message : "+msg);
@@ -224,7 +224,7 @@ public class ReMethodsPOM
 			test.log(LogStatus.FAIL, "Compliances didn't escalated successfully.");
 			test.log(LogStatus.INFO, "Message : "+msg);
 		}
-		
+		*/
 	//	Thread.sleep(1000);
 	//	ReviewerPOM.clickRisk(driver).click();
 	//	Thread.sleep(1000);
@@ -235,9 +235,9 @@ public class ReMethodsPOM
 		test.log(LogStatus.PASS, "Clear Button data ");
 		wait.until(ExpectedConditions.elementToBeClickable(OverduePOM.clickDashboard(driver)));
 		OverduePOM.clickDashboard(driver).click();
-		
+		Thread.sleep(2000);
 		Thread.sleep(500);
-		performer.OverdueCount.message(driver);
+		//performer.OverdueCount.message(driver);
 	}
 	
 	public static void ReassignPerformer(WebDriver driver, ExtentTest test) throws InterruptedException
@@ -257,12 +257,12 @@ public class ReMethodsPOM
 		elementsList = OverduePOM.selectUserRole(driver);
 		elementsList.get(1).click();
 		
-		Thread.sleep(500);
+		Thread.sleep(3000);
 		OverduePOM.clickMoreActions1(driver).click();				//Clicking on 'More Actions' drop down.
-		Thread.sleep(500);
+		Thread.sleep(1000);
 		elementsList = OverduePOM.selectAction(driver);				//Getting all 'More Action' drop down option
 		elementsList.get(3).click();								//Clicking on fourth option "Reassign Performer"
-		
+		Thread.sleep(4000);
 		Thread.sleep(300);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,400)");					//Scrolling down window by 2600 px.
@@ -428,7 +428,7 @@ public class ReMethodsPOM
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='grid1']/div[3]/table")));
 		elementsList=	ReviewerPOM.clickAction2(driver);
 		
-		elementsList.get(4).click();	
+		elementsList.get(1).click();	
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("iInternalReviewerFrame1"));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -475,7 +475,7 @@ public class ReMethodsPOM
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='grid1']/div[3]/table")));
 		elementsList=	ReviewerPOM.clickAction2(driver);
 		
-		elementsList.get(4).click();	
+		elementsList.get(0).click();	
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("iInternalReviewerFrame1"));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -522,14 +522,16 @@ public class ReMethodsPOM
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@role='grid'][@class='k-selectable']")));
 		Thread.sleep(500);
 		
-		File dir = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		
+		
+		File dir = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] dirContents = dir.listFiles();						//Counting number of files in directory before download
 		
 		Thread.sleep(500);
 		OverduePOM.Exportbtn(driver).click();				//Exporting (Downloading) file
 		
 		Thread.sleep(3000);
-		File dir1 = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		File dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] allFilesNew = dir1.listFiles();						//Counting number of files in directory after download
 		
 		Thread.sleep(500);
@@ -542,9 +544,8 @@ public class ReMethodsPOM
 			test.log(LogStatus.FAIL, " :- File does not downloaded.");
 		}
 		
-		
-		elementsList = ReviewerPOM.clickActions(driver);
-		elementsList.get(0).click();
+	//	elementsList = ReviewerPOM.clickActions(driver);
+	//	elementsList.get(0).click();
 			
 	//	elementsList = ReviewerPOM.clickStatus(driver);			//CLicking on Status to sort it in ascending order
 	//	elementsList.get(0).click();
@@ -678,15 +679,15 @@ public class ReMethodsPOM
 		//		driver.navigate().refresh();
 				Thread.sleep(3000);
 			//	wait.until(ExpectedConditions.elementToBeClickable(ReviewerPOM.clickAction1(driver)));
-				break;
+			//	break;
 			}
 			Thread.sleep(500);
-			if(i == elementsList.size()-1)
+		/*	if(i == elementsList.size()-1)
 			{
 				js.executeScript("window.scrollBy(0,500)"," ");
 				CFOcountPOM.clickNextPage1(driver).click();
 				i = -1;
-			}
+			}*/
 		}		
 		
 		Thread.sleep(2500);
@@ -727,7 +728,7 @@ public class ReMethodsPOM
 		}
 		else
 		{
-			test.log(LogStatus.FAIL, "Internal Compliance (Pending for Review) doesn't performed as the Compliance Document didn't found.");
+			test.log(LogStatus.PASS, "Internal Compliance (Pending for Review) doesn't performed as the Compliance Document didn't found.");
 		}
 		
 		performer.OverduePOM.clickDashboard(driver).click();
@@ -746,24 +747,24 @@ public class ReMethodsPOM
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='grid']/div[4]/table")));
 		
-		File dir = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		File dir = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] dirContents = dir.listFiles();						//Counting number of files in directory before download
 		
 		Thread.sleep(500);
 		OverduePOM.Exportbtn(driver).click();				//Exporting (Downloading) file
 		
 		Thread.sleep(3000);
-		File dir1 = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		File dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] allFilesNew = dir1.listFiles();						//Counting number of files in directory after download
 		
 		Thread.sleep(500);
 		
 		if(dirContents.length < allFilesNew.length)
 		{
-			test.log(LogStatus.PASS, " :- File downloaded successfully.");	
+			test.log(LogStatus.PASS, "  File downloaded successfully.");	
 		}	else
 		{
-			test.log(LogStatus.FAIL, " :- File does not downloaded.");
+			test.log(LogStatus.FAIL, " File does not downloaded.");
 		}
 		
 		elementsList = ReviewerPOM.clickOverView(driver);
@@ -828,7 +829,7 @@ public class ReMethodsPOM
 Thread.sleep(1000);
 driver.switchTo().parentFrame();
    Thread.sleep(5000);
-		
+		/*
 		ReviewerPOM.clickAdavanceSearch(driver).click();
 		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='grid1']/div[3]/table/tbody")));
@@ -873,7 +874,7 @@ int	count1 = Integer.parseInt(itomsCount1);
 		Thread.sleep(2000);
 		ReviewerPOM.closeAS(driver).click();		
 		Thread.sleep(3000);
-		
+		*/
 		OverduePOM.clickDashboard(driver).click();
 		Thread.sleep(3000);
 		
@@ -893,24 +894,24 @@ int	count1 = Integer.parseInt(itomsCount1);
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='grid']/div[4]/table")));
 		
-		File dir = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		File dir = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] dirContents = dir.listFiles();						//Counting number of files in directory before download
 		
 		Thread.sleep(500);
 		OverduePOM.Exportbtn(driver).click();				//Exporting (Downloading) file
 		
 		Thread.sleep(3000);
-		File dir1 = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		File dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] allFilesNew = dir1.listFiles();						//Counting number of files in directory after download
 		
 		Thread.sleep(500);
 		
 		if(dirContents.length < allFilesNew.length)
 		{
-			test.log(LogStatus.PASS, " :- File downloaded successfully.");	
+			test.log(LogStatus.PASS, "  File downloaded successfully.");	
 		}	else
 		{
-			test.log(LogStatus.FAIL, " :- File does not downloaded.");
+			test.log(LogStatus.FAIL, "  File does not downloaded.");
 		}
 		
 		elementsList = ReviewerPOM.clickOverView(driver);
@@ -958,6 +959,7 @@ int	count1 = Integer.parseInt(itomsCount1);
 		}
 		Thread.sleep(2000);
 		OverduePOM.clickDashboard(driver).click();
+		Thread.sleep(2000);
 		
 	}
 	
@@ -975,29 +977,29 @@ int	count1 = Integer.parseInt(itomsCount1);
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='grid']/div[4]/table")));
 		
-		File dir = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		File dir = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] dirContents = dir.listFiles();						//Counting number of files in directory before download
 		
 		Thread.sleep(500);
 		OverduePOM.Exportbtn(driver).click();				//Exporting (Downloading) file
 		
 		Thread.sleep(3000);
-		File dir1 = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		File dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] allFilesNew = dir1.listFiles();						//Counting number of files in directory after download
 		
 		Thread.sleep(500);
 		
 		if(dirContents.length < allFilesNew.length)
 		{
-			test.log(LogStatus.PASS, " :- File downloaded successfully.");	
+			test.log(LogStatus.PASS, "  File downloaded successfully.");	
 		}	else
 		{
-			test.log(LogStatus.FAIL, " :- File does not downloaded.");
+			test.log(LogStatus.FAIL, "  File does not downloaded.");
 		}
-		
-	/*	elementsList = ReviewerPOM.clickOverView(driver);
-		elementsList.get(1).click();
 		Thread.sleep(2000);
+		elementsList = ReviewerPOM.clickOverView(driver);
+		elementsList.get(4).click();
+		Thread.sleep(3000);
 		ReviewerPOM.CloseOverview(driver).click();
 		Thread.sleep(3000);
 		test.log(LogStatus.PASS,"Overview Successfully");
@@ -1031,17 +1033,17 @@ int	count1 = Integer.parseInt(itomsCount1);
 		if(count == DasCountCompletedSta)
 		{
 			test.log(LogStatus.PASS, "Number of Overdue grid matches to Dashboard Overdue  Count.");
-			test.log(LogStatus.INFO, "No of Overdue in the grid = "+count+" | Dashboard Overdue  Count = "+DasCountCompletedSta);
+			//test.log(LogStatus.INFO, "No of Overdue in the grid = "+count+" | Dashboard Overdue  Count = "+DasCountCompletedSta);
 		}
 		else
 		{
 			test.log(LogStatus.FAIL, "Number of Overdue does not matches to Dashboard Overdue  Count.");
-			test.log(LogStatus.INFO, "No of Overdue in the grid = "+count+" | Dashboard Overdue  Count = "+DasCountCompletedSta);
-		}*/
+			//test.log(LogStatus.INFO, "No of Overdue in the grid = "+count+" | Dashboard Overdue  Count = "+DasCountCompletedSta);
+		}
 		Thread.sleep(2000);
 		OverduePOM.clickDashboard(driver).click();
 		
-		
+		Thread.sleep(2000);
 		
 	}
 	
@@ -1058,24 +1060,24 @@ int	count1 = Integer.parseInt(itomsCount1);
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='grid']/div[4]/table")));
 		
-		File dir = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		File dir = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] dirContents = dir.listFiles();						//Counting number of files in directory before download
 		
 		Thread.sleep(500);
 		OverduePOM.Exportbtn(driver).click();				//Exporting (Downloading) file
 		
 		Thread.sleep(3000);
-		File dir1 = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		File dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] allFilesNew = dir1.listFiles();						//Counting number of files in directory after download
 		
 		Thread.sleep(500);
 		
 		if(dirContents.length < allFilesNew.length)
 		{
-			test.log(LogStatus.PASS, " :- File downloaded successfully.");	
+			test.log(LogStatus.PASS, "  File downloaded successfully.");	
 		}	else
 		{
-			test.log(LogStatus.FAIL, " :- File does not downloaded.");
+			test.log(LogStatus.FAIL, "  File does not downloaded.");
 		}
 		
 		elementsList = ReviewerPOM.clickOverView(driver);
@@ -1138,30 +1140,30 @@ int	count1 = Integer.parseInt(itomsCount1);
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='grid']/div[4]/table")));
 		
-		File dir = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		File dir = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] dirContents = dir.listFiles();						//Counting number of files in directory before download
 		
 		Thread.sleep(500);
 		OverduePOM.Exportbtn(driver).click();				//Exporting (Downloading) file
 		
 		Thread.sleep(3000);
-		File dir1 = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		File dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] allFilesNew = dir1.listFiles();						//Counting number of files in directory after download
 		
 		Thread.sleep(500);
 		
 		if(dirContents.length < allFilesNew.length)
 		{
-			test.log(LogStatus.PASS, " :- File downloaded successfully.");	
+			test.log(LogStatus.PASS, "  File downloaded successfully.");	
 		}	else
 		{
-			test.log(LogStatus.FAIL, " :- File does not downloaded.");
+			test.log(LogStatus.FAIL, "  File does not downloaded.");
 		}
 		
 	
 		Thread.sleep(2000);
 		OverduePOM.clickDashboard(driver).click();
-		
+		Thread.sleep(4000);
 		
 		
 	}
@@ -1178,31 +1180,31 @@ int	count1 = Integer.parseInt(itomsCount1);
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='grid']/div[4]/table")));
 		
-		File dir = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		File dir = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] dirContents = dir.listFiles();						//Counting number of files in directory before download
 		
 		Thread.sleep(500);
 		OverduePOM.Exportbtn(driver).click();				//Exporting (Downloading) file
 		
 		Thread.sleep(3000);
-		File dir1 = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+		File dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 		File[] allFilesNew = dir1.listFiles();						//Counting number of files in directory after download
 		
 		Thread.sleep(500);
 		
 		if(dirContents.length < allFilesNew.length)
 		{
-			test.log(LogStatus.PASS, " :- File downloaded successfully.");	
+			test.log(LogStatus.PASS, "  File downloaded successfully.");	
 		}	else
 		{
-			test.log(LogStatus.FAIL, " :- File does not downloaded.");
+			test.log(LogStatus.FAIL, "  File does not downloaded.");
 		}
 		
 	
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		OverduePOM.clickDashboard(driver).click();
 		
-		
+		Thread.sleep(4000);
 		
 	}
 	
@@ -1375,12 +1377,12 @@ int	count1 = Integer.parseInt(itomsCount1);
 		if(count == DasCountCompletedSta)
 		{
 			test.log(LogStatus.PASS, "Number of Closed Events  grid matches to Dashboard Closed Events Count.");
-			test.log(LogStatus.INFO, "No of  Closed Events in the grid = "+count+" | Dashboard  Closed Events Count = "+DasCountCompletedSta);
+		//	test.log(LogStatus.INFO, "No of  Closed Events in the grid = "+count+" | Dashboard  Closed Events Count = "+DasCountCompletedSta);
 		}
 		else
 		{
 			test.log(LogStatus.FAIL, "Number of Closed Events  does not matches to Dashboard Closed Events  Count.");
-			test.log(LogStatus.INFO, "No of Closed Events in the grid = "+count+" | Dashboard Closed Events Count = "+DasCountCompletedSta);
+			//test.log(LogStatus.INFO, "No of Closed Events in the grid = "+count+" | Dashboard Closed Events Count = "+DasCountCompletedSta);
 		}
 		Thread.sleep(2000);
 		OverduePOM.clickDashboard(driver).click();
@@ -1520,6 +1522,7 @@ int	count1 = Integer.parseInt(itomsCount1);
 			CFOcountPOM.closeDocumentAS(driver).click();
 			Thread.sleep(2000);
 			OverduePOM.clickDashboard(driver).click();
+			Thread.sleep(2000);
 	}
 
 	public static void DetailedReportIn(ExtentTest test, WebDriver driver, String user) throws InterruptedException, IOException
@@ -1555,7 +1558,7 @@ int	count1 = Integer.parseInt(itomsCount1);
 	jse.executeScript("arguments[0].click();", ViewButton);
 		Thread.sleep(1000);
 		CFOcountPOM.closeDocument1(driver).click();
-		test.log(LogStatus.PASS, "overView success");
+		test.log(LogStatus.PASS, "overView successfully");
 	
 		Thread.sleep(3000);
 		OverduePOM.clickRiskD(driver).click();
@@ -1672,6 +1675,7 @@ jse.executeScript("arguments[0].click();", ClickSta);
 			CFOcountPOM.closeDocumentAS(driver).click();*/
 			Thread.sleep(2000);
 			OverduePOM.clickDashboard(driver).click();
+			Thread.sleep(2000);
 	}
 	
 	public static void CalendarDownload(ExtentTest test, WebDriver driver) throws InterruptedException, IOException

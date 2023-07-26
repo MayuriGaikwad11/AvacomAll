@@ -99,13 +99,13 @@ public class CompanyPOM {
 	
 	public static WebElement ManageEvents(WebDriver driver)		//Method for closing Message Popup
 	{
-		admin = driver.findElement(By.xpath("//*[@id='CMPMenuBar']/ul/li[6]"));
+		admin = driver.findElement(By.xpath("//*[@id='CMPMenuBar']/ul/li[5]"));
 		return admin;
 	}
 	
 	public static WebElement EventAssignments(WebDriver driver)		//Method for closing Message Popup
 	{
-		admin = driver.findElement(By.xpath("//*[@id='CMPMenuBar:submenu:90']/li[3]"));
+		admin = driver.findElement(By.xpath("//*[@id='CMPMenuBar:submenu:67']/li[3]"));
 		return admin;
 	}
 	
@@ -163,6 +163,12 @@ public class CompanyPOM {
 		return admin;
 	}
 	
+	public static WebElement BITAConsultingPune(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.xpath("//*[@id='BodyContent_rptEntity_chkEntity_0']"));
+		return admin;
+	}
+	
 	public static WebElement  SelectEntityok(WebDriver driver)		//Method for closing Message Popup
 	{
 		admin = driver.findElement(By.xpath("//*[@id='BodyContent_rptEntity_btnRepeater']"));
@@ -191,6 +197,12 @@ public class CompanyPOM {
 	public static WebElement  MPvtLtd(WebDriver driver)		//Method for closing Message Popup
 	{
 		admin = driver.findElement(By.xpath("//*[@id='BodyContent_tvBranchesn2CheckBox']"));
+		return admin;
+	}
+	
+	public static WebElement  BITAConsultingKarnataka(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.xpath("//*[@id='BodyContent_tvBranchesn1CheckBox']"));
 		return admin;
 	}
 	
@@ -260,6 +272,12 @@ public class CompanyPOM {
 		admin = driver.findElement(By.xpath("//*[@id='BodyContent_grdCompExData_lnkDownload_0']"));
 		return admin;
 	}
+	
+	public static WebElement  UploadLinkEC1(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.xpath("//*[@id='BodyContent_grdEventCompUpData_lnkECDownload_0']"));
+		return admin;
+	}
 
 	public static WebElement  DownloadEC(WebDriver driver)		//Method for closing Message Popup
 	{
@@ -270,7 +288,7 @@ public class CompanyPOM {
 	public static WebElement  UploadEC(WebDriver driver)		//Method for closing Message Popup
 	{
 		admin = driver.findElement(By.xpath("//*[@id='BodyContent_btnEventComplianceUpload']"));
-		return admin;
+		return admin;                       
 	}
 
 	public static WebElement  ChooseFileEC(WebDriver driver)		//Method for closing Message Popup
@@ -289,7 +307,7 @@ public class CompanyPOM {
 	public static WebElement  InValidationMsg(WebDriver driver)		//Method for closing Message Popup
 	{
 		admin = driver.findElement(By.xpath("//*[@id='BodyContent_ValidationSummaryECI']/ul/li/ol"));
-		return admin;
+		return admin;                        
 	}
 
 	
@@ -301,7 +319,7 @@ public class CompanyPOM {
 
 	public static WebElement  Department(WebDriver driver)		//Method for closing Message Popup
 	{
-		admin = driver.findElement(By.xpath("//*[@id='CMPMenuBar:submenu:15']/li[1]/a"));
+		admin = driver.findElement(By.xpath("//*[@id='CMPMenuBar:submenu:12']/li[1]/a"));
 		return admin;
 	}
 
@@ -326,7 +344,7 @@ public class CompanyPOM {
 	
 	public static WebElement  SaveDeptMsg(WebDriver driver)		//Method for closing Message Popup
 	{
-		admin = driver.findElement(By.xpath("//*[@id='BodyContent_ctl02']/ul/li"));
+		admin = driver.findElement(By.xpath("//*[@id='BodyContent_ctl03']/ul/li"));
 		return admin;
 	}
 	
@@ -357,7 +375,7 @@ public class CompanyPOM {
 	public static WebElement  User(WebDriver driver)		//Method for closing Message Popup
 	{
 		admin = driver.findElement(By.xpath("//*[@id='CMPMenuBar:submenu:15']/li[2]/a"));
-		return admin;
+		return admin;                        
 	}
 	
 	public static WebElement  AddNewUser(WebDriver driver)		//Method for closing Message Popup
@@ -478,7 +496,7 @@ public class CompanyPOM {
 	
 	public static WebElement  BlockScheduleStatutory(WebDriver driver)		//Method for closing Message Popup
 	{
-		admin = driver.findElement(By.xpath("//*[@id='CMPMenuBar:submenu:15']/li[8]/a"));
+		admin = driver.findElement(By.xpath("//*[@id='CMPMenuBar:submenu:12']/li[8]/a"));
 		return admin;
 	}
 	
@@ -540,9 +558,80 @@ public class CompanyPOM {
 	
 	public static WebElement  BlockScheduleInternal(WebDriver driver)		//Method for closing Message Popup
 	{
-		admin = driver.findElement(By.xpath("//*[@id='CMPMenuBar:submenu:15']/li[9]/a"));
+		admin = driver.findElement(By.xpath("//*[@id='CMPMenuBar:submenu:12']/li[9]/a"));
 		return admin;
 	}
+	
+	
+	public static WebElement ModifyAssignmentsLink(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.xpath("//*[@id='BodyContent_grdUser_lbtnModifyAssignment_0']"));
+		return admin;
+	}
+	
+	public static WebElement DepartmentDropdown(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[8]/td[4]/span/input"));
+		return admin;
+	}
+	
+	public static WebElement ModifyAssignmentsClose(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.xpath("//*[@id='BodyContent_Button2']"));
+		return admin;
+	}
+	
+	public static WebElement ModifyAssignments(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.xpath("//*[@id='CMPMenuBar:submenu:12']/li[4]/a"));
+		return admin;
+	}
+	
+	public static WebElement DepartmentDropdownMA(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[6]/td[4]/span/input"));
+		return admin;
+	}
+	
+	public static WebElement performera(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.linkText("performer a"));
+		return admin;
+	}
+	
+	public static WebElement reviewerb(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.linkText("reviewer b"));
+		return admin;
+	}
+	
+	public static WebElement Sonalipatil(WebDriver driver)		//Method for closing Message Popup
+	{
+		admin = driver.findElement(By.linkText("Sonali patil"));
+		return admin;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

@@ -3,18 +3,18 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="auditor.AuditorcountStatutory">
+      <class name="cfo.Mgmt">
         <methods>
-          <include name="rejected_PieChartPeriod"/>
-          <include name="pendingForReview_PieChartPeriod"/>
+          <include name="MyNotifications"/>
+          <include name="InternalMsg"/>
+          <include name="browserClosing"/>
+          <include name="DetailedReportReOpen"/>
+          <include name="SupportTicket"/>
+          <include name="Closing"/>
+          <include name="Login"/>
           <include name="setBrowser"/>
-          <include name="ClosedDelayed_PieChartPe"/>
-          <include name="Overdue_PieChartperiod"/>
-          <include name="inProgress_PieChartPeriod"/>
-          <include name="ClosedTimely_PieChartPe"/>
-          <include name="NotCompleted_PieChartPe"/>
         </methods>
-      </class> <!-- auditor.AuditorcountStatutory -->
+      </class> <!-- cfo.Mgmt -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

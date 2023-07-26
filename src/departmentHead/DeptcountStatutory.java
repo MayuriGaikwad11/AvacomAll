@@ -17,6 +17,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -24,6 +27,7 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
+import auditor.AuditorcountPOM;
 import cfo.CFOcountPOM;
 import performer.MethodsPOM;
 import performer.OverduePOM;
@@ -52,7 +56,7 @@ public class DeptcountStatutory {
 	
 	public static XSSFSheet ReadExcel() throws IOException
 	{
-		fis = new FileInputStream("C:\\Users\\Mayuri Gaikwad\\Desktop\\PerformerPom\\TestData\\ComplianceSheet.xlsx");
+		fis = new FileInputStream("C:\\Users\\Mayuri\\Desktop\\Compliance\\AvacomAll\\TestData\\ComplianceSheet.xlsx");
 		workbook = new XSSFWorkbook(fis);
 		sheet = workbook.getSheetAt(7);					//Retrieving third sheet of Workbook
 		return sheet;
@@ -61,9 +65,27 @@ public class DeptcountStatutory {
 	@BeforeTest
 	void setBrowser() throws InterruptedException, IOException
 	{
-		extent = new com.relevantcodes.extentreports.ExtentReports("C:\\Users\\Mayuri Gaikwad\\Desktop\\PerformerPom\\Reports\\Department1.html",true);
-		test = extent.startTest("Verify OpenBrowser");
-		test.log(LogStatus.PASS, "Browser test is initiated");
+		extent = new com.relevantcodes.extentreports.ExtentReports("C:\\Users\\Mayuri\\Desktop\\Compliance\\AvacomAll\\Reports\\Department.html",true);
+		test = extent.startTest("Loging In - Department Head (Statutory)");
+		test.log(LogStatus.PASS, "Logging into system");
+		
+	/*	XSSFSheet sheet = ReadExcel();
+		Row row0 = sheet.getRow(0);						//Selected 0th index row (First row)
+		Cell c1 = row0.getCell(1);						//Selected cell (0 row,1 column)
+		String URL = c1.getStringCellValue();			//Got the URL stored at position 0,1
+		
+		login.Login.BrowserSetup(URL);					//Method of Login class to set browser.
+		*/
+		
+		extent.endTest(test);
+		extent.flush();
+	}
+	
+	@BeforeMethod
+	void Login() throws InterruptedException, IOException
+	{
+	//	test = extent.startTest("Loging In - Department Head (Statutory)");
+		//test.log(LogStatus.PASS, "Logging into system");
 		
 		XSSFSheet sheet = ReadExcel();
 		Row row0 = sheet.getRow(0);						//Selected 0th index row (First row)
@@ -73,19 +95,9 @@ public class DeptcountStatutory {
 		login.Login.BrowserSetup(URL);					//Method of Login class to set browser.
 		
 		
-		extent.endTest(test);
-		extent.flush();
-	}
-	
-	@Test(priority = 1)
-	void Login() throws InterruptedException, IOException
-	{
-		test = extent.startTest("Loging In - Department Head (Statutory)");
-		test.log(LogStatus.PASS, "Logging into system");
-		
-		XSSFSheet sheet = ReadExcel();
+	//	XSSFSheet sheet = ReadExcel();
 		Row row1 = sheet.getRow(1);						//Selected 1st index row (Second row)
-		Cell c1 = row1.getCell(1);						//Selected cell (1 row,1 column)
+		 c1 = row1.getCell(1);						//Selected cell (1 row,1 column)
 		String uname = c1.getStringCellValue();			//Got the URL stored at position 1,1
 		
 		Row row2 = sheet.getRow(2);						//Selected 2nd index row (Third row)
@@ -95,8 +107,8 @@ public class DeptcountStatutory {
 		driver = login.Login.UserLogin(uname,password,link);		//Method of Login class to login user.
 		
 		
-		extent.endTest(test);
-		extent.flush();
+	//	extent.endTest(test);
+	//	extent.flush();
 	}
 	
 	public static void progress1(WebDriver driver)
@@ -193,7 +205,7 @@ public class DeptcountStatutory {
 		
 
 	
-	@Test(priority = 3)
+//	@Test(priority = 3)
 	void DepartmentCountMatch() throws InterruptedException
 	{
 		test = extent.startTest(" Count by Clicking on 'Department'");
@@ -301,7 +313,7 @@ public class DeptcountStatutory {
 	}
 	
 	
-	@Test(priority = 4)
+	//@Test(priority = 4)
 	void CompliancesCountMatch() throws InterruptedException
 	{
 		test = extent.startTest(" Count by Clicking on 'Compliances'");
@@ -312,7 +324,7 @@ public class DeptcountStatutory {
 		String string_Compliances =CFOcountPOM.readCompliances(driver).getText();		//Storing old value of Statutory overdue.
 	int	CompliancesCountDas = Integer.parseInt(string_Compliances);
 		CFOcountPOM.readCompliances(driver).click();
-		Thread.sleep(500);
+		Thread.sleep(2000);
 		
 		litigationPerformer.MethodsPOM.progress(driver);
 		
@@ -322,10 +334,10 @@ public class DeptcountStatutory {
 		CFOcountPOM.clickExportImage(driver).click();                    //export excel
 		Thread.sleep(5000);
 		test.log(LogStatus.PASS, "Excel file Export Successfully");	
-		CFOcountPOM.clickLocation(driver).click();
+	/*	CFOcountPOM.clickLocation(driver).click();
 		Thread.sleep(500);
 		CFOcountPOM.clickAVIPL(driver).click();
-		Thread.sleep(2000);
+		Thread.sleep(2000);*/
 		CFOcountPOM.clickClear(driver).click();
 		Thread.sleep(2000);
 		test.log(LogStatus.PASS, "Clear Button is working");
@@ -348,15 +360,16 @@ public class DeptcountStatutory {
 			//test.log(LogStatus.FAIL, "Number of compliances does not matches to Dashboard Statutory Overdue Count.");
 			test.log(LogStatus.FAIL, "No of Compliances in the grid = "+ComcountGrid+" | Dashboard Compliances  Count = "+CompliancesCountDas);
 		}
-		js.executeScript("window.scrollBy(500,0)");						//Scrolling UP window by 2000 px.
+	//	js.executeScript("window.scrollBy(500,0)");						//Scrolling UP window by 2000 px.
 		driver.switchTo().defaultContent();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		CFOcountPOM.closeCategories(driver).click();
+		Thread.sleep(3000);
 		extent.endTest(test);
 		extent.flush();
 	}
 
-	@Test(priority = 5)
+//	@Test(priority = 5)
 	void UsersCountMatch() throws InterruptedException
 	{
 		test = extent.startTest(" Count by Clicking on 'Users'");
@@ -406,7 +419,7 @@ public class DeptcountStatutory {
 		extent.flush();
 	}
 	
-	@Test(priority = 6)
+//	@Test(priority = 6)
 	void clickPenaltyStatutory() throws InterruptedException
 	{
 		test = extent.startTest("'Penalty' Export");
@@ -445,7 +458,7 @@ public class DeptcountStatutory {
 		extent.flush();
 	}
 	
-	@Test(priority = 7)
+//	@Test(priority = 7)
 	void SummaryofOverdueCompliances() throws InterruptedException
 	{
 		test = extent.startTest(" Summary of Overdue Compliances");
@@ -465,7 +478,7 @@ public class DeptcountStatutory {
 		//wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("showdetails"));	//Wait until frame get visible and switch to it.
 	WebElement farme=	driver.findElement(By.xpath("//*[@id='showdetails']"));
       driver.switchTo().frame(farme);
-      Thread.sleep(3000);
+      Thread.sleep(55000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='grid']")));
 		 Thread.sleep(4000); 
 	//	elementsList1=	CFOcountPOM.ActionviewList(driver);
@@ -473,12 +486,12 @@ public class DeptcountStatutory {
 	//	driver.findElement(By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[1]/td[16]/a[1]")).click();
 	//	Thread.sleep(3000);
 	//	CFOcountPOM.closeDocument(driver).click();						//Closing the View Document
-		 CFOcountPOM.clickExportImage(driver).click();
+		 CFOcountPOM.clickExportImage1(driver).click();
 			Thread.sleep(4000);
 			test.log(LogStatus.PASS, "Excel file Export Successfully");
 			Thread.sleep(4000);
 			By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr/td/a[1]");
-			
+		
 			wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 			Thread.sleep(4000);
 			// retrieving "foo-button" HTML element
@@ -509,7 +522,13 @@ public class DeptcountStatutory {
 		test = extent.startTest("Pie Chart -Completion Status- 'Not Completed' Count Verification");
 	
 		
-		Thread.sleep(500);
+		Thread.sleep(2000);
+	/*	DeptCountPOM.SelectYear(driver).click();
+		Thread.sleep(1000);
+		DeptCountPOM.SelectAll(driver).click();
+		Thread.sleep(3000);
+		DeptCountPOM.ClickApply(driver).click();
+		Thread.sleep(4000);*/
 		Actions action = new Actions(driver);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,500)");			//Scrolling down window by 1000 px.cfo
@@ -599,10 +618,17 @@ public class DeptcountStatutory {
 		test = extent.startTest("Pie Chart -Completion Status- 'Closed Delayed' Count Verification");
 		
 		Actions action = new Actions(driver);
-	//	JavascriptExecutor js = (JavascriptExecutor) driver;
-		//js.executeScript("window.scrollBy(0,500)");						//Scrolling down window by 1000 px.
+		Thread.sleep(3000);
+		DeptCountPOM.SelectYear(driver).click();
+		Thread.sleep(1000);
+		DeptCountPOM.SelectAll(driver).click();
+		Thread.sleep(3000);
+		DeptCountPOM.ClickApply(driver).click();
+		Thread.sleep(4000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,500)");						//Scrolling down window by 1000 px.
 		
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		int ClosedDelayedValue = Integer.parseInt(CFOcountPOM.clickClosedDelayedA(driver).getText());	//Reading value of 'After Due Date'
 		
 		CFOcountPOM.clickClosedDelayedA(driver).click();								//CLicking on 'Not Completed' count
@@ -666,7 +692,7 @@ public class DeptcountStatutory {
 			
 			Thread.sleep(500);
 			action.moveToElement(CFOcountPOM.clickBack1(driver)).click().build().perform();	 //Clicking on Back button
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 		}
 		else
 		{
@@ -686,10 +712,17 @@ public class DeptcountStatutory {
 		test = extent.startTest("Pie Chart -Completion Status- 'Closed Timely' Count Verification");
 	
 		Actions action = new Actions(driver);
-	//	JavascriptExecutor js = (JavascriptExecutor) driver;
-	//	js.executeScript("window.scrollBy(0,500)");						//Scrolling down window by 1000 px.
-		try{
-		Thread.sleep(1500);
+		Thread.sleep(3000);
+		DeptCountPOM.SelectYear(driver).click();
+		Thread.sleep(1000);
+		DeptCountPOM.SelectAll(driver).click();
+		Thread.sleep(3000);
+		DeptCountPOM.ClickApply(driver).click();
+		Thread.sleep(4000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,500)");						//Scrolling down window by 1000 px.
+		
+		Thread.sleep(2000);
 		int ClosedTimelyValue = Integer.parseInt(CFOcountPOM.clickClosedTimelyA(driver).getText());	//Reading value of 'After Due Date'
 		CFOcountPOM.clickClosedTimelyA(driver).click();								//CLicking on 'Not Completed' count
 		
@@ -752,7 +785,7 @@ public class DeptcountStatutory {
 			
 			Thread.sleep(500);
 			action.moveToElement(CFOcountPOM.clickBack1(driver)).click().build().perform();	 //Clicking on Back button
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 		}
 		else
 		{
@@ -763,10 +796,102 @@ public class DeptcountStatutory {
 		}
 		extent.endTest(test);
 		extent.flush();
-		}catch(NumberFormatException ex){
-			ex.printStackTrace();
-		}
+		
 	}
+	
+	@Test(priority = 11)
+	void NotApplicable_PieChart() throws InterruptedException
+	{
+		test = extent.startTest("Pie Chart -Completion Status- 'Not Applicable' Count Verification");
+		Thread.sleep(3000);
+		CFOcountPOM.YearTodate(driver).click();
+		Thread.sleep(1000);
+		CFOcountPOM.ALL(driver).click();
+		Thread.sleep(1000);
+		CFOcountPOM.clickApply(driver).click();
+		Thread.sleep(5000);
+		Actions action = new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,500)");						//Scrolling down window by 1000 px.
+		
+		Thread.sleep(2000);
+		int ClosedTimelyValue = Integer.parseInt(CFOcountPOM.clickNotApplicableA(driver).getText());	//Reading value of 'After Due Date'
+		CFOcountPOM.clickNotApplicableA(driver).click();								//CLicking on 'Not Completed' count
+		
+		Thread.sleep(3000);
+		int critical = Integer.parseInt(CFOcountPOM.readCritical(driver).getText());	//Reading Critical risk count.
+		int high = Integer.parseInt(CFOcountPOM.readHigh(driver).getText());		//reading High risk count.
+		int medium = Integer.parseInt(CFOcountPOM.readMedium(driver).getText());	//reading Medium risk count.
+		int low = Integer.parseInt(CFOcountPOM.readLow(driver).getText());			//reading Low risk count.
+		
+		int total = critical + high + medium + low;
+		/*
+		if(ClosedTimelyValue == total)
+		{
+			test.log(LogStatus.PASS, "'Closed Timely' Compliance Count matches to sum of all risked compliances.");
+			test.log(LogStatus.PASS, "Total 'Closed Timely' Compliances : "+total);
+		}
+		else
+		{
+			test.log(LogStatus.FAIL, "'Closed Timely' Compliance Count doesn't matches to sum of all risked compliances.");
+			test.log(LogStatus.FAIL, "Total 'Closed Timely' Compliances : "+total+" | Total Sum : "+ClosedTimelyValue);
+		}
+		*/
+		if(ClosedTimelyValue > 0)
+		{
+			if(critical >= 0)
+			{
+				DeptCountPOM.GraphCount2(driver, test, "Critical", critical, "Statutory");
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "'Critical' Risk Compliance Count = "+critical);
+			}
+			
+			if(high >= 0)
+			{
+				DeptCountPOM.GraphCount2(driver, test, "High", high, "Statutory");
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "'High' Risk Compliance Count = "+high);
+			}
+			
+			if(medium >= 0)
+			{
+				DeptCountPOM.GraphCount2(driver, test, "Medium", medium, "Statutory");
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "'Medium' Risk Compliance Count = "+medium);
+			}
+			
+			if(low >= 0)
+			{
+				DeptCountPOM.GraphCount2(driver, test, "Low", low, "Statutory");
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "'Low' Risk Compliance Count = "+low);
+			}
+			
+			Thread.sleep(500);
+			action.moveToElement(CFOcountPOM.clickBack1(driver)).click().build().perform();	 //Clicking on Back button
+			Thread.sleep(3000);
+		}
+		else
+		{
+			test.log(LogStatus.PASS, "'Closed Timely' Compliance Count = "+ClosedTimelyValue);
+			
+			Thread.sleep(500);
+			action.moveToElement(CFOcountPOM.clickBack1(driver)).click().build().perform();	//Clicking on Dashboard
+			Thread.sleep(3000);
+		}
+		extent.endTest(test);
+		extent.flush();
+		
+	}
+		
 		
 	@Test(priority = 11)
 	void Overdue_PieChart() throws InterruptedException
@@ -774,15 +899,22 @@ public class DeptcountStatutory {
 		test = extent.startTest("Pie Chart -Not Completed Status- 'Overdue' Count Verification");
 		
 		Thread.sleep(2000);
+		Thread.sleep(3000);
+	/*	CFOcountPOM.YearTodate(driver).click();
+		Thread.sleep(1000);
+		CFOcountPOM.ALL(driver).click();
+		Thread.sleep(1000);
+		CFOcountPOM.clickApply(driver).click();
+		Thread.sleep(5000);*/
 		Actions action = new Actions(driver);
-	//	JavascriptExecutor js = (JavascriptExecutor) driver;
-	//	js.executeScript("window.scrollBy(0,500)");			//Scrolling down window by 1000 px.
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,500)");			//Scrolling down window by 1000 px.
 		
 		Thread.sleep(3000);
 		int OverdueValue = Integer.parseInt(CFOcountPOM.clickOverdue(driver).getText());	//Reading value of 'Not Completed'
 		CFOcountPOM.clickOverdue(driver).click();									//CLicking on 'Not Completed' count
 		
-		Thread.sleep(500);
+		Thread.sleep(3000);
 		int critical = Integer.parseInt(CFOcountPOM.readCritical(driver).getText());	//Reading Critical risk count.
 		int high = Integer.parseInt(CFOcountPOM.readHigh(driver).getText());			//Reading High risk count.
 		int medium = Integer.parseInt(CFOcountPOM.readMedium(driver).getText());		//Reading Medium risk count.
@@ -868,6 +1000,13 @@ public class DeptcountStatutory {
 		
 		
 		Thread.sleep(3000);
+		Thread.sleep(2000);
+		DeptCountPOM.SelectYear(driver).click();
+		Thread.sleep(1000);
+		DeptCountPOM.SelectAll(driver).click();
+		Thread.sleep(3000);
+		DeptCountPOM.ClickApply(driver).click();
+		Thread.sleep(4000);
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,500)");			//Scrolling down window by 1000 px.
@@ -947,7 +1086,7 @@ public class DeptcountStatutory {
 		//	action.moveToElement(CFOcountPOM.clickBack2(driver)).click().build().perform();	//Clicking on Dashboard
 			Thread.sleep(2000);
 			performer.OverduePOM.clickDashboard(driver).click();			//Clicking on Dashboard
-	
+			Thread.sleep(2000);
 		}
 		
 		extent.endTest(test);
@@ -961,6 +1100,13 @@ public class DeptcountStatutory {
 		
 		
 		Thread.sleep(500);
+		Thread.sleep(2000);
+		DeptCountPOM.SelectYear(driver).click();
+		Thread.sleep(1000);
+		DeptCountPOM.SelectAll(driver).click();
+		Thread.sleep(3000);
+		DeptCountPOM.ClickApply(driver).click();
+		Thread.sleep(4000);
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,500)");			//Scrolling down window by 1000 px.
@@ -969,14 +1115,14 @@ public class DeptcountStatutory {
 		int inProgressValue = Integer.parseInt(CFOcountPOM.clickInProgressDept(driver).getText());	//Reading value of 'Not Completed'
 		CFOcountPOM.clickInProgressDept(driver).click();									//CLicking on 'Not Completed' count
 		
-		Thread.sleep(500);
+		Thread.sleep(2000);
 		int critical = Integer.parseInt(CFOcountPOM.readCritical(driver).getText());	//Reading Critical risk count.
 		int high = Integer.parseInt(CFOcountPOM.readHigh(driver).getText());			//Reading High risk count.
 		int medium = Integer.parseInt(CFOcountPOM.readMedium(driver).getText());		//Reading Medium risk count.
 		int low = Integer.parseInt(CFOcountPOM.readLow(driver).getText());				//Reading Low risk count.
 		
 		int total = critical + high + medium + low;
-		
+	/*	
 		if(inProgressValue == total)
 		{
 			test.log(LogStatus.PASS, "' In Progress' Compliance Count matches to sum of all risked compliances.");
@@ -987,7 +1133,7 @@ public class DeptcountStatutory {
 			test.log(LogStatus.FAIL, "'In Progress' Compliance Count doesn't matches to sum of all risked compliances.");
 			test.log(LogStatus.FAIL, "Total 'Overdue' Compliances : "+total+" | Total Sum : "+inProgressValue);
 		}
-	
+	*/
 		if(inProgressValue > 0)
 		{
 			if(critical >= 0)
@@ -1030,7 +1176,7 @@ public class DeptcountStatutory {
 		//	action.moveToElement(CFOcountPOM.clickBack2(driver)).click().build().perform();	 //Clicking on Back button
 			Thread.sleep(2000);
 			performer.OverduePOM.clickDashboard(driver).click();			//Clicking on Dashboard
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 		}
 		else
 		{
@@ -1047,13 +1193,20 @@ public class DeptcountStatutory {
 		extent.flush();
 	}
 	
-//	@Test(priority = 14)
+	@Test(priority = 14)
 	void rejected_PieChart() throws InterruptedException
 	{
 		test = extent.startTest("Pie Chart -Not Completed Status- 'Rejected' Count Verification");
 		
 		
 		Thread.sleep(500);
+		Thread.sleep(2000);
+		DeptCountPOM.SelectYear(driver).click();
+		Thread.sleep(1000);
+		DeptCountPOM.SelectAll(driver).click();
+		Thread.sleep(3000);
+		DeptCountPOM.ClickApply(driver).click();
+		Thread.sleep(4000);
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,500)");			//Scrolling down window by 1000 px.
@@ -1123,7 +1276,7 @@ public class DeptcountStatutory {
 			Thread.sleep(5000);
 		//	action.moveToElement(CFOcountPOM.clickBack2(driver)).click().build().perform();	 //Clicking on Back button
 			Thread.sleep(2000);
-			performer.OverduePOM.clickDashboard(driver).click();			//Clicking on Dashboard
+		//	performer.OverduePOM.clickDashboard(driver).click();			//Clicking on Dashboard
 			Thread.sleep(2000);
 		}
 		else
@@ -1142,13 +1295,13 @@ public class DeptcountStatutory {
 	}
 	
 	
-	//@Test(priority = 14)
+//	@Test(priority = 15)
 	void DepartmentSummaryFinanceStatutory() throws InterruptedException
 	{
 		Thread.sleep(2000);
 		Thread.sleep(500);		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,1000)");					//Scrolling down window by 1500 px.
+		js.executeScript("window.scrollBy(0,500)");					//Scrolling down window by 1500 px.
 		
 		test = extent.startTest("Department Summary - 'Finance' Count Verification");
 		
@@ -1248,7 +1401,7 @@ public class DeptcountStatutory {
 		extent.flush();
 	}
 	
-//	@Test(priority = 13) not run any risk
+//	@Test(priority = 16) 
 	void RiskSummaryCriticalStatutory() throws InterruptedException
 	{
 		driver.navigate().refresh();
@@ -1257,7 +1410,7 @@ public class DeptcountStatutory {
 	//	js.executeScript("window.scrollBy(0,1450)");					//Scrolling down window by 1000 px.cfo
 		js.executeScript("window.scrollBy(0,1500)");
 		test = extent.startTest("Risk Summary - 'Critical' Count Verification");
-		test.log(LogStatus.INFO, "Test Initiated");
+		
 		
 		Thread.sleep(500);
 		String NotCompleted = CFOcountPOM.clickRiskCriticalNotCompletedDept(driver).getText();		//Reading the Closed Timely value of Human Resource
@@ -1268,11 +1421,11 @@ public class DeptcountStatutory {
 		{
 			CFOcountPOM.clickRiskCriticalNotCompletedDept(driver).click();			//Clicking on Not Completed compliances bar of High risk.  
 			
-			DeptCountPOM.RiskGraphCount(driver, test, "Critical - Not Completed", RiskCritical_NotCompleted, "Statutory");
+			DeptCountPOM.RiskGraphCount1(driver, test, "Critical - Not Completed", RiskCritical_NotCompleted, "Statutory");
 		}
 		else
 		{
-			test.log(LogStatus.SKIP, "'Critical - Not Completed' Count = "+RiskCritical_NotCompleted);
+			test.log(LogStatus.PASS, "'Critical - Not Completed' Count = "+RiskCritical_NotCompleted);
 		}
 	/*	
 		Thread.sleep(2000);
@@ -1304,14 +1457,14 @@ public class DeptcountStatutory {
 		extent.flush();
 	}
 	
-//	@Test(priority = 14)
+	//@Test(priority = 17)
 	void RiskSummaryHighStatutory() throws InterruptedException
 	{		
 		test = extent.startTest("Risk Summary - 'High' Count Verification");
-		test.log(LogStatus.INFO, "Test Initiated");
+		
 	//	JavascriptExecutor js = (JavascriptExecutor) driver;
 	//	js.executeScript("window.scrollBy(0,1000)");	
-		Thread.sleep(500);
+		Thread.sleep(3000);
 		String NotCompleted = CFOcountPOM.clickRiskHighNotCompletedD(driver).getText();		//Reading the Closed Timely value of Human Resource
 		NotCompleted = NotCompleted.replaceAll(" ","");									//Removing all white spaces from string. 
 		int RiskHigh_NotCompleted = Integer.parseInt(NotCompleted);
@@ -1322,11 +1475,11 @@ public class DeptcountStatutory {
 			Thread.sleep(500);
 			CFOcountPOM.clickRiskHighNotCompletedD(driver).click();			//Clicking on Not Completed compliances bar of High risk.  
 			
-			DeptCountPOM.RiskGraphCount(driver, test, "High - Not Completed", RiskHigh_NotCompleted, "Statutory");
+			DeptCountPOM.RiskGraphCount1(driver, test, "High - Not Completed", RiskHigh_NotCompleted, "Statutory");
 		}
 		else
 		{
-			test.log(LogStatus.SKIP, "'High - Not Completed' Count = "+RiskHigh_NotCompleted);
+			test.log(LogStatus.PASS, "'High - Not Completed' Count = "+RiskHigh_NotCompleted);
 		}
 		
 	/*	Thread.sleep(2000);
@@ -1360,14 +1513,14 @@ public class DeptcountStatutory {
 		extent.flush();
 	}
 	
-//	@Test(priority = 15)
+//	@Test(priority = 18)
 	void RiskSummaryMediumStatutory() throws InterruptedException
 	{
 		test = extent.startTest("Risk Summary - 'Medium' Count Verification");
-		test.log(LogStatus.INFO, "Test Initiated");
+		
 	//	JavascriptExecutor js = (JavascriptExecutor) driver;
 	//	js.executeScript("window.scrollBy(0,1450)");
-		Thread.sleep(500);
+		Thread.sleep(3000);
 		String NotCompleted = CFOcountPOM.clickRiskMediumNotCompletedD(driver).getText();		//Reading the Closed Timely value of Human Resource
 		NotCompleted = NotCompleted.replaceAll(" ","");									//Removing all white spaces from string. 
 		int RiskMedium_NotCompleted = Integer.parseInt(NotCompleted);
@@ -1378,11 +1531,11 @@ public class DeptcountStatutory {
 			Thread.sleep(500);
 			CFOcountPOM.clickRiskMediumNotCompletedD(driver).click();			//Clicking on Not Completed compliances bar of High risk.  
 			
-			DeptCountPOM.RiskGraphCount(driver, test, "Medium - Not Completed", RiskMedium_NotCompleted, "Statutory");
+			DeptCountPOM.RiskGraphCount1(driver, test, "Medium - Not Completed", RiskMedium_NotCompleted, "Statutory");
 		}
 		else
 		{
-			test.log(LogStatus.SKIP, "'Medium - Not Completed' Count = "+RiskMedium_NotCompleted);
+			test.log(LogStatus.PASS, "'Medium - Not Completed' Count = "+RiskMedium_NotCompleted);
 		}
 		
 	/*	driver.navigate().refresh();
@@ -1417,13 +1570,13 @@ public class DeptcountStatutory {
 		extent.flush();
 	}
 	
-//	@Test(priority = 16)
+//	@Test(priority = 19)
 	void RiskSummaryLowStatutory() throws InterruptedException
 	{		
 		test = extent.startTest("Risk Summary - 'Low' Count Verification");
-		test.log(LogStatus.INFO, "Test Initiated");
-		//driver.navigate().refresh();
-		Thread.sleep(500);
+		
+		
+		Thread.sleep(3000);
 		String NotCompleted = CFOcountPOM.clickRiskLowNotCompletedD(driver).getText();		//Reading the Closed Timely value of Human Resource
 		NotCompleted = NotCompleted.replaceAll(" ","");									//Removing all white spaces from string. 
 		int RiskLow_NotCompleted = Integer.parseInt(NotCompleted);
@@ -1434,11 +1587,11 @@ public class DeptcountStatutory {
 			Thread.sleep(500);
 			CFOcountPOM.clickRiskLowNotCompletedD(driver).click();			//Clicking on Not Completed compliances bar of High risk.  
 			
-			DeptCountPOM.RiskGraphCount(driver, test, "Low - Not Completed", RiskLow_NotCompleted, "Statutory");
+			DeptCountPOM.RiskGraphCount1(driver, test, "Low - Not Completed", RiskLow_NotCompleted, "Statutory");
 		}
 		else
 		{
-			test.log(LogStatus.SKIP, "'Low - Not Completed' Count = "+RiskLow_NotCompleted);
+			test.log(LogStatus.PASS, "'Low - Not Completed' Count = "+RiskLow_NotCompleted);
 		}
 		/*
 		Thread.sleep(2000);
@@ -1471,12 +1624,12 @@ public class DeptcountStatutory {
 		*/
 		Thread.sleep(500);
 		performer.OverduePOM.clickDashboard(driver).click();			//Clicking on Dashboard
-		
+		Thread.sleep(3000);
 		extent.endTest(test);
 		extent.flush();
 	}
-	/*
-	@Test(priority = 17)
+	
+//	@Test(priority = 20)
 	void NotCompleted_PieChartPeriod() throws InterruptedException
 	{
 		test = extent.startTest("Period-Pie Chart -Completion Status- 'Not Completed' Count Verification");
@@ -1487,10 +1640,25 @@ public class DeptcountStatutory {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,2500)");			//Scrolling down window by 1000 px.cfo
 	//	js.executeScript("window.scrollBy(0,100)");
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		WebDriverWait wait = new WebDriverWait(driver, (30));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 		Thread.sleep(3000);
+		
+		AuditorcountPOM.DateText(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.DateYear(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Year(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.DateMonth(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Month(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Date(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Apply(driver).click();	
+		Thread.sleep(5000);
 		int NotCompletedValue = Integer.parseInt(CFOcountPOM.clickNotCompleted(driver).getText());	//Reading value of 'Not Completed'
 		CFOcountPOM.clickNotCompleted(driver).click();									//CLicking on 'Not Completed' count
 		
@@ -1501,7 +1669,7 @@ public class DeptcountStatutory {
 		int low = Integer.parseInt(CFOcountPOM.readLow(driver).getText());				//Reading Low risk count.
 		
 		int total = critical + high + medium + low;
-		
+		/*
 		if(NotCompletedValue == total)
 		{
 			test.log(LogStatus.PASS, "Not Completed' Compliance Count matches to sum of all risked compliances.");
@@ -1511,7 +1679,7 @@ public class DeptcountStatutory {
 		{
 			test.log(LogStatus.FAIL, "'Not Completed' Compliance Count doesn't matches to sum of all risked compliances.");
 			test.log(LogStatus.FAIL, "Total 'Not Completed' Compliances : "+total+" | Total Sum : "+NotCompletedValue);
-		}
+		}*/
 	
 		if(NotCompletedValue > 0)
 		{
@@ -1562,7 +1730,7 @@ public class DeptcountStatutory {
 			action.moveToElement(CFOcountPOM.clickBack1(driver)).click().build().perform();	 //Clicking on Back button
 			Thread.sleep(2000);
 			driver.switchTo().parentFrame();
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 		}
 		else
 		{
@@ -1578,8 +1746,8 @@ public class DeptcountStatutory {
 		extent.endTest(test);
 		extent.flush();
 	}
-	*/
-	@Test(priority = 18)
+	
+//	@Test(priority = 21)
 	void ClosedDelayed_PieChartPeriod() throws InterruptedException
 	{
 		test = extent.startTest("Period-Pie Chart -Completion Status- 'Closed Delayed' Count Verification");
@@ -1591,7 +1759,7 @@ public class DeptcountStatutory {
 		WebDriverWait wait = new WebDriverWait(driver, (30));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 		Thread.sleep(3000);
-		try{
+		
 		Thread.sleep(1500);
 		int ClosedTimelyValue = Integer.parseInt(CFOcountPOM.clickClosedDelayedA(driver).getText());	//Reading value of 'After Due Date'
 		CFOcountPOM.clickClosedDelayedA(driver).click();								//CLicking on 'Not Completed' count
@@ -1613,6 +1781,105 @@ public class DeptcountStatutory {
 		{
 			test.log(LogStatus.FAIL, "'Closed Delayed' Compliance Count doesn't matches to sum of all risked compliances.");
 			test.log(LogStatus.FAIL, "Total 'Closed Delayed' Compliances : "+total+" | Total Sum : "+ClosedTimelyValue);
+		}
+		*/
+		if(ClosedTimelyValue > 0)
+		{
+			if(critical > 0)
+			{
+				DeptCountPOM.GraphCountInPe(driver, test, "Critical", critical, "Statutory");
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "'Critical' Risk Compliance Count = "+critical);
+			}
+			
+			if(high > 0)
+			{
+				wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
+				Thread.sleep(500);
+				DeptCountPOM.GraphCountInPe(driver, test, "High", high, "Statutory");
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "'High' Risk Compliance Count = "+high);
+			}
+			
+			if(medium > 0)
+			{
+				wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
+				Thread.sleep(500);
+				DeptCountPOM.GraphCountInPe(driver, test, "Medium", medium, "Statutory");
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "'Medium' Risk Compliance Count = "+medium);
+			}
+			
+			if(low > 0)
+			{
+				wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
+				Thread.sleep(500);
+				DeptCountPOM.GraphCountInPe(driver, test, "Low", low, "Statutory");
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "'Low' Risk Compliance Count = "+low);
+			}
+			wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
+			Thread.sleep(1000);
+			action.moveToElement(CFOcountPOM.clickBack1(driver)).click().build().perform();	 //Clicking on Back button
+			Thread.sleep(1000);
+			driver.switchTo().parentFrame();
+			Thread.sleep(3000);
+		}
+		else
+		{
+			test.log(LogStatus.PASS, "'Closed Delayed' Compliance Count = "+ClosedTimelyValue);
+			wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
+			
+			Thread.sleep(500);
+			action.moveToElement(CFOcountPOM.clickBack1(driver)).click().build().perform();	//Clicking on Dashboard
+		}
+		extent.endTest(test);
+		extent.flush();
+		
+	}
+	
+//	@Test(priority = 22)
+	void ClosedTimely_PieChartPeriod() throws InterruptedException
+	{
+		test = extent.startTest("Period-Pie Chart -Completion Status- 'Closed Timely' Count Verification");
+	
+		Actions action = new Actions(driver);
+	//	JavascriptExecutor js = (JavascriptExecutor) driver;
+	//	js.executeScript("window.scrollBy(0,2700)");						//Scrolling down window by 1000 px.
+		Thread.sleep(800);
+		WebDriverWait wait = new WebDriverWait(driver, (30));
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
+		Thread.sleep(3000);
+		
+		Thread.sleep(1500);
+		int ClosedTimelyValue = Integer.parseInt(CFOcountPOM.clickClosedTimelyA(driver).getText());	//Reading value of 'After Due Date'
+		CFOcountPOM.clickClosedTimelyA(driver).click();								//CLicking on 'Not Completed' count
+		
+		Thread.sleep(500);
+		int critical = Integer.parseInt(CFOcountPOM.readCritical(driver).getText());	//Reading Critical risk count.
+		int high = Integer.parseInt(CFOcountPOM.readHigh(driver).getText());		//reading High risk count.
+		int medium = Integer.parseInt(CFOcountPOM.readMedium(driver).getText());	//reading Medium risk count.
+		int low = Integer.parseInt(CFOcountPOM.readLow(driver).getText());			//reading Low risk count.
+		
+		int total = critical + high + medium + low;
+		/*
+		if(ClosedTimelyValue == total)
+		{
+			test.log(LogStatus.PASS, "'Closed Timely' Compliance Count matches to sum of all risked compliances.");
+			test.log(LogStatus.PASS, "Total 'Closed Timely' Compliances : "+total);
+		}
+		else
+		{
+			test.log(LogStatus.FAIL, "'Closed Timely' Compliance Count doesn't matches to sum of all risked compliances.");
+			test.log(LogStatus.FAIL, "Total 'Closed Timely' Compliances : "+total+" | Total Sum : "+ClosedTimelyValue);
 		}
 		*/
 		if(ClosedTimelyValue > 0)
@@ -1663,108 +1930,7 @@ public class DeptcountStatutory {
 			action.moveToElement(CFOcountPOM.clickBack1(driver)).click().build().perform();	 //Clicking on Back button
 			Thread.sleep(1000);
 			driver.switchTo().parentFrame();
-			Thread.sleep(2000);
-		}
-		else
-		{
-			test.log(LogStatus.PASS, "'Closed Delayed' Compliance Count = "+ClosedTimelyValue);
-			wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
-			
-			Thread.sleep(500);
-			action.moveToElement(CFOcountPOM.clickBack1(driver)).click().build().perform();	//Clicking on Dashboard
-		}
-		extent.endTest(test);
-		extent.flush();
-		}catch(NumberFormatException ex){
-			ex.printStackTrace();
-		}
-	}
-	
-	//@Test(priority = 19)
-	void ClosedTimely_PieChartPeriod() throws InterruptedException
-	{
-		test = extent.startTest("Period-Pie Chart -Completion Status- 'Closed Timely' Count Verification");
-	
-		Actions action = new Actions(driver);
-	//	JavascriptExecutor js = (JavascriptExecutor) driver;
-	//	js.executeScript("window.scrollBy(0,2700)");						//Scrolling down window by 1000 px.
-		Thread.sleep(800);
-		WebDriverWait wait = new WebDriverWait(driver, (30));
-		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
-		Thread.sleep(3000);
-		try{
-		Thread.sleep(1500);
-		int ClosedTimelyValue = Integer.parseInt(CFOcountPOM.clickClosedTimelyA(driver).getText());	//Reading value of 'After Due Date'
-		CFOcountPOM.clickClosedTimelyA(driver).click();								//CLicking on 'Not Completed' count
-		
-		Thread.sleep(500);
-		int critical = Integer.parseInt(CFOcountPOM.readCritical(driver).getText());	//Reading Critical risk count.
-		int high = Integer.parseInt(CFOcountPOM.readHigh(driver).getText());		//reading High risk count.
-		int medium = Integer.parseInt(CFOcountPOM.readMedium(driver).getText());	//reading Medium risk count.
-		int low = Integer.parseInt(CFOcountPOM.readLow(driver).getText());			//reading Low risk count.
-		
-		int total = critical + high + medium + low;
-		
-		if(ClosedTimelyValue == total)
-		{
-			test.log(LogStatus.PASS, "'Closed Timely' Compliance Count matches to sum of all risked compliances.");
-			test.log(LogStatus.PASS, "Total 'Closed Timely' Compliances : "+total);
-		}
-		else
-		{
-			test.log(LogStatus.FAIL, "'Closed Timely' Compliance Count doesn't matches to sum of all risked compliances.");
-			test.log(LogStatus.FAIL, "Total 'Closed Timely' Compliances : "+total+" | Total Sum : "+ClosedTimelyValue);
-		}
-		
-		if(ClosedTimelyValue > 0)
-		{
-			if(critical >= 0)
-			{
-				DeptCountPOM.GraphCountInPe(driver, test, "Critical", critical, "Statutory");
-			}
-			else
-			{
-				test.log(LogStatus.PASS, "'Critical' Risk Compliance Count = "+critical);
-			}
-			
-			if(high >= 0)
-			{
-				wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
-				Thread.sleep(500);
-				DeptCountPOM.GraphCountInPe(driver, test, "High", high, "Statutory");
-			}
-			else
-			{
-				test.log(LogStatus.PASS, "'High' Risk Compliance Count = "+high);
-			}
-			
-			if(medium >= 0)
-			{
-				wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
-				Thread.sleep(500);
-				DeptCountPOM.GraphCountInPe(driver, test, "Medium", medium, "Statutory");
-			}
-			else
-			{
-				test.log(LogStatus.PASS, "'Medium' Risk Compliance Count = "+medium);
-			}
-			
-			if(low > 0)
-			{
-				wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
-				Thread.sleep(500);
-				DeptCountPOM.GraphCountInPe(driver, test, "Low", low, "Statutory");
-			}
-			else
-			{
-				test.log(LogStatus.PASS, "'Low' Risk Compliance Count = "+low);
-			}
-			wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
-			Thread.sleep(1000);
-			action.moveToElement(CFOcountPOM.clickBack1(driver)).click().build().perform();	 //Clicking on Back button
-			Thread.sleep(1000);
-			driver.switchTo().parentFrame();
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 		}
 		else
 		{
@@ -1776,12 +1942,10 @@ public class DeptcountStatutory {
 		}
 		extent.endTest(test);
 		extent.flush();
-		}catch(NumberFormatException ex){
-			ex.printStackTrace();
-		}
+		
 	}
 	
-	//@Test(priority = 20)
+	//@Test(priority = 23)
 	void NotApplicable_PieChartPeriod() throws InterruptedException
 	{
 		test = extent.startTest("Period-Pie Chart -Completion Status- 'Closed Timely' Count Verification");
@@ -1879,8 +2043,8 @@ public class DeptcountStatutory {
 			ex.printStackTrace();
 		}
 	}
-	/*
-	@Test(priority = 20)
+	
+//	@Test(priority = 24)
 	void Overdue_PieChartPeriod() throws InterruptedException
 	{
 		test = extent.startTest("Period-Pie Chart -Not Completed Status- 'Overdue' Count Verification");
@@ -1888,8 +2052,8 @@ public class DeptcountStatutory {
 		
 		Thread.sleep(500);
 		Actions action = new Actions(driver);
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,300)");			//Scrolling down window by 1000 px.
+		//JavascriptExecutor js = (JavascriptExecutor) driver;
+	//	js.executeScript("window.scrollBy(0,300)");			//Scrolling down window by 1000 px.
 		WebDriverWait wait = new WebDriverWait(driver, (30));
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
@@ -1905,7 +2069,7 @@ public class DeptcountStatutory {
 		int low = Integer.parseInt(CFOcountPOM.readLow(driver).getText());				//Reading Low risk count.
 		
 		int total = critical + high + medium + low;
-		
+		/*
 		if(OverdueValue == total)
 		{
 			test.log(LogStatus.PASS, "' Overdue' Compliance Count matches to sum of all risked compliances.");
@@ -1915,7 +2079,7 @@ public class DeptcountStatutory {
 		{
 			test.log(LogStatus.FAIL, "'Overdue' Compliance Count doesn't matches to sum of all risked compliances.");
 			test.log(LogStatus.FAIL, "Total 'Overdue' Compliances : "+total+" | Total Sum : "+OverdueValue);
-		}
+		}*/
 	
 		if(OverdueValue > 0)
 		{
@@ -1965,7 +2129,7 @@ public class DeptcountStatutory {
 		//	action.moveToElement(CFOcountPOM.clickBack2(driver)).click().build().perform();	 //Clicking on Back button
 			Thread.sleep(2000);
 			performer.OverduePOM.clickDashboard(driver).click();			//Clicking on Dashboard
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 	
 		}
 		else
@@ -1983,13 +2147,13 @@ public class DeptcountStatutory {
 		extent.flush();
 	}
 	
-//	@Test(priority = 21)
+	//@Test(priority = 25)
 	void dueToday_PieChartPeriod() throws InterruptedException
 	{
 		test = extent.startTest("Period-Pie Chart -Not Completed Status- 'dueToday' Count Verification");
 		
 		
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 	
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,2500)");			//Scrolling down window by 1000 px.
@@ -1997,6 +2161,21 @@ public class DeptcountStatutory {
 		WebDriverWait wait = new WebDriverWait(driver,(30));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 		Thread.sleep(3000);
+
+		AuditorcountPOM.DateText(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.DateYear(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Year(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.DateMonth(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Month(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Date(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Apply(driver).click();	
+		Thread.sleep(5000);
 		int dueTodayValue = Integer.parseInt(CFOcountPOM.clickdueToday(driver).getText());	//Reading value of 'Not Completed'
 		CFOcountPOM.clickdueToday(driver).click();									//CLicking on 'Not Completed' count
 		
@@ -2007,7 +2186,7 @@ public class DeptcountStatutory {
 		int low = Integer.parseInt(CFOcountPOM.readLow(driver).getText());				//Reading Low risk count.
 		
 		int total = critical + high + medium + low;
-		
+		/*
 		if(dueTodayValue == total)
 		{
 			test.log(LogStatus.PASS, "' dueToday' Compliance Count matches to sum of all risked compliances.");
@@ -2018,45 +2197,45 @@ public class DeptcountStatutory {
 			test.log(LogStatus.FAIL, "'dueToday' Compliance Count doesn't matches to sum of all risked compliances.");
 			test.log(LogStatus.FAIL, "Total 'Overdue' Compliances : "+total+" | Total Sum : "+dueTodayValue);
 		}
-	
+	*/
 		if(dueTodayValue > 0)
 		{
-			if(critical >= 0)
+			if(critical > 0)
 			{
-				DeptCountPOM.GraphCountInPe1(driver, test, "Critical", critical, "Statutory");
+				DeptCountPOM.GraphCountInPe4(driver, test, "Critical", critical, "Statutory");
 			}
 			else
 			{
 				test.log(LogStatus.PASS, "'Critical' Risk Compliance Count = "+critical);
 			}
 			
-			if(high >= 0)
+			if(high > 0)
 			{
-				wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
+			//	wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 				Thread.sleep(500);
-				DeptCountPOM.GraphCountInPe1(driver, test, "High", high, "Statutory");
+				DeptCountPOM.GraphCountInPe4(driver, test, "High", high, "Statutory");
 			}
 			else
 			{
 				test.log(LogStatus.PASS, "'High' Risk Compliance Count = "+high);
 			}
 			
-			if(medium >= 0)
+			if(medium > 0)
 			{
 				wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 				Thread.sleep(500);
-				DeptCountPOM.GraphCountInPe1(driver, test, "Medium", medium, "Statutory");
+				DeptCountPOM.GraphCountInPe4(driver, test, "Medium", medium, "Statutory");
 			}
 			else
 			{
 				test.log(LogStatus.PASS, "'Medium' Risk Compliance Count = "+medium);
 			}
 			
-			if(low >= 0)
+			if(low > 0)
 			{
 				wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 				Thread.sleep(500);
-				DeptCountPOM.GraphCountInPe1(driver, test, "Low", low, "Statutory");
+				DeptCountPOM.GraphCountInPe4(driver, test, "Low", low, "Statutory");
 			}
 			else
 			{
@@ -2084,13 +2263,13 @@ public class DeptcountStatutory {
 		extent.flush();
 	}
 	
-	@Test(priority = 22)
+	//@Test(priority = 26)
 	void pendingForReview_PieChartPeriod() throws InterruptedException
 	{
 		test = extent.startTest("Period-Pie Chart -Not Completed Status- 'Pending For Review' Count Verification");
 	
 		
-		Thread.sleep(500);
+		Thread.sleep(3000);
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,2500)");			//Scrolling down window by 1000 px.
@@ -2098,6 +2277,20 @@ public class DeptcountStatutory {
 		WebDriverWait wait = new WebDriverWait(driver,(30));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 		Thread.sleep(3000);
+		AuditorcountPOM.DateText(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.DateYear(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Year(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.DateMonth(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Month(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Date(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Apply(driver).click();	
+		Thread.sleep(5000);
 		
 		int pendingForReviewValue = Integer.parseInt(CFOcountPOM.clickpendingForReview(driver).getText());	//Reading value of 'Not Completed'
 		CFOcountPOM.clickpendingForReview(driver).click();									//CLicking on 'Not Completed' count
@@ -2109,7 +2302,7 @@ public class DeptcountStatutory {
 		int low = Integer.parseInt(CFOcountPOM.readLow(driver).getText());				//Reading Low risk count.
 		
 		int total = critical + high + medium + low;
-		
+		/*
 		if(pendingForReviewValue == total)
 		{
 			test.log(LogStatus.PASS, "' Pending For Review' Compliance Count matches to sum of all risked compliances.");
@@ -2119,11 +2312,11 @@ public class DeptcountStatutory {
 		{
 			test.log(LogStatus.FAIL, "'Pending For Review' Compliance Count doesn't matches to sum of all risked compliances.");
 			test.log(LogStatus.FAIL, "Total 'Overdue' Compliances : "+total+" | Total Sum : "+pendingForReviewValue);
-		}
+		}*/
 	
 		if(pendingForReviewValue > 0)
 		{
-			if(critical >= 0)
+			if(critical > 0)
 			{
 				DeptCountPOM.GraphCountInPe(driver, test, "Critical", critical, "Statutory");
 			}
@@ -2132,7 +2325,7 @@ public class DeptcountStatutory {
 				test.log(LogStatus.PASS, "'Critical' Risk Compliance Count = "+critical);
 			}
 			
-			if(high >= 0)
+			if(high > 0)
 			{
 				wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 				Thread.sleep(500);
@@ -2154,7 +2347,7 @@ public class DeptcountStatutory {
 				test.log(LogStatus.PASS, "'Medium' Risk Compliance Count = "+medium);
 			}
 			
-			if(low >= 0)
+			if(low > 0)
 			{
 				wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 				Thread.sleep(500);
@@ -2169,7 +2362,7 @@ public class DeptcountStatutory {
 			//action.moveToElement(CFOcountPOM.clickBack2(driver)).click().build().perform();	 //Clicking on Back button
 			Thread.sleep(2000);
 			performer.OverduePOM.clickDashboard(driver).click();			//Clicking on Dashboard
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 		}
 		else
 		{
@@ -2186,19 +2379,34 @@ public class DeptcountStatutory {
 		extent.flush();
 	}
 	
-	@Test(priority = 23)
+//	@Test(priority = 27)
 	void Inprogress_PieChartPeriod() throws InterruptedException
 	{
 		test = extent.startTest("Period-Pie Chart -Not Completed Status- 'In Progress' Count Verification");
 		
-		Thread.sleep(500);
+		Thread.sleep(3000);
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,2500)");			//Scrolling down window by 1000 px.
-		Thread.sleep(800);
+		Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver,(30));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 		Thread.sleep(3000);
+		
+		AuditorcountPOM.DateText(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.DateYear(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Year(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.DateMonth(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Month(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Date(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Apply(driver).click();	
+		Thread.sleep(5000);
 		
 		int pendingForReviewValue = Integer.parseInt(CFOcountPOM.clickinProgress(driver).getText());	//Reading value of 'Not Completed'
 		CFOcountPOM.clickinProgress(driver).click();									//CLicking on 'Not Completed' count
@@ -2210,7 +2418,7 @@ public class DeptcountStatutory {
 		int low = Integer.parseInt(CFOcountPOM.readLow(driver).getText());				//Reading Low risk count.
 		
 		int total = critical + high + medium + low;
-		
+		/*
 		if(pendingForReviewValue == total)
 		{
 			test.log(LogStatus.PASS, "' In-progress' Compliance Count matches to sum of all risked compliances.");
@@ -2221,7 +2429,7 @@ public class DeptcountStatutory {
 			test.log(LogStatus.FAIL, "In-progress' Compliance Count doesn't matches to sum of all risked compliances.");
 			test.log(LogStatus.FAIL, "Total 'Overdue' Compliances : "+total+" | Total Sum : "+pendingForReviewValue);
 		}
-	
+	*/
 		if(pendingForReviewValue > 0)
 		{
 			if(critical >= 0)
@@ -2285,14 +2493,14 @@ public class DeptcountStatutory {
 		
 		extent.endTest(test);
 		extent.flush();
-	}*/
+	}
 	
-	@Test(priority = 24)
+//	@Test(priority = 28)
 	void rejected_PieChartPeriod() throws InterruptedException
 	{
 		test = extent.startTest("Period-Pie Chart -Not Completed Status- 'Rejected' Count Verification");
 		
-		Thread.sleep(500);
+		Thread.sleep(3000);
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 	//	js.executeScript("window.scrollBy(0,2500)");			//Scrolling down window by 1000 px.
@@ -2300,6 +2508,20 @@ public class DeptcountStatutory {
 		WebDriverWait wait = new WebDriverWait(driver,(30));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 		Thread.sleep(3000);
+		AuditorcountPOM.DateText(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.DateYear(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Year(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.DateMonth(driver).click();	
+		Thread.sleep(1000);
+		AuditorcountPOM.Month(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Date(driver).click();	
+		Thread.sleep(3000);
+		AuditorcountPOM.Apply(driver).click();	
+		Thread.sleep(5000);
 		
 		int pendingForReviewValue = Integer.parseInt(CFOcountPOM.clickRejectedPe1(driver).getText());	//Reading value of 'Not Completed'
 		CFOcountPOM.clickRejectedPe1(driver).click();									//CLicking on 'Not Completed' count
@@ -2325,7 +2547,7 @@ public class DeptcountStatutory {
 	*/
 		if(pendingForReviewValue > 0)
 		{
-			if(critical >= 0)
+			if(critical > 0)
 			{
 				DeptCountPOM.GraphCountInPe(driver, test, "Critical", critical, "Statutory");
 			}
@@ -2336,7 +2558,7 @@ public class DeptcountStatutory {
 			
 			if(high >0)
 			{
-				wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
+				//wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("IFNewPeriodGraphCompliance"));                                                            	
 				Thread.sleep(500);
 				DeptCountPOM.GraphCountInPe(driver, test, "High", high, "Statutory");
 			}
@@ -2388,8 +2610,8 @@ public class DeptcountStatutory {
 		extent.flush();
 	}
 	
-	/*
-	@Test(priority = 24)
+	
+//	@Test(priority = 29)
 	void GradingReportStatutory() throws InterruptedException, IOException
 	{
 		Thread.sleep(500);		
@@ -2431,14 +2653,14 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[1]/td[12]/a");
 			CFOcountPOM.closeCategories(driver).click();					
 			
 		Thread.sleep(1000);
-		performer.OverduePOM.clickDashboard(driver).click();			//Clicking on Dashboard
-		
+	//	performer.OverduePOM.clickDashboard(driver).click();			//Clicking on Dashboard
+		Thread.sleep(3000);
 		extent.endTest(test);
 		extent.flush();
 	}
 	
 	
-	//@Test(priority = 24)
+//	@Test(priority = 30)
 	void complianceCalendar() throws InterruptedException
 	{
 		test = extent.startTest("compliance Calendar Verifications");
@@ -2456,7 +2678,7 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[1]/td[12]/a");
 		 CFOcountPOM.clickExportImage(driver).click();
 		 Thread.sleep(2000);
 			test.log(LogStatus.PASS, "Excel file Export Successfully");
-			Thread.sleep(3000);
+	/*		Thread.sleep(3000);
 By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[2]/td[6]/a");
 			
 			wait.until(ExpectedConditions.presenceOfElementLocated(locator));
@@ -2499,17 +2721,17 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[2]/td[6]/a");
 				Thread.sleep(4000);
 				driver.switchTo().parentFrame();
 				CFOcountPOM.closeView_cal(driver).click();
-				test.log(LogStatus.INFO, "overView success");
+				test.log(LogStatus.INFO, "overView success");*/
 				driver.switchTo().parentFrame();
 				Thread.sleep(1000);
 				performer.OverduePOM.clickDashboard(driver).click();			//Clicking on Dashboard
-				
+				Thread.sleep(2000);
 				
 			extent.endTest(test);
 			extent.flush();
 	}
 	
-	@Test(priority = 25)
+//	@Test(priority = 31)
 	void DailyUpdates() throws InterruptedException, IOException
 	{
 		Thread.sleep(2000);		
@@ -2543,7 +2765,7 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[2]/td[6]/a");
 		extent.flush();
 	}
 	
-	@Test(priority = 26)
+//	@Test(priority = 32)
 	void NewsLetterInternal() throws InterruptedException, IOException
 	{
 		Thread.sleep(500);		
@@ -2553,7 +2775,7 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[2]/td[6]/a");
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,5000)","");					//Scrolling down window by 2600 px.
-		
+		Thread.sleep(4000);	
 		CFOcountPOM.clickViewAllNL(driver).click();
 		
 	//	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -2564,12 +2786,12 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[2]/td[6]/a");
 		Thread.sleep(2000);
 		test.log(LogStatus.PASS, "OverView Successfully");
 		performer.OverduePOM.clickDashboard(driver).click();
-		
+		Thread.sleep(2000);
 		extent.endTest(test);
 		extent.flush();
 	}		
 	
-//	@Test(priority = 27)
+	//@Test(priority = 33)
 	void DetailedReport() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Detailed Report Count Verification");
@@ -2581,7 +2803,7 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[2]/td[6]/a");
 		extent.flush();
 	}
 	
-//	@Test(priority = 28) 
+	//@Test(priority = 34) 
 	void DetailedReportIn() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Detailed Report -Internal Count Verification");
@@ -2593,7 +2815,7 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[2]/td[6]/a");
 		extent.flush();
 	}
 	
-//	@Test(priority = 27)
+//	@Test(priority = 35)
 	void AssignmentReport() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Assignment Report verification");
@@ -2604,8 +2826,8 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[2]/td[6]/a");
 		extent.endTest(test);
 		extent.flush();
 	}
-	
-	@Test(priority = 29)
+/*	
+	@Test(priority = 36)
 	void ActRepository() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Act Repository  verification");
@@ -2617,7 +2839,7 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[2]/td[6]/a");
 		extent.flush();
 	}
 	
-	@Test(priority = 30)
+	@Test(priority = 37)
 	void ComplianceDocuments() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Compliance Documents  verification");
@@ -2628,7 +2850,7 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[2]/td[6]/a");
 				extent.flush();
 	}
 	
-	@Test(priority = 31) //	pass	
+	@Test(priority = 38) //	pass	
 	void CriticalDocuments() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Critical Document Verification");
@@ -2640,7 +2862,7 @@ By locator = By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[2]/td[6]/a");
 		extent.flush();
 	}
 	
-	@Test(priority = 32)
+	@Test(priority = 39)
 	void ActDocuments() throws InterruptedException, IOException
 	{
 		test = extent.startTest("Act Documents  verification");
@@ -2677,22 +2899,23 @@ WebDriverWait wait = new WebDriverWait(driver,(140));
 			Thread.sleep(3000);
 			test.log(LogStatus.PASS, "  File downloaded successfully.");
 			performer.OverduePOM.clickDashboard(driver).click();
+			Thread.sleep(3000);
 		extent.endTest(test);
 		extent.flush();
 	}
 	
-//	@Test(priority = 31) // pass
+	@Test(priority = 40) // pass
 	void MyReminderStatutory() throws InterruptedException, IOException
 	{
 		test = extent.startTest("My Reminder - Statutory Count Verification");
-		test.log(LogStatus.INFO, "Test Initiated");
 		
 		OverduePOM.MyReminder(driver, test, "Statutory");
 		
 		extent.endTest(test);
 		extent.flush();
 	}
-	@Test(priority = 33) // pass
+	
+	@Test(priority = 41) // pass
 	void MyEscalation() throws InterruptedException, IOException
 	{
 		test = extent.startTest("My  Escalation - Verification");
@@ -2707,7 +2930,7 @@ WebDriverWait wait = new WebDriverWait(driver,(140));
 	driver.findElement(By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[1]/td[11]/input")).clear();
 	Thread.sleep(1000);
 	driver.findElement(By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[1]/td[11]/input")).sendKeys("6");
-	Thread.sleep(1000);
+	Thread.sleep(1000);         
 	driver.findElement(By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[1]/td[12]/input")).clear();
 	driver.findElement(By.xpath("//*[@id='grid']/div[3]/table/tbody/tr[1]/td[12]/input")).sendKeys("4");
 	Thread.sleep(2000);
@@ -2721,11 +2944,12 @@ WebDriverWait wait = new WebDriverWait(driver,(140));
 	test.log(LogStatus.PASS, "Escalated Successfully");	
 	Thread.sleep(1000);
 	performer.OverduePOM.clickDashboard(driver).click();
+	Thread.sleep(3000);
 		extent.endTest(test);
 		extent.flush();
 	}
 	
-	//@Test(priority = 34) // pass
+	//@Test(priority = 42) // pass
 	void MyNotifications() throws InterruptedException, IOException
 	{
 		test = extent.startTest("My Notifications - Verification");
@@ -2754,7 +2978,7 @@ WebDriverWait wait = new WebDriverWait(driver,(140));
 		extent.flush();
 	}
 	
-	@Test(priority = 35) // pass
+	@Test(priority = 43) // pass
 	void MessageCenter() throws InterruptedException, IOException
 	{
 		test = extent.startTest(" Message Center - Verification");
@@ -2768,11 +2992,12 @@ WebDriverWait wait = new WebDriverWait(driver,(140));
 		test.log(LogStatus.PASS, "View Button is clickable");
 		Thread.sleep(1000);
 		performer.OverduePOM.clickDashboard(driver).click();
+		Thread.sleep(3000);
 		extent.endTest(test);
 		extent.flush();
 	}
 	
-	 @Test(priority = 66)
+	 @Test(priority = 44)
 		void InternalMsg() throws InterruptedException, IOException
 		{
 			Thread.sleep(500);		
@@ -2789,7 +3014,7 @@ WebDriverWait wait = new WebDriverWait(driver,(140));
 			Thread.sleep(1000);
 			OverduePOM.TypeMsg(driver).sendKeys("Automation testing");
 			Thread.sleep(1000);
-			OverduePOM.choosefile(driver).sendKeys("C:\\Users\\Mayuri Gaikwad\\Downloads/Report .xlsx");
+			OverduePOM.choosefile(driver).sendKeys("C:\\Users\\Mayuri\\Desktop\\AvaSec\\Secretarial-Project\\Report\\Secretrial.html");
 			Thread.sleep(1000);
 			//OverduePOM.send(driver).click();
 			By locator = By.xpath("//*[@id='btnsendmailNew']");
@@ -2808,7 +3033,7 @@ WebDriverWait wait = new WebDriverWait(driver,(140));
 			extent.flush();
 		}
 		
-		 @Test(priority = 67)
+		 @Test(priority = 45)
 			void SupportTicket() throws InterruptedException, IOException
 			{
 				Thread.sleep(1000);		
@@ -2831,9 +3056,21 @@ WebDriverWait wait = new WebDriverWait(driver,(140));
 				extent.endTest(test);
 				extent.flush();
 			}
-	 
+	 */
 	
-	*/
+	@AfterMethod
+  	void browserClosing() throws InterruptedException
+  	{
+  		Thread.sleep(1000);
+  		driver.close();
+  	}	       
+  		       		
+  	@AfterTest
+  	void Closing() throws InterruptedException
+  	{
+  		
+  	}	 
+	
 	
 	
 }

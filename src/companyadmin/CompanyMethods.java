@@ -21,6 +21,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
+import companyAdminDiy.CompanyAdminDiyLocator;
 import implementation.ImplementPOM;
 
 public class CompanyMethods {
@@ -60,9 +61,7 @@ public class CompanyMethods {
 	      driver.close();
 	      Thread.sleep(3000);
 	      driver.switchTo().window(pw);         // switching child window
-	      
-	    
-	  
+	       
 	}
 
 	
@@ -91,14 +90,14 @@ public class CompanyMethods {
 	      		  	 
 	 	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='BodyContent_grdEventCannedReport']")));	//Wait until records table get visible.
 	 		Thread.sleep(3000);
-			File dir = new File("C:\\Users\\trainee\\Downloads");
+			File dir = new File("C:\\Users\\Mayuri\\Downloads");
 			File[] dirContents = dir.listFiles(); // Counting number of files in directory before download
 
 			Thread.sleep(500);
 			CompanyPOM.clickExport(driver).click(); // Exporting (Downloading) file
 
 			Thread.sleep(3000);
-			File dir1 = new File("C:\\Users\\trainee\\Downloads");
+			File dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 			File[] allFilesNew = dir1.listFiles(); // Counting number of files in directory after download
 			Thread.sleep(3000);
 			if (dirContents.length < allFilesNew.length) {
@@ -122,14 +121,14 @@ public class CompanyMethods {
    		  	 Thread.sleep(1000);
    		   CompanyPOM.DPvtLtdAS(driver).click();
    		  	 Thread.sleep(1000);
-   		  dir = new File("C:\\Users\\trainee\\Downloads");
+   		  dir = new File("C:\\Users\\Mayuri\\Downloads");
 			 dirContents = dir.listFiles(); // Counting number of files in directory before download
 
 			Thread.sleep(500);
 			CompanyPOM.clickExport(driver).click(); // Exporting (Downloading) file
 
 			Thread.sleep(3000);
-			 dir1 = new File("C:\\Users\\trainee\\Downloads");
+			 dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 			 allFilesNew = dir1.listFiles(); // Counting number of files in directory after download
 			Thread.sleep(3000);
 			if (dirContents.length < allFilesNew.length) {
@@ -151,23 +150,24 @@ public class CompanyMethods {
 	   		   CompanyPOM.Expand(driver).click();
 	   		  	 Thread.sleep(1000);
 	   		   CompanyPOM.DPvtLtdAS(driver).click();
-	   		  	 Thread.sleep(4000);
-	   		  dir = new File("C:\\Users\\trainee\\Downloads");
+	   		  	 Thread.sleep(5000);
+	   			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));
+	   		  dir = new File("C:\\Users\\Mayuri\\Downloads");
 				 dirContents = dir.listFiles(); // Counting number of files in directory before download
 
-				Thread.sleep(1000);
+				Thread.sleep(3000);
 				CompanyPOM.clickExport(driver).click(); // Exporting (Downloading) file
 
-				Thread.sleep(3000);
-				 dir1 = new File("C:\\Users\\trainee\\Downloads");
+				Thread.sleep(4000);
+				 dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 				 allFilesNew = dir1.listFiles(); // Counting number of files in directory after download
 				Thread.sleep(3000);
 				if (dirContents.length < allFilesNew.length) {
 					test.log(LogStatus.PASS,  "EventBased Assignment Report :- File downloaded successfully.");
 				} else {
-					test.log(LogStatus.FAIL,  " :- File does not downloaded.");
+					test.log(LogStatus.FAIL,  " EventBased Assignment Report :- File does not downloaded.");
 				}
-			  	 		  	
+			  	 	/*	  	
 		 	 //-------------------------------Internal  Assignment Report-------------------------------
 		     action.moveToElement(CompanyPOM.clickReport(driver)).click().build().perform();
 		      Thread.sleep(1000);
@@ -179,14 +179,14 @@ public class CompanyMethods {
 	   		  	 Thread.sleep(1000);
 	   		   CompanyPOM.DPvtLtdAS(driver).click();
 	   		  	 Thread.sleep(4000);
-	   		  dir = new File("C:\\Users\\trainee\\Downloads");
+	   		  dir = new File("C:\\Users\\Mayuri\\Downloads");
 				 dirContents = dir.listFiles(); // Counting number of files in directory before download
 
 				Thread.sleep(1000);
 				CompanyPOM.clickExport(driver).click(); // Exporting (Downloading) file
 
 				Thread.sleep(3000);
-				 dir1 = new File("C:\\Users\\trainee\\Downloads");
+				 dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 				 allFilesNew = dir1.listFiles(); // Counting number of files in directory after download
 				Thread.sleep(3000);
 				if (dirContents.length < allFilesNew.length) {
@@ -210,14 +210,14 @@ public class CompanyMethods {
 		   		  	 Thread.sleep(1000);
 		   		   CompanyPOM.DPvtLtdAS(driver).click();
 		   		  	 Thread.sleep(4000);
-		   		  dir = new File("C:\\Users\\trainee\\Downloads");
+		   		  dir = new File("C:\\Users\\Mayuri\\Downloads");
 					 dirContents = dir.listFiles(); // Counting number of files in directory before download
 
 					Thread.sleep(1000);
 					CompanyPOM.clickExport(driver).click(); // Exporting (Downloading) file
 
 					Thread.sleep(3000);
-					 dir1 = new File("C:\\Users\\trainee\\Downloads");
+					 dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 					 allFilesNew = dir1.listFiles(); // Counting number of files in directory after download
 					Thread.sleep(3000);
 					if (dirContents.length < allFilesNew.length) {
@@ -226,11 +226,11 @@ public class CompanyMethods {
 						test.log(LogStatus.FAIL,  " :- File does not downloaded.");
 					}
 				  	 
-		 
+		 */
 		 	//-------------------------------Statutory Label Report-------------------------------
 		     action.moveToElement(CompanyPOM.clickReport(driver)).click().build().perform();
 		      Thread.sleep(1000);
-		    CompanyPOM.clickStatutoryLabelReport(driver).click();
+		    CompanyPOM.clickInternalAssi(driver).click();
 		      
 			  	 Thread.sleep(4000);
 			  	 
@@ -242,22 +242,22 @@ public class CompanyMethods {
 			   		  	 Thread.sleep(1000);
 			   		   CompanyPOM.DPvtLtdAS(driver).click();
 			   		  	 Thread.sleep(4000);
-			   		  dir = new File("C:\\Users\\trainee\\Downloads");
+			   		  dir = new File("C:\\Users\\Mayuri\\Downloads");
 						 dirContents = dir.listFiles(); // Counting number of files in directory before download
 
 						Thread.sleep(1000);
 						CompanyPOM.clickExport(driver).click(); // Exporting (Downloading) file
 
 						Thread.sleep(3000);
-						 dir1 = new File("C:\\Users\\trainee\\Downloads");
+						 dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 						 allFilesNew = dir1.listFiles(); // Counting number of files in directory after download
 						Thread.sleep(3000);
 						if (dirContents.length < allFilesNew.length) {
 							test.log(LogStatus.PASS,  "Statutory Label Report :- File downloaded successfully.");
 						} else {
-							test.log(LogStatus.FAIL,  " :- File does not downloaded.");
+							test.log(LogStatus.FAIL,  "Statutory Label Report :- File does not downloaded.");
 						}
-			  	
+			  /*	
 		 	//-------------------------------Internal Label Report-------------------------------
 		     action.moveToElement(CompanyPOM.clickReport(driver)).click().build().perform();
 		      Thread.sleep(1000);
@@ -271,14 +271,14 @@ public class CompanyMethods {
 		   		  	 Thread.sleep(1000);
 		   		   CompanyPOM.DPvtLtdAS(driver).click();
 		   		  	 Thread.sleep(4000);
-		   		  dir = new File("C:\\Users\\trainee\\Downloads");
+		   		  dir = new File("C:\\Users\\Mayuri\\Downloads");
 					 dirContents = dir.listFiles(); // Counting number of files in directory before download
 
 					Thread.sleep(1000);
 					CompanyPOM.clickExport(driver).click(); // Exporting (Downloading) file
 
 					Thread.sleep(3000);
-					 dir1 = new File("C:\\Users\\trainee\\Downloads");
+					 dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 					 allFilesNew = dir1.listFiles(); // Counting number of files in directory after download
 					Thread.sleep(3000);
 					if (dirContents.length < allFilesNew.length) {
@@ -286,12 +286,12 @@ public class CompanyMethods {
 					} else {
 						test.log(LogStatus.FAIL,  " :- File does not downloaded.");
 					}
-		 	
+		 	*/
 		 	
 		 	//-------------------------------All Report-------------------------------
 		     action.moveToElement(CompanyPOM.clickReport(driver)).click().build().perform();
 		      Thread.sleep(1000);
-		    CompanyPOM.clickAllReport(driver).click();
+		    CompanyPOM.clickInternalCheckListAssi(driver).click();
 		      
 			  	 Thread.sleep(5000);
 			 	Thread.sleep(2000);
@@ -301,20 +301,22 @@ public class CompanyMethods {
 		   		  	 Thread.sleep(1000);
 		   		   CompanyPOM.DPvtLtdAS(driver).click();
 		   		  	 Thread.sleep(4000);
-		   		  dir = new File("C:\\Users\\trainee\\Downloads");
+		   		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));
+		   		 Thread.sleep(4000);
+		   		  dir = new File("C:\\Users\\Mayuri\\Downloads");
 					 dirContents = dir.listFiles(); // Counting number of files in directory before download
 
 					Thread.sleep(4000);
 					CompanyPOM.clickExport(driver).click(); // Exporting (Downloading) file
 
 					Thread.sleep(3000);
-					 dir1 = new File("C:\\Users\\trainee\\Downloads");
+					 dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 					 allFilesNew = dir1.listFiles(); // Counting number of files in directory after download
 					Thread.sleep(3000);
 					if (dirContents.length < allFilesNew.length) {
 						test.log(LogStatus.PASS,  "All Report :- File downloaded successfully.");
 					} else {
-						test.log(LogStatus.FAIL,  " :- File does not downloaded.");
+						test.log(LogStatus.FAIL,  "All Report :- File does not downloaded.");
 					}
 		 	
 	 
@@ -331,7 +333,7 @@ public class CompanyMethods {
 		SwitchtoChild(driver,test);
 		Thread.sleep(3000);
 		
-	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[5]")));	//Wait until records table get visible.
 //-------------------------------Statutory Assignment Report-------------------------------
 	      action.moveToElement(CompanyPOM.ManageEvents(driver)).click().build().perform();
 	      Thread.sleep(1000);
@@ -344,14 +346,14 @@ public class CompanyMethods {
 				  	 Thread.sleep(3000);
 		  	 
 		  	Thread.sleep(3000);
-			File dir = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+			File dir = new File("C:\\Users\\Mayuri\\Downloads");
 			File[] dirContents = dir.listFiles(); // Counting number of files in directory before download
 
 			Thread.sleep(500);
 			CompanyPOM.ExporttoExcel(driver).click(); // Exporting (Downloading) file
 
 			Thread.sleep(3000);
-			File dir1 = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+			File dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 			File[] allFilesNew = dir1.listFiles(); // Counting number of files in directory after download
 			Thread.sleep(3000);
 			if (dirContents.length < allFilesNew.length) {
@@ -365,14 +367,14 @@ public class CompanyMethods {
 			  	 Thread.sleep(3000);
 	  	 
 			 	Thread.sleep(3000);
-				File dir2 = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+				File dir2 = new File("C:\\Users\\Mayuri\\Downloads");
 				File[] dirContents1 = dir2.listFiles(); // Counting number of files in directory before download
 
 				Thread.sleep(500);
 				CompanyPOM.ExporttoExcel(driver).click(); // Exporting (Downloading) file
 
 				Thread.sleep(3000);
-				File dir3 = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+				File dir3 = new File("C:\\Users\\Mayuri\\Downloads");
 				File[] allFilesNew1 = dir3.listFiles(); // Counting number of files in directory after download
 				Thread.sleep(3000);
 				if (dirContents1.length < allFilesNew1.length) {
@@ -407,7 +409,7 @@ public class CompanyMethods {
 		  	 
 		  	 CompanyPOM.SelectEntity(driver).click();
 		  	 Thread.sleep(1000);
-		  	  CompanyPOM.FPvtLTd(driver).click();
+		  	  CompanyPOM.BITAConsultingPune(driver).click();
 			  	 Thread.sleep(1000);
 			  	 CompanyPOM.SelectEntityok(driver).click();
 			  	 Thread.sleep(8000);
@@ -423,14 +425,14 @@ public class CompanyMethods {
 				 	CompanyPOM.Select(driver).click();
 				  	 Thread.sleep(3000);
 				  	Thread.sleep(3000);
-					File dir2 = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+					File dir2 = new File("C:\\Users\\Mayuri\\Downloads");
 					File[] dirContents1 = dir2.listFiles(); // Counting number of files in directory before download
 
 					Thread.sleep(500);
 					CompanyPOM.Download(driver).click(); // Exporting (Downloading) file
 
 					Thread.sleep(3000);
-					File dir3 = new File("C:\\Users\\Mayuri Gaikwad\\Downloads");
+					File dir3 = new File("C:\\Users\\Mayuri\\Downloads");
 					File[] allFilesNew1 = dir3.listFiles(); // Counting number of files in directory after download
 					Thread.sleep(3000);
 					if (dirContents1.length < allFilesNew1.length) {
@@ -649,14 +651,14 @@ public class CompanyMethods {
 		  	 Thread.sleep(3000);
 		  
 		 	
-			File dir = new File("C:\\Users\\trainee\\Downloads");
+			File dir = new File("C:\\Users\\Mayuri\\Downloads");
 			File[] dirContents = dir.listFiles(); // Counting number of files in directory before download
 
 			Thread.sleep(500);
 			CompanyPOM.DownloadEC(driver).click(); // Exporting (Downloading) file
 
 			Thread.sleep(3000);
-			File dir1 = new File("C:\\Users\\trainee\\Downloads");
+			File dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 			File[] allFilesNew = dir1.listFiles(); // Counting number of files in directory after download
 			Thread.sleep(3000);
 			if (dirContents.length < allFilesNew.length) {
@@ -929,11 +931,11 @@ public class CompanyMethods {
 		Thread.sleep(2000);
 		CompanyPOM.HR(driver).click();
 		Thread.sleep(4000);
-		CompanyPOM.SecurityGroup(driver).click();
+	/*	CompanyPOM.SecurityGroup(driver).click();
 		Thread.sleep(2000);
 		CompanyPOM.avantisGroup(driver).click();
 		Thread.sleep(4000);
-		
+		*/
 		CompanyPOM.UserSave(driver).click();
 		Thread.sleep(8000);
 		test.log(LogStatus.PASS, "User - Add Successfully");
@@ -944,14 +946,14 @@ public class CompanyMethods {
 			Thread.sleep(6000);
 			test.log(LogStatus.PASS, "User - Filter working Successfully");
 			
-			File dir = new File("C:\\Users\\trainee\\Downloads");
+			File dir = new File("C:\\Users\\Mayuri\\Downloads");
 			File[] dirContents = dir.listFiles(); // Counting number of files in directory before download
 
 			Thread.sleep(500);
 			CompanyPOM.ExportUser(driver).click(); // Exporting (Downloading) file
 
 			Thread.sleep(3000);
-			File dir1 = new File("C:\\Users\\trainee\\Downloads");
+			File dir1 = new File("C:\\Users\\Mayuri\\Downloads");
 			File[] allFilesNew = dir1.listFiles(); // Counting number of files in directory after download
 			Thread.sleep(3000);
 			if (dirContents.length < allFilesNew.length) {
@@ -1099,12 +1101,12 @@ public class CompanyMethods {
 		js.executeScript("window.scrollBy(0,500)");	
 		Thread.sleep(4000);
 		CompanyPOM.keep(driver).click();
-		Thread.sleep(1000);
-		String Msg = driver.switchTo().alert().getText();
+		Thread.sleep(5000);
+		//String Msg = driver.switchTo().alert().getText();
 		Thread.sleep(1000);
 		driver.switchTo().alert().accept();
 		Thread.sleep(5000);
-		test.log(LogStatus.PASS, "Keep - Message displayed -:- " + Msg);
+	//	test.log(LogStatus.PASS, "Keep - Message displayed -:- " + Msg);
 		Thread.sleep(2000);
 		String Msg1 = driver.switchTo().alert().getText();
 		Thread.sleep(1000);
@@ -1126,7 +1128,7 @@ public class CompanyMethods {
 		js.executeScript("window.scrollBy(0,500)");	
 		Thread.sleep(4000);
 		CompanyPOM.BlockDelete(driver).click();
-		Thread.sleep(1000);
+		Thread.sleep(8000);
 		
 		driver.switchTo().alert().accept();
 
@@ -1143,22 +1145,765 @@ public class CompanyMethods {
 	}
 	
 	
+	public static void UserDept( WebDriver driver,ExtentTest test) throws InterruptedException, IOException
+	{		
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (40));
+		Thread.sleep(3000);
+		
+		SwitchtoChild(driver,test);
+	      
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+	  	action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+	  	CompanyPOM.User(driver).click();
+	  	 Thread.sleep(5000);
+	      		  	CompanyPOM.ModifyAssignmentsLink(driver).click();
+	      		  	 Thread.sleep(2000);
+	      		  	if(CompanyPOM.DepartmentDropdown(driver).isDisplayed()) {
+	      				
+	      				test.log(LogStatus.PASS, " Department Dropdown is Displayed  ");
+	      				
+	      			}else {
+	      				test.log(LogStatus.FAIL, " Department Dropdown is not Displayed  ");
+	      			}
+	      			
+	      			JavascriptExecutor js = (JavascriptExecutor) driver;
+	      			js.executeScript("window.scrollBy(0,500)");	
+	      			Thread.sleep(4000);
+	      			
+	      			CompanyPOM.ModifyAssignmentsClose(driver).click();
+	      			Thread.sleep(4000);
+	      			SwitchtoParent(driver,test);
+	}
+
+	public static void ModifyAssignmentsDept( WebDriver driver,ExtentTest test) throws InterruptedException, IOException
+	{		
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (40));
+		Thread.sleep(3000);
+		
+		SwitchtoChild(driver,test);
+	      
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+	  	action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+	      CompanyPOM.ModifyAssignments(driver).click();
+	      		  	 Thread.sleep(2000);
+	      		  
+	      		  	if(CompanyPOM.DepartmentDropdownMA(driver).isDisplayed()) {
+	      				
+	      				test.log(LogStatus.PASS, " Department Dropdown is Displayed  ");
+	      				
+	      			}else {
+	      				test.log(LogStatus.FAIL, " Department Dropdown is not Displayed  ");
+	      			}
+	      			
+	      			
+	      			Thread.sleep(4000);
+	      			
+	      			
+	      			SwitchtoParent(driver,test);
+	}
 	
 	
+	public static void modifyAssignmentsTask(WebDriver driver, ExtentTest test)
+			throws InterruptedException, IOException {
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (140));
+		Thread.sleep(3000);
+		SwitchtoChild(driver,test);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+	  	action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+		Thread.sleep(4000);
+		   CompanyPOM.ModifyAssignments(driver).click();
+		  	 Thread.sleep(2000);
+
+		// --------------------------- Modify Assignments :- Statutory :-Task :-Reassign
+		// -------------------------------------
+		ImplementPOM.ClickTask(driver).click();
+		Thread.sleep(1000);
+
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[6]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(2000);
+		ImplementPOM.SelectUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.performera(driver).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[7]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(5000);
+		ImplementPOM.SelectNewPerformerUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.performera(driver).click();
+		Thread.sleep(5000);
+
+		ImplementPOM.SelectNewReviewerUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.reviewerb(driver).click();
+		Thread.sleep(5000);
+
+		ImplementPOM.ChechBoxInTask0(driver).click();
+		// Thread.sleep(1000);
+		// ImplementPOM.CheckBox1(driver).click();
+		Thread.sleep(5000);
+		ImplementPOM.ClicksaveBtn(driver).click();
+		String MAMsg = driver.switchTo().alert().getText();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		Thread.sleep(2000);
+	//	driver.switchTo().alert().dismiss();
+		if (MAMsg.equalsIgnoreCase("Are you sure you want reassign selected compliance tasks to performer a?")) {
+			test.log(LogStatus.PASS, "Message displayed - " + MAMsg);
+		} else {
+			test.log(LogStatus.PASS, "Message displayed -" + MAMsg + "not Displayed");
+		}
+		Thread.sleep(4000);
+
+		SwitchtoParent(driver,test);
+	}
+
+	
+	public static void modifyAssignmentsTaskIN(WebDriver driver, ExtentTest test)
+			throws InterruptedException, IOException {
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (140));
+		Thread.sleep(3000);
+		SwitchtoChild(driver,test);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+	  	action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+		Thread.sleep(4000);
+		   CompanyPOM.ModifyAssignments(driver).click();
+		  	 Thread.sleep(2000);
+
+		// --------------------------- Modify Assignments :- Internal :-Task :-Reassign
+		// -------------------------------------
+		ImplementPOM.ClickTask(driver).click();
+		Thread.sleep(2000);
+		ImplementPOM.ClickInternalRB(driver).click();
+		Thread.sleep(5000);
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[6]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(2000);
+		ImplementPOM.SelectUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.performera(driver).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[7]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(5000);
+		ImplementPOM.SelectNewPerformerUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.performera(driver).click();
+		Thread.sleep(5000);
+
+		ImplementPOM.SelectNewReviewerUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.reviewerb(driver).click();
+		Thread.sleep(5000);
+
+		ImplementPOM.ChechBoxInTask0(driver).click();
+		// Thread.sleep(1000);
+		// ImplementPOM.CheckBox1(driver).click();
+		Thread.sleep(5000);
+		ImplementPOM.ClicksaveBtn(driver).click();
+		String MAMsg = driver.switchTo().alert().getText();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		Thread.sleep(2000);
+	//	driver.switchTo().alert().dismiss();
+
+		if (MAMsg.equalsIgnoreCase("Are you sure you want reassign selected compliance tasks to performer a?")) {
+			test.log(LogStatus.PASS, "Message displayed -  " + MAMsg);
+		} else {
+			test.log(LogStatus.PASS, "Message displayed -" + MAMsg + "not Displayed");
+		}
+		Thread.sleep(4000);
+
+		SwitchtoParent(driver,test);
+	}
+
+	
+	public static void modifyAssignmentsCom(WebDriver driver, ExtentTest test)
+			throws InterruptedException, IOException {
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (140));
+		Thread.sleep(3000);
+		SwitchtoChild(driver,test);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+	  	action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+		Thread.sleep(4000);
+		   CompanyPOM.ModifyAssignments(driver).click();
+		  	 Thread.sleep(2000);
+
+		// --------------------------- Modify Assignments :- Statutory :-Compliance  :-Reassign
+		
+		
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[6]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(2000);
+		ImplementPOM.SelectUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.Sonalipatil(driver).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[7]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(5000);
+		ImplementPOM.SelectNewPerformerUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.Sonalipatil(driver).click();
+		Thread.sleep(5000);
+
+		ImplementPOM.SelectNewReviewerUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.reviewerb(driver).click();
+		Thread.sleep(5000);
+
+		ImplementPOM.CheckBox0(driver).click();
+		Thread.sleep(1000);
+		// Thread.sleep(1000);
+		// ImplementPOM.CheckBox1(driver).click();
+		Thread.sleep(5000);
+		ImplementPOM.ClicksaveBtn(driver).click();
+		String MAMsg = driver.switchTo().alert().getText();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		Thread.sleep(2000);
+	//	driver.switchTo().alert().dismiss();
+		Thread.sleep(2000);
+		if (MAMsg.equalsIgnoreCase("Are you sure you want reassign selected compliances to Sonali patil?")) {
+			test.log(LogStatus.PASS, "Message displayed -  " + MAMsg);
+		} else {
+			test.log(LogStatus.PASS, "Message displayed -" + MAMsg + "not Displayed");
+		}
+		Thread.sleep(4000);
+
+		SwitchtoParent(driver,test);
+	}
+
+	public static void modifyAssignmentsComEB(WebDriver driver, ExtentTest test)
+			throws InterruptedException, IOException {
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (140));
+		Thread.sleep(3000);
+		SwitchtoChild(driver,test);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+	  	action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+		Thread.sleep(4000);
+		   CompanyPOM.ModifyAssignments(driver).click();
+		  	 Thread.sleep(2000);
+
+		// --------------------------- Modify Assignments :- Statutory :-Compliance  :-Reassign - Event Based
+		
+		
+		Thread.sleep(5000);
+		ImplementPOM.ClickStaEventBased(driver).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[6]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(2000);
+		ImplementPOM.SelectUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.Sonalipatil(driver).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[7]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(5000);
+		ImplementPOM.SelectNewPerformerUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.Sonalipatil(driver).click();
+		Thread.sleep(5000);
+
+		ImplementPOM.SelectNewReviewerUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.reviewerb(driver).click();
+		Thread.sleep(5000);
+
+		ImplementPOM.CheckBox0(driver).click();
+		Thread.sleep(1000);
+		// Thread.sleep(1000);
+		// ImplementPOM.CheckBox1(driver).click();
+		Thread.sleep(5000);
+		ImplementPOM.ClicksaveBtn(driver).click();
+		String MAMsg = driver.switchTo().alert().getText();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		Thread.sleep(2000);
+	//	driver.switchTo().alert().dismiss();
+		Thread.sleep(2000);
+		if (MAMsg.equalsIgnoreCase("Are you sure you want reassign selected compliances to Sonali patil?")) {
+			test.log(LogStatus.PASS, "Message displayed - " + MAMsg);
+		} else {
+			test.log(LogStatus.PASS, "Message displayed -" + MAMsg + "not Displayed");
+		}
+		Thread.sleep(4000);
+
+		SwitchtoParent(driver,test);
+	}
+
+	
+	public static void modifyAssignmentsComChecklist(WebDriver driver, ExtentTest test)
+			throws InterruptedException, IOException {
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (140));
+		Thread.sleep(3000);
+		SwitchtoChild(driver,test);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+	  	action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+		Thread.sleep(4000);
+		   CompanyPOM.ModifyAssignments(driver).click();
+		  	 Thread.sleep(2000);
+
+		// --------------------------- Modify Assignments :- Statutory :-Compliance  :-Reassign - Checklist
+		
+		
+		Thread.sleep(5000);
+		ImplementPOM.ClickStaCheckList(driver).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[6]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(2000);
+		ImplementPOM.SelectUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.Sonalipatil(driver).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[7]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(5000);
+		ImplementPOM.SelectNewPerformerUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.Sonalipatil(driver).click();
+		Thread.sleep(5000);
+
+		ImplementPOM.SelectNewReviewerUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.reviewerb(driver).click();
+		Thread.sleep(5000);
+
+		ImplementPOM.CheckBox0(driver).click();
+		Thread.sleep(1000);
+		// Thread.sleep(1000);
+		// ImplementPOM.CheckBox1(driver).click();
+		Thread.sleep(5000);
+		ImplementPOM.ClicksaveBtn(driver).click();
+		String MAMsg = driver.switchTo().alert().getText();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		Thread.sleep(2000);
+	//	driver.switchTo().alert().dismiss();
+		Thread.sleep(2000);
+		if (MAMsg.equalsIgnoreCase("Are you sure you want reassign selected compliances to Sonali patil?")) {
+			test.log(LogStatus.PASS, "Message displayed - " + MAMsg);
+		} else {
+			test.log(LogStatus.PASS, "Message displayed -" + MAMsg + "not Displayed");
+		}
+		Thread.sleep(4000);
+
+		SwitchtoParent(driver,test);
+	}
+
+	
+	public static void modifyAssignmentsComIN(WebDriver driver, ExtentTest test)
+			throws InterruptedException, IOException {
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (140));
+		Thread.sleep(3000);
+		SwitchtoChild(driver,test);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+	  	action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+		Thread.sleep(4000);
+		   CompanyPOM.ModifyAssignments(driver).click();
+		  	 Thread.sleep(2000);
+
+		// --------------------------- Modify Assignments :- Internal :-Compliance  :-Reassign
+		
+		
+		Thread.sleep(2000);
+		ImplementPOM.ClickInternalRB(driver).click();
+		Thread.sleep(5000);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[6]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(2000);
+		ImplementPOM.SelectUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.performera(driver).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[7]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(5000);
+		ImplementPOM.SelectNewPerformerUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.performera(driver).click();
+		Thread.sleep(5000);
+
+		ImplementPOM.SelectNewReviewerUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.reviewerb(driver).click();
+		Thread.sleep(5000);
+
+		ImplementPOM.CheckINBox0(driver).click();
+		Thread.sleep(1000);
+		// ImplementPOM.CheckBox1(driver).click();
+		Thread.sleep(5000);
+		ImplementPOM.ClicksaveBtn(driver).click();
+		String MAMsg = driver.switchTo().alert().getText();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		Thread.sleep(2000);
+	//	driver.switchTo().alert().dismiss();
+
+		if (MAMsg.equalsIgnoreCase("Are you sure you want reassign selected compliances to performer a?")) {
+			test.log(LogStatus.PASS, "Message displayed -  " + MAMsg);
+		} else {
+			test.log(LogStatus.PASS, "Message displayed -" + MAMsg + "not Displayed");
+		}
+		Thread.sleep(4000);
+
+		SwitchtoParent(driver,test);
+	}
+
+	public static void modifyAssignmentsComINChecklist(WebDriver driver, ExtentTest test)
+			throws InterruptedException, IOException {
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (140));
+		Thread.sleep(3000);
+		SwitchtoChild(driver,test);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+	  	action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+		Thread.sleep(4000);
+		   CompanyPOM.ModifyAssignments(driver).click();
+		  	 Thread.sleep(2000);
+
+		// --------------------------- Modify Assignments :- Internal :-Compliance  :-Reassign -CheckList
+		
+		
+		Thread.sleep(2000);
+		ImplementPOM.ClickInternalRB(driver).click();
+		Thread.sleep(5000);
+		ImplementPOM.ClickStaCheckList(driver).click();
+		Thread.sleep(5000);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[6]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(2000);
+		ImplementPOM.SelectUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.performera(driver).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[7]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(5000);
+		ImplementPOM.SelectNewPerformerUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.performera(driver).click();
+		Thread.sleep(5000);
+
+		ImplementPOM.SelectNewReviewerUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.reviewerb(driver).click();
+		Thread.sleep(5000);
+
+		ImplementPOM.CheckINBox0(driver).click();
+		Thread.sleep(1000);
+		// ImplementPOM.CheckBox1(driver).click();
+		Thread.sleep(5000);
+		ImplementPOM.ClicksaveBtn(driver).click();
+		String MAMsg = driver.switchTo().alert().getText();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		Thread.sleep(2000);
+	//	driver.switchTo().alert().dismiss();
+		
+		if (MAMsg.equalsIgnoreCase("Are you sure you want reassign selected compliances to performer a?")) {
+			test.log(LogStatus.PASS, "Message displayed - " + MAMsg);
+		} else {
+			test.log(LogStatus.PASS, "Message displayed -" + MAMsg + "not Displayed");
+		}
+		Thread.sleep(4000);
+
+		SwitchtoParent(driver,test);
+	}
+
+	
+	public static void modifyAssignmentsComExclude(WebDriver driver, ExtentTest test)
+			throws InterruptedException, IOException {
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (140));
+		Thread.sleep(3000);
+		SwitchtoChild(driver,test);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+	  	action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+		Thread.sleep(4000);
+		   CompanyPOM.ModifyAssignments(driver).click();
+		  	 Thread.sleep(2000);
+
+		// --------------------------- Modify Assignments :- Statutory :-Compliance  :-Exclude 
+		
+		  	ImplementPOM.ClickExclude(driver).click();
+			Thread.sleep(6000);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[6]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(2000);
+		ImplementPOM.SelectUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.Sonalipatil(driver).click();
+		Thread.sleep(5000);
+		
+		ImplementPOM.CheckBox0(driver).click();
+		Thread.sleep(1000);
+		// Thread.sleep(1000);
+		// ImplementPOM.CheckBox1(driver).click();
+		Thread.sleep(5000);
+		ImplementPOM.ClicksaveBtn(driver).click();
+		String MAMsg = driver.switchTo().alert().getText();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		Thread.sleep(2000);
+	//	driver.switchTo().alert().dismiss();
+		Thread.sleep(2000);
+		if (MAMsg.equalsIgnoreCase("Are you sure you want exclude selected compliances for Sonali patil?")) {
+			test.log(LogStatus.PASS, "Message displayed -  " + MAMsg);
+		} else {
+			test.log(LogStatus.PASS, "Message displayed -" + MAMsg + "not Displayed");
+		}
+		Thread.sleep(4000);
+
+		SwitchtoParent(driver,test);
+	}
+	
+	public static void modifyAssignmentsComExcludeEB(WebDriver driver, ExtentTest test)
+			throws InterruptedException, IOException {
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (140));
+		Thread.sleep(3000);
+		SwitchtoChild(driver,test);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+	  	action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+		Thread.sleep(4000);
+		   CompanyPOM.ModifyAssignments(driver).click();
+		  	 Thread.sleep(2000);
+
+		// --------------------------- Modify Assignments :- Statutory :-Compliance  :-Exclude -Event Based
+		
+		  	ImplementPOM.ClickExclude(driver).click();
+			Thread.sleep(6000);
+			ImplementPOM.ClickStaEventBased(driver).click();
+			Thread.sleep(5000);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[6]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(2000);
+		ImplementPOM.SelectUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.Sonalipatil(driver).click();
+		Thread.sleep(5000);
+		
+		ImplementPOM.CheckBox0(driver).click();
+		Thread.sleep(1000);
+		// Thread.sleep(1000);
+		// ImplementPOM.CheckBox1(driver).click();
+		Thread.sleep(5000);
+		ImplementPOM.ClicksaveBtn(driver).click();
+		String MAMsg = driver.switchTo().alert().getText();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		Thread.sleep(2000);
+	//	driver.switchTo().alert().dismiss();
+		Thread.sleep(2000);
+		if (MAMsg.equalsIgnoreCase("Are you sure you want exclude selected compliances for Sonali patil?")) {
+			test.log(LogStatus.PASS, "Message displayed -  " + MAMsg);
+		} else {
+			test.log(LogStatus.PASS, "Message displayed -" + MAMsg + "not Displayed");
+		}
+		Thread.sleep(4000);
+
+		SwitchtoParent(driver,test);
+	}
+	
+	public static void modifyAssignmentsComExcludeCL(WebDriver driver, ExtentTest test)
+			throws InterruptedException, IOException {
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (140));
+		Thread.sleep(3000);
+		SwitchtoChild(driver,test);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+	  	action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+		Thread.sleep(4000);
+		   CompanyPOM.ModifyAssignments(driver).click();
+		  	 Thread.sleep(2000);
+
+		// --------------------------- Modify Assignments :- Statutory :-Compliance  :-Exclude -CheckList
+		
+		  	ImplementPOM.ClickExclude(driver).click();
+			Thread.sleep(6000);
+			ImplementPOM.ClickStaCheckList(driver).click();
+			Thread.sleep(5000);
+			
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[6]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(2000);
+		ImplementPOM.SelectUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.Sonalipatil(driver).click();
+		Thread.sleep(5000);
+		
+		ImplementPOM.CheckBox0(driver).click();
+		Thread.sleep(1000);
+		// Thread.sleep(1000);
+		// ImplementPOM.CheckBox1(driver).click();
+		Thread.sleep(5000);
+		ImplementPOM.ClicksaveBtn(driver).click();
+		String MAMsg = driver.switchTo().alert().getText();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		Thread.sleep(2000);
+	//	driver.switchTo().alert().dismiss();
+		Thread.sleep(2000);
+		if (MAMsg.equalsIgnoreCase("Are you sure you want exclude selected compliances for Sonali patil?")) {
+			test.log(LogStatus.PASS, "Message displayed -  " + MAMsg);
+		} else {
+			test.log(LogStatus.PASS, "Message displayed -" + MAMsg + "not Displayed");
+		}
+		Thread.sleep(4000);
+
+		SwitchtoParent(driver,test);
+	}
 	
 	
+	public static void modifyAssignmentsComExcludeIN(WebDriver driver, ExtentTest test)
+			throws InterruptedException, IOException {
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (140));
+		Thread.sleep(3000);
+		SwitchtoChild(driver,test);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+	  	action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+		Thread.sleep(4000);
+		   CompanyPOM.ModifyAssignments(driver).click();
+		  	 Thread.sleep(2000);
+
+		// --------------------------- Modify Assignments :- Internal :-Compliance  :-Reassign
+		
+		
+		Thread.sleep(2000);
+		ImplementPOM.ClickInternalRB(driver).click();
+		Thread.sleep(5000);
+		ImplementPOM.ClickExclude(driver).click();
+		Thread.sleep(6000);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[6]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(2000);
+		ImplementPOM.SelectUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.performera(driver).click();
+		Thread.sleep(5000);
+		
+
+		ImplementPOM.CheckINBox0(driver).click();
+		Thread.sleep(1000);
+		// ImplementPOM.CheckBox1(driver).click();
+		Thread.sleep(5000);
+		ImplementPOM.ClicksaveBtn(driver).click();
+		String MAMsg = driver.switchTo().alert().getText();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		Thread.sleep(2000);
+	//	driver.switchTo().alert().dismiss();
+
+		if (MAMsg.equalsIgnoreCase("Are you sure you want exclude selected compliances for performer a?")) {
+			test.log(LogStatus.PASS, "Message displayed -  " + MAMsg);
+		} else {
+			test.log(LogStatus.PASS, "Message displayed -" + MAMsg + "not Displayed");
+		}
+		Thread.sleep(4000);
+
+		SwitchtoParent(driver,test);
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public static void modifyAssignmentsComExcludeINCL(WebDriver driver, ExtentTest test)
+			throws InterruptedException, IOException {
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, (140));
+		Thread.sleep(3000);
+		SwitchtoChild(driver,test);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='CMPMenuBar']/ul/li[2]")));	//Wait until records table get visible.
+	  	action.moveToElement(CompanyPOM.ManageUsers(driver)).click().build().perform();
+	      Thread.sleep(1000);
+		Thread.sleep(4000);
+		   CompanyPOM.ModifyAssignments(driver).click();
+		  	 Thread.sleep(2000);
+
+		// --------------------------- Modify Assignments :- Internal :-Compliance  :-Reassign
+		
+		
+		Thread.sleep(2000);
+		ImplementPOM.ClickInternalRB(driver).click();
+		Thread.sleep(5000);
+		ImplementPOM.ClickExclude(driver).click();
+		Thread.sleep(6000);
+		ImplementPOM.ClickStaCheckList(driver).click();
+		Thread.sleep(5000);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@id='BodyContent_upModifyAssignment']/div[1]/table/tbody/tr[6]/td[2]/span/a/span[1]"))); 
+		Thread.sleep(2000);
+		ImplementPOM.SelectUser(driver).click();
+		Thread.sleep(2000);
+		CompanyPOM.performera(driver).click();
+		Thread.sleep(5000);
+		
+
+		ImplementPOM.CheckINBox0(driver).click();
+		Thread.sleep(1000);
+		// ImplementPOM.CheckBox1(driver).click();
+		Thread.sleep(5000);
+		ImplementPOM.ClicksaveBtn(driver).click();
+		String MAMsg = driver.switchTo().alert().getText();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		Thread.sleep(2000);
+	//	driver.switchTo().alert().dismiss();
+
+		if (MAMsg.equalsIgnoreCase("Are you sure you want exclude selected compliances for performer a?")) {
+			test.log(LogStatus.PASS, "Message displayed -  " + MAMsg);
+		} else {
+			test.log(LogStatus.PASS, "Message displayed -" + MAMsg + "not Displayed");
+		}
+		Thread.sleep(4000);
+
+		SwitchtoParent(driver,test);
+	}
 	
 	
 	

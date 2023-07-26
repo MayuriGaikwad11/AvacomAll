@@ -10,7 +10,7 @@ public class Method {
 	
 	public static void login() throws InterruptedException
 	{
-		System.setProperty("webdriver.chrome.driver","C:/March2022/PerformerPom/Driver1/chromedriver.exe"); 
+	//	System.setProperty("webdriver.chrome.driver","C:/March2022/PerformerPom/Driver1/chromedriver.exe"); 
 		  
 		   driver=new ChromeDriver();                                    //Created new Chrome driver instance.
 		  

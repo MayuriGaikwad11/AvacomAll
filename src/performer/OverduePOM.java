@@ -134,7 +134,7 @@ public class OverduePOM
 	
 	public static WebElement clickMitigationPlan(WebDriver driver)			//Method to click on Third row action button
 	{
-		statutoryAction = driver.findElement(By.xpath("//*[@id='grid']/div[4]/table/tbody/tr[1]/td[26]/a[6]"));
+		statutoryAction = driver.findElement(By.xpath("//*[@id='grid']/div[4]/table/tbody/tr[2]/td[26]/a[6]"));
 		return statutoryAction;
 	}
 	
@@ -170,7 +170,7 @@ public class OverduePOM
 	
 	public static WebElement Date28(WebDriver driver)			//Method to click on Third row action button
 	{
-		statutoryAction = driver.findElement(By.linkText("28"));
+		statutoryAction = driver.findElement(By.linkText("5"));
 		return statutoryAction;
 	}
 	
@@ -189,7 +189,7 @@ public class OverduePOM
 	
 	public static WebElement ReadCount(WebDriver driver)			//Method to click on Third row action button
 	{
-		statutoryAction = driver.findElement(By.xpath("//*[@id='dvbtnNotCompliedSubmit']"));
+		statutoryAction = driver.findElement(By.xpath("//*[@id='ContentPlaceHolder1_lblTotalRecord']"));
 		return statutoryAction;
 	}
 	
@@ -272,6 +272,13 @@ public class OverduePOM
 		return date;
 	}
 	
+	public static WebElement selectDateStatutory11(WebDriver driver)			//Method to search Date Box
+	{
+		date = driver.findElement(By.linkText("1"));
+		return date;
+	}
+	
+	
 	public static WebElement selectDateStatutory1(WebDriver driver)			//Method to search Date Box
 	{
 		date = driver.findElement(By.xpath("//*[@id='tbxDate2']"));
@@ -318,31 +325,31 @@ public class OverduePOM
 	public static WebElement clickComplianceSubmit(WebDriver driver)		//Method for searching button for Submit Form
 	{
 		submit = driver.findElement(By.xpath("//*[@id='btnSave']"));
-		return submit;//*[@id="btnSave"]
+		return submit;
 	}
 	
 	public static WebElement clickComplianceSubmitAS(WebDriver driver)		//Method for searching button for Submit Form
 	{
 		submit = driver.findElement(By.xpath("//*[@id='btnSaveDOCNotCompulsory']"));
-		return submit;//*[@id="btnSave"]
+		return submit;//*[@id="btnSaveDOCNotCompulsory"]
 	}
 	
 	public static WebElement clickComplianceSubmit2(WebDriver driver)		//Method for searching button for Submit Form
 	{
 		submit = driver.findElement(By.xpath("//*[@id='btnSave2']"));
-		return submit;//*[@id="btnSave"]
+		return submit;
 	}
 	
 	public static WebElement clickComplianceSubmit1(WebDriver driver)		//Method for searching button for Submit Form
 	{
 		submit = driver.findElement(By.xpath("//*[@id='btnSave']"));
-		return submit;//*[@id="btnSave"]
+		return submit;
 	}
 	
 	public static WebElement clickClosedDelayed(WebDriver driver)		//Method for searching button for Submit Form
 	{
 		submit = driver.findElement(By.xpath("//*[@id='btnClosedDelayed']"));
-		return submit;//*[@id="btnSave"]
+		return submit;
 	}
 	
 	public static WebElement clickDashboard(WebDriver driver)				//Method to search Dashboard Link
@@ -366,10 +373,24 @@ public class OverduePOM
 		return dashboard;
 	}
 	
+	public static WebElement clickClose2(WebDriver driver)
+	{
+	
+		dashboard = driver.findElement(By.xpath("//*[@id='btnCancel2']"));
+		return dashboard;
+	}
+	
 	public static WebElement clickClose1(WebDriver driver)
 	{
 	
 		dashboard = driver.findElement(By.xpath("/html/body/div[38]/div[1]/div/a"));
+		return dashboard;
+	}
+	
+	public static WebElement chooseFile(WebDriver driver)
+	{
+	
+		dashboard = driver.findElement(By.xpath("//*[@id='fuSampleFile']"));
 		return dashboard;
 	}
 	
@@ -388,8 +409,8 @@ public class OverduePOM
 	public static List<WebElement> clickActionButtonList(WebDriver driver) 	//Method to get list of action buttons on web page
 	{
 		//elementsList = driver.findElements(By.xpath("//*[@role='button'][@class='k-button k-button-icontext ob-overview k-grid-edit2']"));
-		elementsList = driver.findElements(By.xpath("//*[@id='grid']/div[4]/table/tbody/tr/td[24]/a[1]"));
-		//elementsList = driver.findElements(By.xpath("//*[@id='grid']/div[4]/table/tbody/tr[1]/td[24]/a[1]"));
+	//	elementsList = driver.findElements(By.xpath("//*[@id='grid']/div[4]/table/tbody/tr/td[24]/a[1]"));
+		elementsList = driver.findElements(By.xpath("//*[@id='grid']/div[4]/table/tbody/tr/td[26]/a[1]"));
 		
 		return elementsList;
 	}
@@ -447,7 +468,7 @@ public class OverduePOM
 	
 	public static WebElement selectDate(WebDriver driver)					//Method to click on date at second row and fourth column
 	{
-		selectDate = driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/table/tbody/tr[3]/td[3]/a"));
+		selectDate = driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/table/tbody/tr[2]/td[2]/a"));
 		return selectDate;
 	}
 	
@@ -716,6 +737,48 @@ public class OverduePOM
 		return performer;
 	}
 	
+	public static WebElement ComplianceTypeIn(WebDriver driver)			//Searching 'My Workspace' element.
+	{
+		performer = driver.findElement(By.xpath("//*[@id='example']/div[1]/div[2]/div/span[1]"));	//*[@onclick='CheckProduct();']
+		return performer;
+	}
+	
+	public static WebElement StatutoryCT(WebDriver driver)			//Searching 'My Workspace' element.
+	{
+		performer = driver.findElement(By.xpath("(//*[@class='k-checkbox-label checkbox-span'])[1]"));	//*[@onclick='CheckProduct();']
+		return performer;
+	}
+	
+	public static WebElement InternalCT(WebDriver driver)			//Searching 'My Workspace' element.
+	{
+		performer = driver.findElement(By.xpath("(//*[@class='k-checkbox-label checkbox-span'])[2]"));	//*[@onclick='CheckProduct();']
+		return performer;
+	}
+	
+	public static WebElement EventBasedCT(WebDriver driver)			//Searching 'My Workspace' element.
+	{
+		performer = driver.findElement(By.xpath("(//*[@class='k-checkbox-label checkbox-span'])[3]"));	//*[@onclick='CheckProduct();']
+		return performer;
+	}
+	
+	public static WebElement StatutoryCheckListCT(WebDriver driver)			//Searching 'My Workspace' element.
+	{
+		performer = driver.findElement(By.xpath("(//*[@class='k-checkbox-label checkbox-span'])[4]"));	//*[@onclick='CheckProduct();']
+		return performer;
+	}
+	
+	public static WebElement StatutoryLicenseCT(WebDriver driver)			//Searching 'My Workspace' element.
+	{
+		performer = driver.findElement(By.xpath("(//*[@class='k-checkbox-label checkbox-span'])[5]"));	//*[@onclick='CheckProduct();']
+		return performer;
+	}
+	
+	public static WebElement InternalLicenseCT(WebDriver driver)			//Searching 'My Workspace' element.
+	{
+		performer = driver.findElement(By.xpath("(//*[@class='k-checkbox-label checkbox-span'])[6]"));	//*[@onclick='CheckProduct();']
+		return performer;
+	}
+	
 	public static WebElement clickApplyAd(WebDriver driver)			//Searching 'My Workspace' element.
 	{
 		performer = driver.findElement(By.xpath("//*[@id='Applybtn1']"));	//*[@onclick='CheckProduct();']
@@ -971,7 +1034,7 @@ public class OverduePOM
 	
 	public static WebElement clickOverdue(WebDriver driver)				//Searching 'Overdue' sub menu status of dropdown
 	{
-		performer = driver.findElement(By.xpath("//*[@id='example']/div[1]/span[2]/span"));
+		performer = driver.findElement(By.xpath("//*[@id='dropdownlistStatus_listbox']/li[3]"));
 	//	performer = driver.findElement(By.xpath("//*[@id='be186438-b9fc-43cb-99d5-938839dd18b1']"));				//(//*[@class='k-list-scroller'])[2]/ul/li[3]
 		return performer;
 	}//*[@id="example"]/div[1]/span[2]/span
@@ -1355,7 +1418,7 @@ public class OverduePOM
 		performer = driver.findElement(By.xpath("//*[@id='divOpenPermissionPopup']/div/div/div[2]/div[3]/div/span/div/ul/li[5]/a/label"));
 		return performer;                        //*[@id="divOpenPermissionPopup"]/div/div/div[2]/div[3]/div/span/div/ul/li[25]/a/label/text()
 	}
-	
+
 	
 	public static WebElement clickLabel(WebDriver driver)				//Searching label to click on it.
 	{
@@ -1414,13 +1477,13 @@ public class OverduePOM
 	
 	public static WebElement clickMoreActions(WebDriver driver)			//Searching 'More Actions' drop down 
 	{
-		performer = driver.findElement(By.xpath("(//*[@class='k-dropdown-wrap k-state-default'])[5]"));
+		performer = driver.findElement(By.xpath("(//*[@class='k-dropdown-wrap k-state-default'])[6]"));
 		return performer;
 	}//*[@id='ContentPlaceHolder1_btnAddPromotor']
 	
 	public static WebElement clickMoreActions1(WebDriver driver)			//Searching 'More Actions' drop down 
 	{
-		performer = driver.findElement(By.xpath("(//*[@class='k-dropdown-wrap k-state-default'])[4]"));
+		performer = driver.findElement(By.xpath("(//*[@class='k-dropdown-wrap k-state-default'])[5]"));
 		return performer;
 	}
 	
@@ -1444,8 +1507,8 @@ public class OverduePOM
 	
 	public static WebElement upload1(WebDriver driver)					//Searching upload button in action
 	{
-		performer = driver.findElement(By.xpath("//*[@id='ContentPlaceHolder1_fuSampleFile']"));
-		return performer;
+		performer = driver.findElement(By.xpath("//*[@id='ContentPlaceHolder1_FileUpload1']"));
+		return performer;//*[@id="ContentPlaceHolder1_FileUpload1"]
 	}
 	
 	public static WebElement clickInterest(WebDriver driver)			//Searching Interest input box
@@ -1944,6 +2007,30 @@ public class OverduePOM
 		return performer;
 	}
 	
+	public static WebElement ClickPerformReview(WebDriver driver)		//
+	{
+		performer = driver.findElement(By.xpath("//*[@id='ContentPlaceHolder1_liPerformerReviewer']"));
+		return performer;
+	}
+	
+	public static WebElement PerformReviewMsg(WebDriver driver)		//
+	{
+		performer = driver.findElement(By.xpath("//*[@id='vsTaskPerformer']/ul/li"));
+		return performer;
+	}
+	
+	public static WebElement Period(WebDriver driver)		//
+	{
+		performer = driver.findElement(By.xpath("//*[@id='example']/div[2]/span[1]/span/span[2]"));
+		return performer;
+	}
+	
+	public static WebElement AllPeriod(WebDriver driver)		//
+	{
+		performer = driver.findElement(By.xpath("//*[@id='dropdownlistTypePastdata_listbox']/li[7]"));
+		return performer;
+	}
+	
 	public static WebElement ClickEditBtn(WebDriver driver)		//
 	{
 		performer = driver.findElement(By.xpath("//*[@id='ContentPlaceHolder1_grdTask_lbtEdit_0']"));
@@ -2190,7 +2277,7 @@ public class OverduePOM
 	public static WebElement ReadCountUpcoming(WebDriver driver)	//
 	{
 		performer = driver.findElement(By.xpath("//*[@id='ContentPlaceHolder1_lblTotalRecord']"));
-		return performer;//*[@id="ContentPlaceHolder1_lblTotalRecord"]
+		return performer;
 	}
 	
 	public static List<WebElement> ActionBtns(WebDriver driver)			//Searching all Upcoming status
@@ -2544,13 +2631,13 @@ public class OverduePOM
 			clickStatutoryCheckbox(driver).click();
 		}
 		
-		Thread.sleep(500);
+		Thread.sleep(8000);
 		litigationPerformer.MethodsPOM.progress(driver);
 		
-		Thread.sleep(500);
+		Thread.sleep(2000);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,1000)");
-		
+		Thread.sleep(2000);
 		wait1.until(ExpectedConditions.elementToBeClickable(CFOcountPOM.readTotalItems1(driver)));
 		CFOcountPOM.readTotalItems1(driver).click();
 		String item = CFOcountPOM.readTotalItems1(driver).getText();
@@ -2718,8 +2805,9 @@ public class OverduePOM
 				test.log(LogStatus.FAIL, compliance + " - Reminder count updated. Old count = "+count+" New count = "+count1);
 			}
 		}
-		Thread.sleep(500);
+		Thread.sleep(4000);
 		OverduePOM.clickDashboard(driver).click();
+		Thread.sleep(4000);
 	}
 	
 	public static void CriticalDocuments(WebDriver driver, ExtentTest test) throws InterruptedException
@@ -2803,7 +2891,7 @@ public class OverduePOM
 		
 		Thread.sleep(500);
 		String workingDir = System.getProperty("user.dir");
-		uploadNewFile(driver).sendKeys("C:\\Users\\Mayuri Gaikwad\\Desktop\\PerformerPom\\Reports\\PerformerResults.html");	//uploading new file		
+		uploadNewFile(driver).sendKeys("C:\\Users\\Mayuri\\Desktop\\AvaSec\\Secretarial-Project\\Report\\Secretrial.html");	//uploading new file		
 		
 		Thread.sleep(500);
 		wait.until(ExpectedConditions.elementToBeClickable(clickUploadDocument(driver)));
@@ -2833,11 +2921,16 @@ public class OverduePOM
 		clickSearchPeople(driver).click();					//Clicking on Search People drop down.
 		
 		Thread.sleep(500);
-	//	clickSearchPeople(driver).sendKeys("aayush tripathi");			//Writing user name to search for  CFO
+		//clickSearchPeople(driver).sendKeys("aayush tripathi");			//Writing user name to search for  CFO
 	//	clickSearchPeople(driver).sendKeys("Company");	        // Auditor
-		clickSearchPeople(driver).sendKeys("Amit shaha");	//Approver
-		Thread.sleep(500);
-		clickPeopleCheckBox1(driver).click();				//Clicking on label to get out from people search box
+	//	clickSearchPeople(driver).sendKeys("Amit shaha");	//Approver
+		//Thread.sleep(4000);
+		
+		clickSearchPeople(driver).sendKeys(" Akshay jadhav");	//Department
+		Thread.sleep(2000);
+		
+		clickPeopleCheckBox1(driver).click();	
+		Thread.sleep(3000);//Clicking on label to get out from people search box
 		driver.findElement(By.xpath("//*[@id='divOpenPermissionPopup']/div/div/div[2]")).click();
 		
 		Thread.sleep(1000);
@@ -2908,10 +3001,10 @@ public class OverduePOM
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//*[@role='grid'][@data-role='selectable'])[1]")));	//Waiting for records table to get visible.
 		
 		clickMoreActions(driver).click();				//Clicking on 'More Actions' drop down.
-		Thread.sleep(300);
+		Thread.sleep(3000);
 		elementsList = selectAction(driver);			//Clicking on drop down option
 		elementsList.get(no).click();
-		
+		Thread.sleep(3000);
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.elementToBeClickable(readReminder(driver)));
 		
@@ -2952,12 +3045,12 @@ public class OverduePOM
 			Thread.sleep(500);
 			clickRemark(driver).sendKeys("Automation Testing");		//Sending remark to Text area.
 			
-			Thread.sleep(500);
+			Thread.sleep(4000);
 			//fileUploadStatutory(driver).sendKeys("C:/Users/sandip/Downloads/Holiday List 2022.xlsx");
-		    driver.findElement(By.xpath("//*[@id='ContentPlaceHolder1_fuSampleFile']")).sendKeys("C:/Users/sandip/Downloads/Holiday List 2022.xlsx");
-			Thread.sleep(500);
+		    driver.findElement(By.xpath("//*[@id='ContentPlaceHolder1_fuSampleFile']")).sendKeys("C:\\Users\\Mayuri\\Downloads\\Industrial (Development and Regulation) Act 1951 (1).pdf");
+			Thread.sleep(2000);
 			String workingDir = System.getProperty("user.dir");			
-			upload1(driver).sendKeys("C:/March2022/PerformerPom/Reports/PerformerResults.html");	//uploading new file
+			upload1(driver).sendKeys("C:\\Users\\Mayuri\\Desktop\\Compliance\\AvacomAll\\Reports\\PerformerResults.html");	//uploading new file
 		}
 		
 		wait.until(ExpectedConditions.elementToBeClickable(clickSaveButton(driver)));

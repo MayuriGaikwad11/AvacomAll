@@ -309,14 +309,41 @@ private static WebElement researchReviewer = null;				//WebElement variable crea
 		return researchReviewer;                        
 	}
 	
+	public static WebElement ActGroup(WebDriver driver)		//Method for closing Message Popup
+	{
+		researchReviewer = driver.findElement(By.xpath("//*[@id='CMPMenuBar:submenu:2']/li[3]/a"));
+		return researchReviewer;                        
+	}
 	
+	public static WebElement ActGroupAdd(WebDriver driver)		//Method for closing Message Popup
+	{
+		researchReviewer = driver.findElement(By.xpath("//*[@id='BodyContent_btnAddEvent']"));
+		return researchReviewer;                        
+	}
 	
+	public static WebElement ActGroupName(WebDriver driver)		//Method for closing Message Popup
+	{
+		researchReviewer = driver.findElement(By.xpath("//*[@id='BodyContent_txtName']"));
+		return researchReviewer;                        
+	}
 	
+	public static WebElement ActGroupSave(WebDriver driver)		//Method for closing Message Popup
+	{
+		researchReviewer = driver.findElement(By.xpath("//*[@id='BodyContent_btnSave']"));
+		return researchReviewer;                        
+	}
 	
+	public static WebElement ActGroupFilter(WebDriver driver)		//Method for closing Message Popup
+	{
+		researchReviewer = driver.findElement(By.xpath("//*[@id='BodyContent_tbxFilter']"));
+		return researchReviewer;                        
+	}
 	
-	
-	
-	
+	public static WebElement ActGroupText(WebDriver driver)		//Method for closing Message Popup
+	{
+		researchReviewer = driver.findElement(By.xpath("//*[@id='BodyContent_grdActGroup_Label1_0']"));
+		return researchReviewer;                        
+	}
 	
 	
 	

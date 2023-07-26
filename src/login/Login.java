@@ -23,12 +23,12 @@ public class Login
 	public static WebDriver driver = null;				//WebDriver instance created
 	public static WebElement upload = null;				//WebElement to get upload button
 	
-	public static void BrowserSetup(String URL)
+	public static void BrowserSetup(String URL) throws InterruptedException
 	{
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\trainee\\Desktop\\Compliances\\ComplianceAll\\Driver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Mayuri\\Desktop\\Compliance\\AvacomAll\\Driver\\chromedriver.exe");
 		//System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver"); //Set the Chrome driver variable
 	
-	//	WebDriverManager.chromedriver().setup();
+		//WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();	
 		
 		//	WebDriverManager.edgedriver().setup();
@@ -37,6 +37,7 @@ public class Login
 	//	driver = new FirefoxDriver();
 			
 		driver.manage().window().maximize();			//Set window size to maximum.
+		Thread.sleep(3000);
 		driver.get(URL);								//Set the URL of WebApplication.
 	}
 	
@@ -108,11 +109,11 @@ public class Login
 				//----------------------------------------------------------
 				
 				wait1.until(ExpectedConditions.invisibilityOf(LoginPOM.clickQALink(driver)));
-			}
+		/*	}
 			catch(Exception e)
 			{
 				
-			}
+			}*/
 			
 			Thread.sleep(500);
 			wait1.until(ExpectedConditions.visibilityOf(LoginPOM.Question1(driver)));
@@ -154,9 +155,13 @@ public class Login
 			{
 				ans1 = getAnswerDept(que1);						//Storing the answer in ans variable.
 			}
+		//	else if(method.equalsIgnoreCase("Implementation") )
+		//	{
+		//		ans1 = getAnswerDept(que1);						//Storing the answer in ans variable.
+	//	}
 			else if(method.equalsIgnoreCase("Implementation") )
 			{
-				ans1 = getAnswerDept(que1);						//Storing the answer in ans variable.
+				ans1 = "123";						//Storing the answer in ans variable.
 			}
 			else if(method.equalsIgnoreCase("richa") )
 			{
@@ -232,9 +237,13 @@ public class Login
 			{
 				ans2 = getAnswerDept(que2);						//Storing the answer in ans variable.
 			}
+		//else if(method.equalsIgnoreCase("Implementation") )
+		//	{
+		//		ans2 = getAnswerDept(que2);						//Storing the answer in ans variable.
+		//	}
 			else if(method.equalsIgnoreCase("Implementation") )
 			{
-				ans2 = getAnswerDept(que2);						//Storing the answer in ans variable.
+				ans2 = "123";					//Storing the answer in ans variable.
 			}
 			else if(method.equalsIgnoreCase("richa") )
 			{
@@ -278,6 +287,11 @@ public class Login
 			Thread.sleep(100);
 			
 			LoginPOM.SubmitAnswer(driver).click();			//Clicking on Submit button.
+			}
+			catch(Exception e)
+			{
+				
+			}
 		}
 		
 			if(!method.equalsIgnoreCase("Implementation"))

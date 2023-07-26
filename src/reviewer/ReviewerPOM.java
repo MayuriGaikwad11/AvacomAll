@@ -172,7 +172,7 @@ public class ReviewerPOM
 	
 	public static WebElement clickInternalDownloadAS(WebDriver driver)		//Method for searching Closed-Timely radio button
 	{
-		closedTimely = driver.findElement(By.xpath("//*[@id='rptComplianceVersion3_btnComplinceVersionDoc1_0']"));
+		closedTimely = driver.findElement(By.xpath("(//*[@id='rptComplianceVersion3_btnComplinceVersionDoc1_0'])"));
 		return closedTimely;
 	}
 	
@@ -300,15 +300,15 @@ public class ReviewerPOM
 	
 	public static List<WebElement> clickOverView(WebDriver driver)	//Searching all 'Work File Timeline' text boxes
 	{
-		elementsList = driver.findElements(By.xpath("//*[@id='grid']/div[4]/table/tbody/tr[1]/td[25]/a"));
+		elementsList = driver.findElements(By.xpath("//*[@id='grid']/div[4]/table/tbody/tr[2]/td[25]/a"));
 		return elementsList;
 	}
 	
 	public static List<WebElement> clickOverViewE(WebDriver driver)	//Searching all 'Work File Timeline' text boxes
 	{
-		elementsList = driver.findElements(By.xpath("//*[@id='grid']/div[3]/table/tbody/tr/td[11]/a[2]"));
+		elementsList = driver.findElements(By.xpath("//*[@id='grid']/div[3]/table/tbody/tr/td[9]/a[2]"));
 		return elementsList;//*[@id="grid"]/div[3]/table/tbody/tr[1]/td[7]/a
-	}
+	}//*[@id="grid"]/div[3]/table/tbody/tr[1]/td[9]/a[2]
 	
 	public static List<WebElement> clickOverViewAE(WebDriver driver)	//Searching all 'Work File Timeline' text boxes
 	{
@@ -318,7 +318,7 @@ public class ReviewerPOM
 	
 	public static List<WebElement> clickOverViewCE(WebDriver driver)	//Searching all 'Work File Timeline' text boxes
 	{
-		elementsList = driver.findElements(By.xpath("//*[@id='grid']/div[3]/table/tbody/tr/td[11]/a"));
+		elementsList = driver.findElements(By.xpath("//*[@id='grid']/div[3]/table/tbody/tr/td[8]/a"));
 		return elementsList;
 	}
 	
